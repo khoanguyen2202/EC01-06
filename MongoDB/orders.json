@@ -1,0 +1,37 @@
+[{
+  "_id": {
+    "$oid": "62af2d8243f3fe537372fe1b"
+  },
+  "userId": "nnakhoa19@clc.fitus.edu.vn",
+  "paymentStatus": "processed",
+  "status": "delivered",
+  "shippingCost": 2,
+  "total": 77,
+  "items": [
+    {
+      "sku": "MS01",
+      "quantity": 1,
+      "price": 30
+    },
+    {
+      "sku": "BA01",
+      "quantity": 1,
+      "price": 45
+    }
+  ],
+  "address": {
+    "street": "227 Nguyen Van Cu",
+    "ward": " Ward 4",
+    "district": "District 5",
+    "city": "Ho Chi Minh City"
+  },
+  "shippingAddress": [
+    {
+      "street": "227 Nguyen Van Cu",
+      "ward": " Ward 4",
+      "district": "District 5",
+      "city": "Ho Chi Minh City"
+    }
+  ],
+  "trackingId": "HCM001"
+}]
