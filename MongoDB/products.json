@@ -1,0 +1,113 @@
+[{
+  "_id": "MB-C",
+  "type": "Mobile Case",
+  "brand": [
+    {
+      "name": "XunDD",
+      "skus": [
+        {
+          "sku": "XD01",
+          "price": 10,
+          "colors": [
+            {
+              "color": "Green",
+              "quantity": 10
+            },
+            {
+              "color": "Blue",
+              "quantity": 15
+            }
+          ],
+          "feature": "Shock Resistance"
+        },
+        {
+          "sku": "XD02",
+          "price": 15,
+          "colors": [
+            {
+              "color": "Black",
+              "quantity": 20
+            },
+            {
+              "color": "Grey",
+              "quantity": 25
+            }
+          ],
+          "feature": "Shock Resistance, IPX8"
+        }
+      ]
+    },
+    {
+      "name": "Mag Safe",
+      "skus": [
+        {
+          "sku": "MS01",
+          "price": 30,
+          "colors": [
+            {
+              "color": "Crystal",
+              "quantity": 20
+            }
+          ],
+          "feature": "Shock Resistance, IPX8, High Quality Plastic"
+        }
+      ]
+    }
+  ]
+},{
+  "_id": "MB-B_CH",
+  "type": "Mobile Backup Charge",
+  "brand": [
+    {
+      "name": "Anker",
+      "skus": [
+        {
+          "sku": "AN01",
+          "price": 25,
+          "colors": [
+            {
+              "color": "Black",
+              "quantity": 30
+            },
+            {
+              "color": "White",
+              "quantity": 30
+            }
+          ],
+          "feature": "10.000mAh, QC2.0"
+        },
+        {
+          "sku": "AN02",
+          "price": 35,
+          "colors": [
+            {
+              "color": "Black",
+              "quantity": 30
+            },
+            {
+              "color": "White",
+              "quantity": 35
+            }
+          ],
+          "feature": "12.000mAh, QC2.0"
+        }
+      ]
+    },
+    {
+      "name": "Baseus",
+      "skus": [
+        {
+          "sku": "BA01",
+          "price": 45,
+          "colors": [
+            {
+              "color": "Grey",
+              "quantity": 30
+            }
+          ],
+          "feature": "20.000mAh, QC3.0"
+        }
+      ]
+    }
+  ]
+}]

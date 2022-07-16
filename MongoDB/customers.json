@@ -1,0 +1,39 @@
+[{
+  "_id": "nnakhoa19@clc.fitus.edu.vn",
+  "firstName": "Khoa",
+  "lastName": "Nguyen",
+  "password": "khoa",
+  "address": {
+    "street": "227 Nguyen Van Cu",
+    "ward": " Ward 4",
+    "district": "District 5",
+    "city": "Ho Chi Minh City"
+  },
+  "shippingAddress": [
+    {
+      "street": "227 Nguyen Van Cu",
+      "ward": " Ward 4",
+      "district": "District 5",
+      "city": "Ho Chi Minh City"
+    }
+  ]
+},{
+  "_id": "lhtphuoc19@clc.fitus.edu.vn",
+  "firstName": "Phuoc",
+  "lastName": "Le",
+  "password": "phuoc",
+  "address": {
+    "street": "14 Hau Giang",
+    "ward": " Ward 2",
+    "district": "District 6",
+    "city": "Ho Chi Minh City"
+  },
+  "shippingAddress": [
+    {
+      "street": "145 Duong Ba Trac",
+      "ward": " Ward 6",
+      "district": "District 8",
+      "city": "Ho Chi Minh City"
+    }
+  ]
+}]

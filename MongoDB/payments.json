@@ -1,0 +1,17 @@
+[{
+  "_id": {
+    "$oid": "62af2c1b43f3fe537372fe16"
+  },
+  "userId": "nnakhoa19@clc.fitus.edu.vn",
+  "type": "Paypal",
+  "status": "awaitingVerification",
+  "token": "secret_token"
+},{
+  "_id": {
+    "$oid": "62af2cf543f3fe537372fe17"
+  },
+  "userId": "lhtphuoc19@clc.fitus.edu.vn",
+  "type": "Paypal",
+  "status": "awaitingVerification",
+  "token": "secret_token"
+}]
