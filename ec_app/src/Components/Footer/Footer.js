@@ -1,6 +1,11 @@
+import img from './img/footer.png'
+
 function Footer() {
     return (
-        <div>Xin chao toi la footer</div>
+        <div className="footer">
+            <img src={img} alt=""/>
+        </div>
+        
     )
 }
 

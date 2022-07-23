@@ -1,0 +1,95 @@
+.login{
+    width: 100%;
+    margin-top: 70px;
+    display: flex;
+}
+
+.login__image{
+    width: 45%;
+    margin: none;
+}
+
+.login__image img{
+    width: 100%;
+    height: 100%;
+}
+.login__form {
+    flex: 1;
+}
+
+.login__form{
+    padding-left: 10%;
+    padding-top: 3%;
+} 
+
+.Input-Form1{
+    margin-bottom: 20px;
+    display: flex;
+    width: 70%;
+    border-radius: 5px;
+    height: 40px;
+    border: 1px solid LightGray;
+}
+
+.form_MK{
+    width: 70%;
+    height: 30px;
+}
+.form_MK h5{
+    color:  blue;
+    float: right;
+}
+
+.Input-Form1 input{
+    height: 95%;
+    border: none;
+    flex: 1;
+    border-radius: 0 5px 5px 0;
+}
+
+.Input-Form1 input:focus {
+    border: none;
+    outline: none;
+}
+
+
+.Input-Form1 div{
+    height: 100%;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D9D9D9;
+    border-radius: 5px 0 0 5px;
+    margin-right: 3px;
+}
+
+.Form-Button{
+    height: 45px;
+    width: 70%;
+    margin-top: 30px;
+    border-radius: 5px;
+    
+}
+.Form-Button button{
+    background-color: #756be6;
+    height: inherit;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+}
+.Form-Button button:hover{
+    background-color: #5349be;
+}
+
+.Form-Button button span{
+    color: white;
+}
+
+.Form-Account{
+    width: 70%;
+    text-align:center;
+}
+.Form-Account p{
+    font-weight: bold;
+}
