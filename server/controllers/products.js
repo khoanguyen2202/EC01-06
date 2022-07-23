@@ -2,10 +2,13 @@ import { ProductModel } from "../models/ProductModel.js";
 export const getProducts = async (req, res) => {
   try {
     //query in DB
-
-    const products = await ProductModel.find();
-    console.log("products", products);
-    res.status(200).json(products);
+    const features = new APIfeatures(ProductModel.find(),req.query).filtering().sorting().paginating()
+    const products = await features.query;
+    res.json({
+      status: 'success',
+      result: products.length,
+      products: products
+  })
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -47,7 +50,7 @@ export const createProduct = async (req, res) => {
       sold,
     })
     await newProduct.save();
-    res.json({ msg: "Created a product" });
+    res.json({ msg: "Created a product." });
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -87,7 +90,7 @@ export const updateProduct = async (req, res) => {
       }
     )
 
-    res.json({ msg: "Updated a product" });
+    res.json({ msg: "Updated a product." });
   } catch (error) {
     res.status(500).json({ error: error });
   }
@@ -97,8 +100,52 @@ export const updateProduct = async (req, res) => {
 export const deleteProduct = async(req,res) =>{
   try {
     await ProductModel.findByIdAndDelete(req.params.id)
-    res.json({msg:"Deleted a product"})
+    res.json({msg:"Deleted a product."})
   } catch (error) {
     res.status(500).json({ error: error });
+  }
+}
+
+class APIfeatures {
+  constructor(query, queryString) {
+      this.query = query;
+      this.queryString = queryString;
+  }
+
+  filtering(){
+      const queryObj = {...this.queryString} // queryString = req.query
+
+      const excludedFields = ['page','sort','limit']
+      excludedFields.forEach(el => delete(queryObj[el]))
+
+      let queryStr = JSON.stringify(queryObj)
+
+      queryStr = queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g,match => '$'+match)
+
+      this.query.find(JSON.parse(queryStr))
+      console.log(JSON.parse(queryStr))
+
+      return this;
+  }
+
+  sorting(){
+      if (this.queryString.sort) {
+          const sortBy = this.queryString.sort.split(',').join(' ')
+          console.log(sortBy)
+          this.query = this.query.sort(sortBy)
+      } else {
+          this.query = this.query.sort('-createdAt')
+      }
+
+      return this;
+  }
+
+  paginating(){
+      const page = this.queryString.page * 1 || 1
+      const limit = this.queryString.limit * 1 || 28
+      const skip = (page-1)*limit
+      this.query = this.query.skip(skip).limit(limit)
+
+      return this;
   }
 }

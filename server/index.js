@@ -1,8 +1,12 @@
 import express from "express"
 import bodyParser from "body-parser";
 import cors from "cors";
+
 import products from "./routers/products.js"
 import customers from "./routers/customers.js"
+import bills from "./routers/bills.js"
+import warehouses from "./routers/warehouses.js"
+
 import mongoose from "mongoose";
 
 const app = express();
@@ -17,6 +21,8 @@ app.use(cors());
 
 app.use("/products",products)
 app.use(customers)
+app.use(bills)
+app.use("/admin",warehouses)
 
 mongoose.connect(URI,{ useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => {
