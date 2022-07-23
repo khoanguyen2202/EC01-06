@@ -1,37 +1,67 @@
 import mongoose from "mongoose";
 
-const schema = new mongoose.Schema({
+const schema_product = new mongoose.Schema(
+  {
     type: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     brandName: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     productName: {
-        type: String,
+      type: String,
     },
-    sku:{
-        type: String,
-        required: true
+    price: {
+      type: Number,
     },
-    price:{
-        type: Number,
+    colors: [
+      {
+        color: String,
+        quantity: {
+          type: Number,
+          default: 0,
+        },
+      },
+    ],
+    feature: {
+      madeIn: String,
+      status: String,
+      insurance: String,
     },
-    color:{
-        type: String,
-    },
-    quantity:{
-        type: Number,
-        default: 0
-    },
-    feature:{
-        type: String,
-        default: "Updating"
-    },
-    attachment: String,
-    hidden: Boolean
-},{ timestamps: true })
 
-export const ProductModel = mongoose.model("Product",schema);
+    description: {
+      type: String,
+      default: "Updating",
+    },
+    rate: {
+      type: Number,
+      default: 0,
+    },
+    discount: {
+      type: Number,
+      default: 0,
+    },
+    reviews: [
+      {
+        type: String,
+        defaut: "No comment yet",
+      },
+    ],
+    attachments: [
+      {
+        type: String,
+        default: "Updating",
+      },
+    ],
+    sold: {
+      type: Number,
+      default: 0,
+    },
+    hidden: Boolean,
+  },
+  { timestamps: true }
+);
+
+export const ProductModel = mongoose.model("Product", schema_product);
