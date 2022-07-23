@@ -2,13 +2,13 @@ import mongoose from "mongoose";
 
 const schema_customer = new mongoose.Schema(
   {
-    phonenumber:{
-      type:String,
-      required:true
+    phonenumber: {
+      type: String,
+      required: true,
     },
     password: {
-      type:String,
-      required:true
+      type: String,
+      required: true,
     },
     firstName: String,
     lastName: String,
@@ -26,6 +26,7 @@ const schema_customer = new mongoose.Schema(
         city: String,
       },
     ],
+    history: [],
     hidden: Boolean,
   },
   { timestamps: true }
