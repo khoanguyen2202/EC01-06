@@ -12,4 +12,10 @@ code {
     monospace;
 }
 
-@import url('./Components/Header/header.css')
+@import url('./Components/Header/header.css');
+
+@import url('./Components/Footer/Footer.css');
+
+@import url('./Components/Page/LoginPage/loginPage.css');
+
+@import url('./Components/Page/RegisterPage/registerPage.css');
