@@ -20,9 +20,9 @@ app.use(bodyParser.urlencoded({extended: true, limit: "30mb"}));
 app.use(cors());
 
 app.use("/products",products)
-app.use(customers)
-app.use(bills)
-app.use("/admin",warehouses)
+app.use("/customers",customers)
+app.use("/bills",bills)
+app.use("/warehouses",warehouses)
 
 mongoose.connect(URI,{ useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => {

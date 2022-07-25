@@ -18,14 +18,7 @@ export const getCustomer = async (req, res) => {
 
 export const createCustomer = async (req, res) => {
   try {
-    const {
-      phonenumber,
-      password,
-      firstName,
-      lastName,
-      Address,
-      shippingAddress,
-    } = req.body;
+    const { phonenumber, password } = req.body;
     const existCustomer = await CustomerModel.findOne({ phonenumber });
     if (existCustomer) {
       return res.status(400).json({ msg: "This customer already exist." });
@@ -36,10 +29,6 @@ export const createCustomer = async (req, res) => {
     const newCustomer = new CustomerModel({
       phonenumber,
       password: passwordHash,
-      firstName,
-      lastName,
-      Address,
-      shippingAddress,
     });
 
     //save mongodb
@@ -52,11 +41,10 @@ export const createCustomer = async (req, res) => {
 
     res.cookie("refreshtoken", refreshtoken, {
       httpOnly: true,
-      path: "/refresh_token",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      path: "/customers/refresh_token",
     });
 
-    res.json({ accesstoken });  
+    res.json({ accesstoken });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -76,7 +64,7 @@ export const signIn = async (req, res) => {
     const refreshtoken = createRefreshToken({ id: user._id });
     res.cookie("refreshtoken", refreshtoken, {
       httpOnly: false,
-      path: "/refresh_token",
+      path: "/customers/refresh_token",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
     res.json({ accesstoken });
@@ -87,24 +75,23 @@ export const signIn = async (req, res) => {
 
 export const singOut = async (req, res) => {
   try {
-    res.clearCookie("refreshtoken", { path: "/refresh_token" });
+    res.clearCookie("refreshtoken", { path: "/customers/refresh_token" });
     return res.json({ msg: "Logged out" });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
 };
 
-export const refreshToken =  (req, res) => {
+export const refreshToken = async(req, res) => {
   try {
-    const rf_token =  req.cookies.refreshtoken;
+    const rf_token = req.cookies.refreshtoken;
 
-    console.log(rf_token);
+    res.json({ rf_token });
 
     if (!rf_token)
       return res.status(400).json({
         msg: "Please Login or Register2",
       });
-    console.log("1");
     jwt.verify(rf_token, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
       if (err)
         return res.status(400).json({
@@ -116,8 +103,9 @@ export const refreshToken =  (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ msg: error.message });
-    console.log("2");
   }
+  // const rf_token = req.cookies.refreshtoken;
+  // res.json({rf_token})
 };
 
 export const updateInfor = async (req, res) => {
@@ -158,7 +146,7 @@ export const deleteUser = async (req, res) => {
     // if (!user) {
     //   return res.status(400).json({ msg: "User is not exist." });
     // }
-    await CustomerModel.deleteOne({phonenumber})
+    await CustomerModel.deleteOne({ phonenumber });
     res.json({ msg: "Deleted customer" });
   } catch (error) {
     res.status(500).json({ msg: error.message });
