@@ -4,6 +4,7 @@ const schema_customer = new mongoose.Schema(
   {
     phonenumber: {
       type: String,
+      unique:true,
       required: true,
     },
     password: {
@@ -26,6 +27,11 @@ const schema_customer = new mongoose.Schema(
         city: String,
       },
     ],
+    role:{
+      type:Number,
+      default:0
+    },
+    cart: [],
     history: [],
     hidden: Boolean,
   },
