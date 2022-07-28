@@ -2,23 +2,30 @@ import mongoose from "mongoose";
 
 const schema_product = new mongoose.Schema(
   {
-    type: {
+    category: {
       type: String,
+      trim: true,
       required: true,
     },
     brandName: {
       type: String,
+      trim: true,
       required: true,
     },
     productName: {
       type: String,
+      trim: true,
     },
     price: {
       type: Number,
+      trim: true,
     },
     colors: [
       {
-        color: String,
+        color: {
+          type: String,
+          trim: true,
+        },
         quantity: {
           type: Number,
           default: 0,
@@ -49,9 +56,9 @@ const schema_product = new mongoose.Schema(
         defaut: "No comment yet",
       },
     ],
-    attachments: [
+    images: [
       {
-        type: String,
+        type: Object,
         default: "Updating",
       },
     ],
@@ -59,7 +66,10 @@ const schema_product = new mongoose.Schema(
       type: Number,
       default: 0,
     },
-    hidden: Boolean,
+    checked: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
