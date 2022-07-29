@@ -2,6 +2,12 @@ import mongoose from "mongoose";
 
 const schema_product = new mongoose.Schema(
   {
+    product_id:{
+      type:String,
+      unique:true,
+      trim:true,
+      required:true,
+    },
     category: {
       type: String,
       trim: true,
@@ -59,7 +65,7 @@ const schema_product = new mongoose.Schema(
     images: [
       {
         type: Object,
-        default: "Updating",
+        requried:true,
       },
     ],
     sold: {
