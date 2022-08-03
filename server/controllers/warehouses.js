@@ -1,5 +1,5 @@
 import { WarehouseModel } from "../models/WarehouseModel.js";
-import { ProductModel } from "../models/ProductModel.js";
+
 export const createWarehouse = async (req, res) => {
   try {
     const { warehouse_id, hotline, address } = req.body;
@@ -36,27 +36,28 @@ export const listWarehouse = async (req, res) => {
 
 export const inputProduct = async (req, res) => {
   try {
-    const {
-      warehouse_id,
-
-      products
-      // images,}
-    } = req.body;
-    // if (!images) return res.status(400).json({ msg: "No images upload." });
+    const { warehouse_id, products } = req.body;
+    // console.log(products);
     const warehouse = await WarehouseModel.findOne({ warehouse_id });
     if (!warehouse)
       return res.status(400).json({ msg: "Warehouse ID not exists." });
-    // const product = await WarehouseModel.find ({ warehouse_id, product_id });
-    // if (product) {
-    //   return res.status(400).json({ msg: "This product already exists." });
-    // }
-    await WarehouseModel.findOneAndUpdate(
-      { warehouse_id },
-      {
-        products
-        // images,}
+
+    let addProduct = [];
+    for (let i = 0; i < products.length; ++i) {
+      console.log(products[i].product_id);
+      // let product = await WarehouseModel.find({ "products": products[i]}); 
+      let product = await WarehouseModel.find({ "products.product_id": {$eq:products[i].product_id}}); 
+
+      if (product.length === 0) {
+        addProduct.push(products[i]);
       }
-    );
+      
+    }
+    
+    await WarehouseModel.updateMany({warehouse_id},{$push:{"products":addProduct}})
+    
+    // await WarehouseModel.findOneAndUpdate({ warehouse_id }, {products: addProduct });
+   
     res.json({ msg: "Add a product." });
   } catch (error) {
     res.status(500).json({ msg: error.message });

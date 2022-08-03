@@ -22,22 +22,6 @@ const schema_warehouse = new mongoose.Schema(
           unique: true,
           trim: true,
         },
-        category: {
-          type: String,
-          trim: true,
-        },
-        brandName: {
-          type: String,
-          trim: true,
-        },
-        productName: {
-          type: String,
-          trim: true,
-        },
-        price: {
-          type: Number,
-          trim: true,
-        },
         colors: [
           {
             color: {

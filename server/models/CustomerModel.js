@@ -29,7 +29,7 @@ const schema_customer = new mongoose.Schema(
     ],
     role:{
       type:Number,
-      default:0
+      default:0 //0:customer , != 0 : admit access
     },
     cart: [],
     history: [],
