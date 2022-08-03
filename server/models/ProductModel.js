@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 const schema_product = new mongoose.Schema(
   {
-    product_id:{
-      type:String,
-      unique:true,
-      trim:true,
-      required:true,
+    product_id: {
+      type: String,
+      unique: true,
+      trim: true,
+      required: true,
     },
     category: {
       type: String,
@@ -39,9 +39,18 @@ const schema_product = new mongoose.Schema(
       },
     ],
     feature: {
-      madeIn: String,
-      status: String,
-      insurance: String,
+      madeIn: {
+        type: String,
+        default: "Updating",
+      },
+      status: {
+        type: String,
+        default: "Updating",
+      },
+      insurance: {
+        type: String,
+        default: "Updating",
+      },
     },
 
     description: {
@@ -65,7 +74,7 @@ const schema_product = new mongoose.Schema(
     images: [
       {
         type: Object,
-        requried:true,
+        requried: true,
       },
     ],
     sold: {

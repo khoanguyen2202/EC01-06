@@ -20,7 +20,7 @@ export const getProducts = async (req, res) => {
 export const createProduct = async (req, res) => {
   try {
     //create product
-    const {
+    let {
       product_id,
       category,
       brandName,
@@ -34,13 +34,16 @@ export const createProduct = async (req, res) => {
       reviews,
       images,
       sold,
+      checked
     } = req.body;
     if (!images) return res.status(400).json({ msg: "No images upload." });
     const product = await ProductModel.findOne({ product_id });
     if (product) {
       return res.status(400).json({ msg: "This product already exists." });
     }
-
+    if(discount !== 0){
+      price = price * (100-discount) / 100
+    }
     const newProduct = new ProductModel({
       product_id,
       category,
@@ -49,17 +52,18 @@ export const createProduct = async (req, res) => {
       price,
       colors,
       feature,
-      description: description.toLowerCase(),
+      description,
       rate,
       discount,
       reviews,
       images,
       sold,
+      checked
     });
     await newProduct.save();
     res.json({ msg: "Created a product." });
   } catch (error) {
-    res.status(500).json({ error: error });
+    res.status(500).json({ msg: error.message });
   }
 };
 
@@ -79,6 +83,7 @@ export const updateProduct = async (req, res) => {
       reviews,
       images,
       sold,
+      checked
     } = req.body;
     if (!images) return res.status(400).json({ msg: "No images upload." });
 
@@ -98,6 +103,7 @@ export const updateProduct = async (req, res) => {
         reviews,
         images,
         sold,
+        checked
       }
     );
 

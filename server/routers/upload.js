@@ -13,7 +13,8 @@ cloudinary.config({
 });
 
 //Upload image only admin can use
-router.post("/upload", auth, authAdmin, (req, res) => {
+router.post("/upload",  (req, res) => {
+// router.post("/upload", auth, authAdmin, (req, res) => {
   try {
     console.log(req.files);
     if (!req.files || Object.keys(req.files).length === 0)

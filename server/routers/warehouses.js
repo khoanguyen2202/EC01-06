@@ -1,8 +1,14 @@
 import express from "express";
-import { createWarehouse,deleteWarehouse,listWarehouse } from "../controllers/warehouses.js";
+import {
+  createWarehouse,
+  deleteWarehouse,
+  listWarehouse,
+  inputProduct
+} from "../controllers/warehouses.js";
 
 const router = express.Router();
-router.post("/create-warehouse",createWarehouse)
-router.delete("/delete-warehouse",deleteWarehouse)
-router.get("/warehouses",listWarehouse)
+router.post("/create", createWarehouse);
+router.delete("/delete", deleteWarehouse);
+router.get("/", listWarehouse);
+router.put("/add",inputProduct)
 export default router;
