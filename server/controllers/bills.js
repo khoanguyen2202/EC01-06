@@ -2,12 +2,13 @@ import { BillModel } from "../models/BillModel.js";
 
 export const createBill = async (req, res) => {
   try {
-    const { products, customerID, totalPrice, payment } = req.body;
+    const { products,payment,status,customerID,warehouseID} = req.body;
     const newBill = new BillModel({
       products,
-      customerID,
-      totalPrice,
       payment,
+      status,
+      customerID,
+      warehouseID,
     });
     await newBill.save();
     res.json({ msg: "Created a bill." });
@@ -23,12 +24,12 @@ export const updateBill = async (req, res) => {
       { _id },
       { status, warehouseID, Cashier, payment }
     );
-    res.json({ msg: "Updated bill." });
+    res.json({ msg: "Updated a bill." });
   } catch (error) {
     res.status(500).json({ error: error });
   }
 };
-
+/*
 export const findBill = async (req, res) => {
   try {
     const { _id } = req.body;
@@ -39,14 +40,70 @@ export const findBill = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error });
   }
+};*/
+
+export const findAllBill = async (req, res) => {
+  try {
+    const bills = await BillModel.find().exec();
+    res.json(bills)
+  } catch (err) {
+    return res.status(500).json({msg: err.message})
+  }
 };
+
+export const findSuccessBill = async (req, res) => {
+  try {
+    const findBill = await BillModel.find({ status: 'Delivery Successful' }).exec();
+    res.json({
+      findBill,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
+export const findDeliveryBill = async (req, res) => {
+  try {
+    const { _id } = req.body;
+    const findBill = await BillModel.findById({ status: 'Being Delivery'}).exec();
+    res.json({
+      findBill,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
+export const findProcessingBill = async (req, res) => {
+  try {
+    const findBill = await BillModel.find({ status: 'Processing' }).exec();
+    res.json({
+      findBill,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
+export const findCancelledBill = async (req, res) => {
+  try {
+    const findBill = await BillModel.find({ status: 'Cancelled' }).exec();
+    res.json({
+      findBill,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
 
 export const deleteBill = async(req,res) =>{
     try {
         const { _id } = req.body;
         await BillModel.findByIdAndDelete({_id})
-        res.json({msg:"Deleted bill."})
+        res.json({msg:"Deleted a bill."})
     } catch (error) {
         res.status(500).json({ error: error });
     }
 }
+

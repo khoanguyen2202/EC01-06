@@ -1,5 +1,4 @@
 import { CategoryModel } from "../models/CategoryModel.js";
-import { ProductModel } from "../models/ProductModel.js";
 
 const categoryCtrl = {
     getCategories: async(req, res) =>{
