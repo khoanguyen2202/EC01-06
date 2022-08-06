@@ -15,7 +15,7 @@ const schema_bill = new mongoose.Schema(
             default:0
         },
         totalPrice:Number,
-        status:String,      //Delivery successful   Being transported   Processing
+        status:String,      //Delivery successful   Being transported   Processing  Cancelled
         customerID:{
             type:String,
             required:true,

@@ -42,15 +42,52 @@ export const findBill = async (req, res) => {
   }
 };*/
 
-export const findBill = async (req, res) => {
+export const findAllBill = async (req, res) => {
   try {
-    const bills = await BillModel.find({ status: 'Being transported' }).exec();
-    //const bills = await BillModel.find().exec();
+    //const bills = await BillModel.find({ status: 'Being transported' }).exec();
+    const bills = await BillModel.find(_status).exec();
     res.json(bills)
   } catch (err) {
     return res.status(500).json({msg: err.message})
   }
 };
+
+export const findSuccessBill = async (req, res) => {
+  try {
+    const { _id } = req.body;
+    const findBill = await BillModel.findById({ _id });
+    res.json({
+      findBill,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
+export const findDeliveryBill = async (req, res) => {
+  try {
+    const { _id } = req.body;
+    const findBill = await BillModel.findById({ _id });
+    res.json({
+      findBill,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
+export const findCancelledBill = async (req, res) => {
+  try {
+    const { _id } = req.body;
+    const findBill = await BillModel.findById({ _id });
+    res.json({
+      findBill,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
 
 export const deleteBill = async(req,res) =>{
     try {
