@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { WarehouseModel } from "../models/WarehouseModel.js";
-
+import { ProductModel } from "../models/ProductModel.js";
 export const createWarehouse = async (req, res) => {
   try {
     const { warehouse_id, hotline, address } = req.body;
@@ -47,7 +47,6 @@ export const inputProduct = async (req, res) => {
     let addColor = [];
 
     for (let i = 0; i < products.length; ++i) {
-      // let product = await WarehouseModel.find({ "products.product_id": {$eq:products[i].product_id},"warehouse_id":{$eq:warehouse_id}});
       let product = await WarehouseModel.find({
         "products.product_id": { $eq: products[i].product_id },
         warehouse_id: { $eq: warehouse_id },
@@ -58,43 +57,72 @@ export const inputProduct = async (req, res) => {
           { warehouse_id: warehouse_id },
           { $push: { products: addProduct } }
         );
-        res.json({ msg: "Add a product." });
       } else {
-
-        for (let k = 0; k < products[i].colors.length; ++k) {
+        for (let k = 0; k < products[i].colors.length; k++) {
           let color = await WarehouseModel.find({
             "products.product_id": { $eq: products[i].product_id },
-            "warehouse_id": { $eq: warehouse_id },
+            warehouse_id: { $eq: warehouse_id },
             "products.colors.color": { $eq: products[i].colors[k].color },
           });
-         
-          
           if (color.length === 0) {
-           
             addColor.push(products[i].colors[k]);
             // console.log(products[i].product_id);
-            console.log(addColor);
-            
-            await WarehouseModel.updateMany(
-              {
-                warehouse_id: warehouse_id,
-                products:products[i],
-                product_id: products[i].product_id,
-                colors:products[i].colors[k]
-              },
-              { $push: {colors: addColor  }}
+            // console.log(addColor);
+            const wh = await WarehouseModel.findOne({
+              warehouse_id: warehouse_id,
+            });
+            const product = wh.products.find(
+              (e) => e.product_id === products[i].product_id
             );
-            res.json({ msg: "Add a color." });
+            const colors = product.colors.concat(addColor);
+            product.colors = colors;
+            // console.log(
+            //   wh.products.find((e) => e.product_id === products[i].product_id)
+            //     .colors
+            // );
+            await wh.save();
+          } else {
+            const wh = await WarehouseModel.findOne({
+              warehouse_id: warehouse_id,
+            });
+            const product = wh.products.find((e) => {
+              return e.product_id === products[i].product_id;
+            });
+            const color = product.colors.find(
+              (e) => e.color === products[i].colors[k].color
+            );
+            let quantity = color.quantity + products[i].colors[k].quantity;
+            color.quantity = quantity;
+
+            await wh.save();
+          }
+        }
+      }
+
+      const productDB = await ProductModel.findOne({
+        product_id: products[i].product_id,
+      });
+
+      if (!productDB) {
+        await ProductModel.insertMany([products[i]]);
+        res.status(200).json({ msg: "Add a product" });
+      } else {
+        for (let k = 0; k < products[i].colors.length; k++) {
+          const colorDB = productDB.colors.find(
+            (e) => e.color === products[i].colors[k].color
+          );
+          if (!colorDB) {
+            await ProductModel.updateMany(
+              { product_id: products[i].product_id },
+              { $push: { colors: products[i].colors[k]} }
+            );
+            res.status(200).json({ msg: "add color" });
           }
         }
       }
     }
 
-    
-
     // await WarehouseModel.findOneAndUpdate({ warehouse_id }, {products: addProduct });
-
-    
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }

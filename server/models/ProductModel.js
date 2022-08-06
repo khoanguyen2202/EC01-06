@@ -11,12 +11,12 @@ const schema_product = new mongoose.Schema(
     category: {
       type: String,
       trim: true,
-      required: true,
+      
     },
     brandName: {
       type: String,
       trim: true,
-      required: true,
+      
     },
     productName: {
       type: String,
