@@ -11,7 +11,7 @@ const schema_bill = new mongoose.Schema(
         ],
         payment:{
             type:Boolean,
-            default:0
+            default:0 // 0: not paid yet, 1: already paid
         },
         totalPrice:Number,
         status:String,
