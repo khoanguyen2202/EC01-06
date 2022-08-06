@@ -4,7 +4,7 @@ import { ProductModel } from "../models/ProductModel.js";
 const categoryCtrl = {
     getCategories: async(req, res) =>{
         try {
-            const categories = await Category.find()
+            const categories = await CategoryModel.find()
             res.json(categories)
         } catch (err) {
             return res.status(500).json({msg: err.message})
@@ -15,10 +15,10 @@ const categoryCtrl = {
             // if user have role = 1 ---> admin
             // only admin can create , delete and update category
             const {name} = req.body;
-            const category = await Category.findOne({name})
+            const category = await CategoryModel.findOne({name})
             if(category) return res.status(400).json({msg: "This category already exists."})
 
-            const newCategory = new Category({name})
+            const newCategory = new CategoryModel({name})
 
             await newCategory.save()
             res.json({msg: "Created a category"})
@@ -28,12 +28,12 @@ const categoryCtrl = {
     },
     deleteCategory: async(req, res) =>{
         try {
-            const products = await Products.findOne({category: req.params.id})
+            const products = await CategoryModel.findOne({category: req.params.name})
             if(products) return res.status(400).json({
-                msg: "Please delete all products with a relationship."
+                msg: "Please select name of category."
             })
 
-            await Category.findByIdAndDelete(req.params.id)
+            await CategoryModel.findByIdAndDelete(req.params.name)
             res.json({msg: "Deleted a Category"})
         } catch (err) {
             return res.status(500).json({msg: err.message})
@@ -42,7 +42,7 @@ const categoryCtrl = {
     updateCategory: async(req, res) =>{
         try {
             const {name} = req.body;
-            await Category.findOneAndUpdate({_id: req.params.id}, {name})
+            await CategoryModel.findOneAndUpdate({name})
 
             res.json({msg: "Updated a category"})
         } catch (err) {

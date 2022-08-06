@@ -9,7 +9,7 @@ const schema_bill = new mongoose.Schema(
                 price:Number
             }
         ],
-        payment:{
+        payment:{          //0:not yet paid    1:paid
             type:Boolean,
             default:0
         },

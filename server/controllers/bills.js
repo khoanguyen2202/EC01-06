@@ -29,12 +29,12 @@ export const updateBill = async (req, res) => {
   }
 };
 
-export const billDetail = async (req, res) => {
+export const findBill = async (req, res) => {
   try {
     const { _id } = req.body;
-    const billDetail = await BillModel.findById({ _id });
+    const findBill = await BillModel.findById({ _id });
     res.json({
-      billDetail,
+      findBill,
     });
   } catch (error) {
     res.status(500).json({ error: error });
