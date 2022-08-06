@@ -1,9 +1,9 @@
 import express from "express"
-import { createBill,updateBill,billDetail,deleteBill } from "../controllers/bills.js";
+import { createBill,updateBill,findBill,deleteBill } from "../controllers/bills.js";
 
 const router = express.Router();
 router.post('/payment',createBill);
-router.post('/update-bill',updateBill)
-router.get('/bill-detail',billDetail)
-router.delete('/update-bill',deleteBill)
+router.post('/update-bill',updateBill);
+router.get('/find-bill',findBill);
+router.delete('/delete-bill',deleteBill);
 export default router;
