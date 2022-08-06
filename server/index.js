@@ -9,12 +9,12 @@ import customers from "./routers/customers.js";
 import bills from "./routers/bills.js";
 import warehouses from "./routers/warehouses.js";
 import upload from "./routers/upload.js";
+import categoryCtrl from "./routers/categories.js";
 
 import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
 import fileUpload from "express-fileupload";
-
 const app = express();
 const PORT = process.env.port || 5000;
 // const URI = "mongodb+srv://khoa:khoa@cluster0.i7wqs.mongodb.net/?retryWrites=true&w=majority";
@@ -32,6 +32,7 @@ app.use("/customers", customers);
 app.use("/bills", bills);
 app.use("/warehouses", warehouses);
 app.use("/api", upload);
+app.use("/category",categoryCtrl);
 
 mongoose
   .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
