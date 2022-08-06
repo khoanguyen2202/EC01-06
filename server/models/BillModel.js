@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 const schema_bill = new mongoose.Schema(
     {
-        products:[
+        products:
+        [
             {
                 productID:String,
                 quantity:Number,
@@ -14,7 +15,7 @@ const schema_bill = new mongoose.Schema(
             default:0
         },
         totalPrice:Number,
-        status:String,
+        status:String,      //Delivery successful   Being transported   Processing
         customerID:{
             type:String,
             required:true,
