@@ -19,7 +19,6 @@ const schema_warehouse = new mongoose.Schema(
       {
         product_id: {
           type: String,
-          unique: true,
           trim: true,
         },
         colors: [

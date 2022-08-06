@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { WarehouseModel } from "../models/WarehouseModel.js";
 
 export const createWarehouse = async (req, res) => {
@@ -43,22 +44,57 @@ export const inputProduct = async (req, res) => {
       return res.status(400).json({ msg: "Warehouse ID not exists." });
 
     let addProduct = [];
-    for (let i = 0; i < products.length; ++i) {
-      console.log(products[i].product_id);
-      // let product = await WarehouseModel.find({ "products": products[i]}); 
-      let product = await WarehouseModel.find({ "products.product_id": {$eq:products[i].product_id}}); 
+    let addColor = [];
 
+    for (let i = 0; i < products.length; ++i) {
+      // let product = await WarehouseModel.find({ "products.product_id": {$eq:products[i].product_id},"warehouse_id":{$eq:warehouse_id}});
+      let product = await WarehouseModel.find({
+        "products.product_id": { $eq: products[i].product_id },
+        warehouse_id: { $eq: warehouse_id },
+      });
       if (product.length === 0) {
         addProduct.push(products[i]);
+        await WarehouseModel.updateMany(
+          { warehouse_id: warehouse_id },
+          { $push: { products: addProduct } }
+        );
+        res.json({ msg: "Add a product." });
+      } else {
+
+        for (let k = 0; k < products[i].colors.length; ++k) {
+          let color = await WarehouseModel.find({
+            "products.product_id": { $eq: products[i].product_id },
+            "warehouse_id": { $eq: warehouse_id },
+            "products.colors.color": { $eq: products[i].colors[k].color },
+          });
+         
+          
+          if (color.length === 0) {
+           
+            addColor.push(products[i].colors[k]);
+            // console.log(products[i].product_id);
+            console.log(addColor);
+            
+            await WarehouseModel.updateMany(
+              {
+                warehouse_id: warehouse_id,
+                products:products[i],
+                product_id: products[i].product_id,
+                colors:products[i].colors[k]
+              },
+              { $push: {colors: addColor  }}
+            );
+            res.json({ msg: "Add a color." });
+          }
+        }
       }
-      
     }
+
     
-    await WarehouseModel.updateMany({warehouse_id},{$push:{"products":addProduct}})
-    
+
     // await WarehouseModel.findOneAndUpdate({ warehouse_id }, {products: addProduct });
-   
-    res.json({ msg: "Add a product." });
+
+    
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
