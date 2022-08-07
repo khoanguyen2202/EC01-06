@@ -68,13 +68,13 @@ const schema_product = new mongoose.Schema(
     reviews: [
       {
         type: String,
-        defaut: "No comment yet",
+        default: "No comment yet",
       },
     ],
     images: [
       {
         type: Object,
-        requried: true,
+        required: true,
       },
     ],
     sold: {
@@ -83,7 +83,7 @@ const schema_product = new mongoose.Schema(
     },
     checked: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
   { timestamps: true }
