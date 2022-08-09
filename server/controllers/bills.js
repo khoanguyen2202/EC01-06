@@ -53,7 +53,7 @@ export const findAllBill = async (req, res) => {
 
 export const findSuccessBill = async (req, res) => {
   try {
-    const findBill = await BillModel.find({ status: 'Delivery Successful' }).exec();
+    const findBill = await BillModel.find({ status: 'Delivery successful' }).exec();
     res.json({
       findBill,
     });
@@ -65,7 +65,7 @@ export const findSuccessBill = async (req, res) => {
 export const findDeliveryBill = async (req, res) => {
   try {
     const { _id } = req.body;
-    const findBill = await BillModel.findById({ status: 'Being Delivery'}).exec();
+    const findBill = await BillModel.findById({ status: 'Being delivery'}).exec();
     res.json({
       findBill,
     });
@@ -76,7 +76,7 @@ export const findDeliveryBill = async (req, res) => {
 
 export const findProcessingBill = async (req, res) => {
   try {
-    const findBill = await BillModel.find({ status: 'Processing' }).exec();
+    const findBill = await BillModel.find({ status: 'In process' }).exec();
     res.json({
       findBill,
     });
@@ -87,7 +87,7 @@ export const findProcessingBill = async (req, res) => {
 
 export const findCancelledBill = async (req, res) => {
   try {
-    const findBill = await BillModel.find({ status: 'Cancelled' }).exec();
+    const findBill = await BillModel.find({ status: 'Canceled' }).exec();
     res.json({
       findBill,
     });
