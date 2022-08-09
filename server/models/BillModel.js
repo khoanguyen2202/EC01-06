@@ -32,4 +32,4 @@ const schema_bill = new mongoose.Schema(
     { timestamps: true }
 );
 
-export const BillModel = mongoose.model("Bill",schema_bill)
+export const BillModel = mongoose.model("Bill",schema_bill);
