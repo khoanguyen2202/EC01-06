@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      iframe {
+        display: none;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #0f0;
+      }
+
+      /* modify input address */
+      .container {
+        text-align: center;
+      }
+      input,
+      button,
+      .results {
+        height: 50px;
+        font-size: 20px;
+      }
+      input {
+        width: 500px;
+        margin-top: 100px;
+      }
+      button {
+        margin-top: 10px;
+        background-color: green;
+        color: white;
+        width: 200px;
+      }
+      button:hover {
+        background-color: rgb(116, 235, 61);
+        color: rgb(51, 50, 50);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5645981490625!2d106.68145021462246!3d10.768000592327239!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f18a1e48c69%3A0xfb6d1feb78af9f59!2zNDYyIE5ndXnhu4VuIFRo4buLIE1pbmggS2hhaSwgUGjGsOG7nW5nIDIsIFF14bqtbiAzLCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmggODAwMDAwLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1660106481700!5m2!1svi!2s"
+      width="600"
+      height="450"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe> -->
+
+    <!-- input address  -->
+    <div class="container">
+      <input type="text" placeholder="address" id="address" />
+      <br />
+      <button onclick="findAddress()">Search</button>
+      <div id="results"></div>
+      <div id="map"></div>
+    </div>
+
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9xZWqMt2bCILiw_Vw49f5op9-OGxJWg8&libraries=places"></script> -->
+    <script
+      async
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9xZWqMt2bCILiw_Vw49f5op9-OGxJWg8&libraries=places&callback=showMap"
+    ></script>
+    <script type="text/javascript">
+      // address  to coordinates
+      var address = document.querySelector("#address");
+      var results = document.querySelector("#results");
+      const storeAddress = [
+        { lat: 10.7625, lon: 106.68172, info: "Store 1" },
+        { lat: 10.75855, lon: 106.67108, info: "Store 2" },
+      ];
+
+      // show store location on google map
+
+      // //Lat: 10.7531994Lng: 106.6623328
+      // var addressArr = [{lat:10.7531994,lon:106.6623328}];
+
+      var addressArr = [];
+      async function findAddress() {
+        var url =
+          "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
+          address.value;
+
+        await fetch(url)
+          .then((res) => res.json())
+          .then((data) => (addressArr = data))
+          .then((show) => showAddress())
+          .then((show) => showMap())
+          .catch((err) => console.log(err));
+      }
+      function showMap() {
+        let map;
+        if (addressArr.length > 0) {
+          map = new google.maps.Map(document.getElementById("map"), {
+            center: {
+              lat: parseFloat(addressArr[0].lat),
+              lng: parseFloat(addressArr[0].lon),
+            },
+            zoom: 12,
+          });
+          console.log("object");
+
+          const marker = new google.maps.Marker({
+            position: {
+              lat: parseFloat(addressArr[0].lat),
+              lng: parseFloat(addressArr[0].lon),
+            },
+          });
+          const popupContent = new google.maps.InfoWindow();
+          google.maps.event.addListener(
+            marker,
+            "click",
+            ((m) => {
+              return () => {
+                popupContent.setContent("Customer location"),
+                  popupContent.open(map, m);
+              };
+            })(marker)
+          );
+          marker.setMap(map);
+        } else {
+          map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: storeAddress[0].lat, lng: storeAddress[0].lon },
+            zoom: 15,
+          });
+        }
+
+        storeAddress.forEach((e) => {
+          //google marker
+          const marker = new google.maps.Marker({
+            position: { lat: e.lat, lng: e.lon },
+            icon:"img/icons/store2_24px.png"
+          });
+
+          const popupContent = new google.maps.InfoWindow();
+          google.maps.event.addListener(
+            marker,
+            "click",
+            ((m) => {
+              return () => {
+                popupContent.setContent(e.info), popupContent.open(map, m);
+              };
+            })(marker)
+          );
+
+          marker.setMap(map);
+        });
+      }
+
+      // storeAddress.forEach(marker=>)
+      function showAddress() {
+        results.innerHTML = "";
+        if (addressArr.length > 0) {
+          results.innerHTML +=
+            "<div class='results'>" +
+            addressArr[0].display_name +
+            "<br> Lat: " +
+            addressArr[0].lat +
+            "Lng: " +
+            addressArr[0].lon +
+            "</div>";
+        } else {
+          results.innerHTML = "<p style= 'color: red'>Address not found</p>";
+        }
+      }
+
+      // var bando = null;
+      // var lat = 0;
+      // var long = 0;
+      // var infoWindow = null;
+      // var addressArr = [];
+
+      // showMap(storeAddress)
+      // async function showMap(store) {
+
+      //     bando = new google.maps.Map(document.getElementById("map"), {
+      //       center: { lat: lat, lng: long },
+      //       zoom: 15,
+      //     });
+      //     var centerPoint = new google.maps.Marker({
+      //       position: { lat: lat, lng: long },
+      //       map: bando,
+      //       title: addressArr[0].display_name,
+      //     });
+
+      //     var infoWindow = new google.maps.InfoWindow();
+      //     google.maps.event.addListener(
+      //       centerPoint,
+      //       "click",
+      //       ((marker) => {
+      //         return () => {
+      //           infoWindow.setContent(marker.title);
+      //           infoWindow.open(bando, marker);
+      //         };
+      //       })(centerPoint)
+      //     );
+      //     centerPoint.setMap(bando);
+      //   }
+      // }
+    </script>
+  </body>
+</html>
