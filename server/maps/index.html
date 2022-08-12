@@ -65,11 +65,19 @@
       <div id="results"></div>
       <div id="map"></div>
     </div>
-
+    <!-- API google map free: -->
+    <!-- AIzaSyB1ocv2WtMq2nCaVslfdID401zLUygDCYg -->
+    <!-- AIzaSyCnyal98Ae7lWtCEas8Mxk8u--1GT6H8OQ -->
+    <!-- AIzaSyCzzojB8M7JKcvJQbcscUGa27mDhzzhsBM--> 
+    <!-- AIzaSyA9xZWqMt2bCILiw_Vw49f5op9-OGxJWg8 -->
+    <!-- AIzaSyDNI_ZWPqvdS6r6gPVO50I4TlYkfkZdXh8 -->
+    <!-- AIzaSyDaOulQACiJzBfqumbsqg_-vKha8fCnL-s -->
+    <!-- AIzaSyDpuhPAXBFKTzK1P7n9vSW87mZtZBSG408 -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9xZWqMt2bCILiw_Vw49f5op9-OGxJWg8&libraries=places"></script> -->
     <script
       async
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9xZWqMt2bCILiw_Vw49f5op9-OGxJWg8&libraries=places&callback=showMap"
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1ocv2WtMq2nCaVslfdID401zLUygDCYg&libraries=places&callback=showMap"
     ></script>
     <script type="text/javascript">
       // address  to coordinates
@@ -98,8 +106,8 @@
           .then((show) => showMap())
           .catch((err) => console.log(err));
       }
+      let map;
       function showMap() {
-        let map;
         if (addressArr.length > 0) {
           map = new google.maps.Map(document.getElementById("map"), {
             center: {
@@ -108,7 +116,6 @@
             },
             zoom: 12,
           });
-          console.log("object");
 
           const marker = new google.maps.Marker({
             position: {
@@ -128,6 +135,10 @@
             })(marker)
           );
           marker.setMap(map);
+          // storeAddress.forEach((e) => {
+          //   findWay(addressArr[0], e);
+          // });
+          findWay(addressArr[0], storeAddress[0]);
         } else {
           map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: storeAddress[0].lat, lng: storeAddress[0].lon },
@@ -139,7 +150,7 @@
           //google marker
           const marker = new google.maps.Marker({
             position: { lat: e.lat, lng: e.lon },
-            icon:"img/icons/store2_24px.png"
+            icon: "img/icons/store2_24px.png",
           });
 
           const popupContent = new google.maps.InfoWindow();
@@ -172,6 +183,27 @@
         } else {
           results.innerHTML = "<p style= 'color: red'>Address not found</p>";
         }
+      }
+
+      var ddisplay = null;
+      function findWay(start, end) {
+        var dstart = new google.maps.LatLng(start.lat, start.lon);
+        var dend = new google.maps.LatLng(end.lat, end.lon);
+
+        var dservice = new google.maps.DirectionsService();
+        ddisplay = new google.maps.DirectionsRenderer();
+
+        var req = {
+          origin: dstart,
+          destination: dend,
+          travelMode: "WALKING",
+          provideRouteAlternatives: true,
+        };
+        ddisplay.setMap(map);
+        console.log(req);
+        dservice.route(req, (result, status) => {
+          if (status == "OK") ddisplay.setDirections(result);
+        });
       }
 
       // var bando = null;
