@@ -84,9 +84,9 @@
       var address = document.querySelector("#address");
       var results = document.querySelector("#results");
       const storeAddress = [
-        { lat: 10.7625, lon: 106.68172, info: "Store 1" },
-        { lat: 10.75855, lon: 106.67108, info: "Store 2" },
-        { lat: 10.75462, lon: 106.66763, info: "Store 3" },
+        { lat: 10.7625, lon: 106.68172, info: "Store 1" }, //5,4km
+        { lat: 10.75855, lon: 106.67108, info: "Store 2" }, //6km
+        { lat: 10.75462, lon: 106.66763, info: "Store 3" }, //6,8km
       ];
 
       // show store location on google map
@@ -127,6 +127,8 @@
           const popupContent = new google.maps.InfoWindow();
 
           marker.setMap(map);
+
+          findClosestStore(addressArr[0], storeAddress);
         } else {
           map = new google.maps.Map(document.getElementById("map"), {
             center: { lat: storeAddress[0].lat, lng: storeAddress[0].lon },
@@ -134,8 +136,8 @@
           });
         }
 
+        //Store Marker
         storeAddress.forEach((e) => {
-          //google marker
           const marker = new google.maps.Marker({
             position: { lat: e.lat, lng: e.lon },
             map: map,
@@ -152,10 +154,6 @@
               };
             })(marker)
           );
-
-          if (addressArr[0]) {
-            findClosestStore(addressArr[0], storeAddress);
-          }
         });
       }
 
@@ -175,11 +173,14 @@
         }
       }
 
-      function findWay(start, end) {
+      var distance = [];
 
+      function findWay(start, end) {
         var dstart = new google.maps.LatLng(start.lat, start.lon);
         var dend = new google.maps.LatLng(end.lat, end.lon);
+
         var dservice = new google.maps.DirectionsService();
+
         var ddisplay = new google.maps.DirectionsRenderer();
         ddisplay.setMap(map);
 
@@ -187,25 +188,31 @@
           origin: dstart,
           destination: dend,
           travelMode: "DRIVING",
-          provideRouteAlternatives: true,
+          // provideRouteAlternatives: true,
         };
 
         dservice.route(req, (result, status) => {
           if (status == "OK") {
             ddisplay.setDirections(result);
-            
-            console.log(result);
-            // console.log(result.routes[0].legs[0].distance);
-            return result.routes[0].legs[0].distance;
+
+            //  console.log(result);
+            console.log(result.routes[0].legs[0].distance);
+            // distance.push(result.routes[0].legs[0].distance);
+          } else {
+            ddisplay.setDirections({ routes: [] });
+
+            map.setCenter(dstart);
           }
         });
       }
-
+      console.log(distance);
       function findClosestStore(centerPoint, stores) {
         var distance = [];
         stores.forEach((e) => {
-          distance.push(findWay(centerPoint, e));
+          findWay(centerPoint, e);
+          // distance.push(findWay(centerPoint, e));
         });
+        // console.log(distance)
         var min = distance[0];
         let closest = 0;
 
