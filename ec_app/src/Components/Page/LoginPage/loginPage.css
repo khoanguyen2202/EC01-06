@@ -72,14 +72,14 @@
     
 }
 .Form-Button button{
-    background-color: #756be6;
+    background-color: #5349be;
     height: inherit;
     width: 100%;
     border-radius: 5px;
     border: none;
 }
 .Form-Button button:hover{
-    background-color: #5349be;
+    background-color: #756be6;
 }
 
 .Form-Button button span{

@@ -1,0 +1,169 @@
+.Userpage{
+    margin-top: 70px;
+    width: 100%;
+    overflow: hidden;
+    min-width: 1200px;
+}
+
+.userpage_meta{
+    width: 25%;
+    float: left;
+    /* height: 300px; */
+    border-right: 1px solid black;
+    /* background-color: antiquewhite; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.meta_info{
+    height: 100px;
+    width: 100%;
+}
+.meta_info_img{
+    width: 30%;
+    height: 100%;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    float: left;
+}
+
+.meta_info_img img{
+    width: 70%;
+    height: auto;
+    border-radius: 50px;
+}
+
+.meta_info_name{
+    width: 70%;
+    height: 100%;
+    float: right;
+}
+
+.meta_info_name_1{
+    color: black;
+    font-weight: 700;
+}
+.meta_info_selection{
+    background-color: #ffffff;
+    width: 80%;
+    height: 300px;
+    border-radius: 5px;
+    box-shadow: 0.1px 1px 5px 2px rgb(209, 206, 206);
+}
+
+.meta_info_selection_aa{
+    /* background-color: aqua; */
+    height: 22%;
+    width: 100%;
+}
+
+.meta_info_selection_aa_img{
+    /* background-color: antiquewhite; */
+    height: 100%;
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+}
+
+.meta_info_selection_aa_img img{
+    width: 40%;
+    height: auto;
+}
+
+.meta_info_selection_aa_name{
+    width: 70%;
+    height: 100%;
+    float: right;
+}
+.meta_info_selection_aa_name p{
+    font-size: large;
+    font-weight: 500;
+}
+.userpage_info{
+    width: 70%;
+    float: right;
+}
+
+.userpage_user{
+    background-color: white;
+    width: 90%;
+    height: 400px;
+    margin-top: 60px;
+    box-shadow: 0.1px 0.5px 2px 1px rgb(209, 206, 206);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding-top: 0.5px;
+}
+.userpage_user h3{
+    color: rgb(105, 96, 96);
+    margin-left: 10px;
+}
+
+.userpage_userinfo{
+    height: 25%;
+    width: 100%;
+}
+
+.userpage_1{
+    /* background-color: aquamarine; */
+    height: 100%;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+}
+
+.userpage_1 div{
+    width: 60%;
+    height: 70%;
+    border-radius: 50%;
+    border: 2px solid #C2E1FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F8FF;
+}
+
+.userpage_1 div img{
+    width: 60%;
+    height: auto;
+}
+.userpage_2{
+    width: 85%;
+    height: 100%;
+    float: right;
+}
+.userpage_2_name{
+    height: 50%;
+    width: 100%;
+}
+.userpage_2_name1{
+    height: 100%;
+    width: 18%;
+    float: left;
+    margin-left: 2%;
+}
+.userpage_2_name2{
+    width: 80%;
+    height: 100%;
+    float: right;
+}
+.userpage_2_name2 input{
+    width: 60%;
+    height: 65%;
+    border: 1px solid black;
+}
+.userpage_2_name2 input:focus {
+    border: none;
+    outline: none !important;
+    box-shadow: 0 0 10px #719ECE;
+    border: 1px solid #004AAD;
+}
