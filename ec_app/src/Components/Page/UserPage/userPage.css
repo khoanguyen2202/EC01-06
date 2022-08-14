@@ -8,9 +8,7 @@
 .userpage_meta{
     width: 25%;
     float: left;
-    /* height: 300px; */
-    border-right: 1px solid black;
-    /* background-color: antiquewhite; */
+    /* border-right: 1px solid black; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -58,8 +56,12 @@
 
 .meta_info_selection_aa{
     /* background-color: aqua; */
-    height: 22%;
+    height: 20%;
     width: 100%;
+    cursor: pointer;
+}
+.meta_info_selection_aa:hover{
+    background-color: #c2c9cf;
 }
 
 .meta_info_selection_aa_img{
@@ -73,7 +75,7 @@
 }
 
 .meta_info_selection_aa_img img{
-    width: 40%;
+    width: 35%;
     height: auto;
 }
 
@@ -84,7 +86,7 @@
 }
 .meta_info_selection_aa_name p{
     font-size: large;
-    font-weight: 500;
+    font-weight: 400;
 }
 .userpage_info{
     width: 70%;
@@ -98,12 +100,12 @@
     margin-top: 60px;
     box-shadow: 0.1px 0.5px 2px 1px rgb(209, 206, 206);
     border-radius: 5px;
-    margin-bottom: 20px;
+    margin-bottom: 3px;
     padding-top: 0.5px;
 }
 .userpage_user h3{
     color: rgb(105, 96, 96);
-    margin-left: 10px;
+    margin-left: 30px;
 }
 
 .userpage_userinfo{
@@ -166,4 +168,137 @@
     outline: none !important;
     box-shadow: 0 0 10px #719ECE;
     border: 1px solid #004AAD;
+}
+
+.userpage_user_born{
+    /* background-color: #004AAD; */
+    height: 10%;
+    width: 100%;
+    margin-top: 2px;
+    margin-left: 15%;
+}
+.userpage_user_born_11{
+    /* background-color: #719ECE; */
+    width: 14%;
+    height: 100%;
+    float: left;
+    padding-left: 2%;
+}
+.userpage_user_born_12{
+    /* background-color: antiquewhite; */
+    width: 83%;
+    height: 100%;
+    float: right;
+}
+.userpage_user_born_12_date{
+    width: 25%;
+    height: 70%;
+}
+
+.userpage_user_born_12_tel{
+    width: 30%;
+    height: 75%;
+    border: 1px solid black;
+    outline: none;
+}
+.userpage_user_born_12_tel:focus{
+    outline: none;
+    border: 1px solid black;
+    box-shadow: 0 0 10px #719ECE;
+    border: 1px solid #004AAD;
+}
+.userpage_user_button{
+    width: 100%;
+    height: 15%;
+}
+
+.userpage_user_button button{
+    float: right;
+    margin-right: 15%;
+    height: 70%;
+    width: 150px;
+    margin-top: 10px;
+    color: white;
+    font-weight: 600;
+    background-color: #004AAD;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px rgb(175, 172, 172);
+}
+.userpage_user_button button:hover{
+    background-color: #063878;
+    cursor: pointer;
+}
+
+.userpage_userPass{
+    background-color: white;
+    width: 90%;
+    height: 300px;
+    box-shadow: 0.1px 0.5px 2px 1px rgb(209, 206, 206);
+    border-radius: 5px;
+    margin-bottom: 3px;
+    padding-top: 0.5px;
+    margin-bottom: 30px;
+}
+
+.userpage_userPass h3{
+    color: rgb(105, 96, 96);
+    margin-left: 30px;
+}
+.userpage_userPass_oo{
+    height: 17%;
+    width: 100%;
+    margin-bottom: 2px;
+}
+.userpage_userPass_oo_1{
+    float: left;
+    width: 32%;
+    height: 100%;    
+}
+.userpage_userPass_oo_1 h4{
+    float: right;
+    color: rgb(96, 89, 89);
+}
+.userpage_userPass_oo_2{
+    float: right;
+    width: 68%;
+    height: 100%;
+
+}
+.userpage_userPass_oo_2 input{
+    width: 60%;
+    height: 60%;
+    margin-top: 2%;
+    margin-left: 5%;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid rgb(79, 77, 77);
+}
+.userpage_userPass_oo_2 input:focus{
+    outline: none;
+    border: 1px solid #004AAD;
+}
+
+.userpage_user_button1{
+    width: 100%;
+    height: 20%;
+}
+.userpage_user_button1 button{
+    float: right;
+    margin-right: 15%;
+    height: 70%;
+    width: 150px;
+    margin-top: 10px;
+    color: white;
+    font-weight: 600;
+    background-color: #004AAD;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px rgb(175, 172, 172);
+}
+.userpage_user_button1 button:hover{
+    background-color: #063878;
+    cursor: pointer;
 }
