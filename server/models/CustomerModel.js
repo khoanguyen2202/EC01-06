@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const schema_customer = new mongoose.Schema(
   {
+    customer_id:{
+      type: String,
+      unique:true,
+      required: true,
+    },
     phonenumber: {
       type: String,
       unique:true,
