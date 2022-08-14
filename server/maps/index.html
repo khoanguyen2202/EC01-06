@@ -173,8 +173,8 @@
         }
       }
 
-      var distance = [];
-
+      let distance = [];
+      console.log(distance);
       function findWay(start, end) {
         var dstart = new google.maps.LatLng(start.lat, start.lon);
         var dend = new google.maps.LatLng(end.lat, end.lon);
@@ -196,7 +196,11 @@
             ddisplay.setDirections(result);
 
             //  console.log(result);
-            console.log(result.routes[0].legs[0].distance);
+
+            var d = result.routes[0].legs[0].distance;
+            var i = end.info;
+            const s = { d, i };
+            distance.push(s);
             // distance.push(result.routes[0].legs[0].distance);
           } else {
             ddisplay.setDirections({ routes: [] });
@@ -205,23 +209,24 @@
           }
         });
       }
-      console.log(distance);
+
       function findClosestStore(centerPoint, stores) {
-        var distance = [];
         stores.forEach((e) => {
           findWay(centerPoint, e);
           // distance.push(findWay(centerPoint, e));
         });
-        // console.log(distance)
-        var min = distance[0];
-        let closest = 0;
+        var f = distance;
+        console.log(f);
+        // var min = distance[1].d.value;
+        // let closest = distance[1].i;
+        distance.forEach((e) => {
+          console.log(e);
+        });
 
-        for (let index = 1; index < distance.length; index++) {
-          if (min < distance[index]) closest = index;
-        }
-        // console.log(stores[closest]);
-        // console.log(distance[closest]);
-        // return stores[closet];
+        // for (let index = 2; index < distance.length; index++) {
+        //   if (min < distance[index].d.value) closest = distance[index].i;
+        // }
+        // console.log(closest);
       }
 
       // var bando = null;
