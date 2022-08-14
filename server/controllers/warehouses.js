@@ -26,27 +26,37 @@ export const deleteWarehouse = async (req, res) => {
   }
 };
 
-export const listWarehouse = async (req, res) => {
+export const findWarehouse = async (req, res) => {
   try {
-    const warehouses = await WarehouseModel.find();
-    res.json(warehouses);
-  } catch (error) {
-    res.status(500).json({ msg: error.message });
-  }
-};
-
-export const findProductID = async (req, res) => {
-  try {
-    //query in DB
-    const features = await WarehouseModel.findOne({'products.product_id': req.query})
+    const features = await WarehouseModel.aggregate
+                                                  ([{
+                                                    $unwind: "$products"
+                                                  },
+                                                  {
+                                                    $match: {
+                                                      "products.product_id" : req.query.product_id
+                                                        }
+                                                  },
+                                                  {
+                                                    $group: {
+                                                      _id: {
+                                                        warehouse_id: "$warehouse_id",
+                                                        hotline: "$hotline",
+                                                        address: "$address"
+                                                      },
+                                                      products: {
+                                                        $push: "$products",    
+                                                      },
+                                                            }
+                                                  }])
       // .filtering()
       // .sorting()
       // .paginating();
-    const products = await features.query;
+    //const products = await features.query;
     res.json({
       status: "success",
-      result: products.length,
-      products: products,
+      result: features.length,
+      products: features,
     });
   } catch (error) {
     res.status(500).json({ msg: error.message });
