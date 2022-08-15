@@ -88,7 +88,7 @@
 
       var addressArr = [];
       async function findAddress() {
-        console.log(address.value);
+        console.log(typeof(address.value));
         var url =
           "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
           address.value;
@@ -99,7 +99,9 @@
           .then((show) => showAddress())
           .then((show) => showMap())
           .catch((err) => console.log(err));
+          console.log(typeof(addressArr[0]))
       }
+      
       let map;
       async function showMap() {
         if (addressArr.length > 0) {

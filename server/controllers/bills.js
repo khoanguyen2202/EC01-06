@@ -18,17 +18,20 @@ function checkAddressExist(value, arr) {
 
   return false;
 }
+
 async function convertToCoordinate(address) {
+  var addressArr = [];
   var url =
     "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
     address;
-  var addressArr = [];
+
   await fetch(url)
-    .then((data) => (addressArr = data))
-    .catch((err) => console.log("err"));
-    // console.log("object");
-    console.log(addressArr[0]);
-  return addressArr[0];
+    .then((res) => res.json())
+    .then((data) => {
+      addressArr = data;
+    })
+    .catch((err) => console.log(err));
+  return addressArr[0]
 }
 
 export const createBill = async (req, res) => {
@@ -54,8 +57,10 @@ export const createBill = async (req, res) => {
         " " +
         shippingAddress.city;
     }
-    var coordinate = convertToCoordinate(addressToString);
-    console.log(coordinate);
+
+    var coordinate = await convertToCoordinate(addressToString);
+
+    console.log(coordinate.lat);
     // const newBill = new BillModel({
     //   products,
     //   payment,
