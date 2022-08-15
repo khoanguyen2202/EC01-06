@@ -1,0 +1,113 @@
+.header_container {
+    background-color: #ECF3FD;
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-bottom: 1px solid gray;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    
+}
+
+.logo #logo-image {
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    margin: 0 20px;
+}
+
+.logo #logo-image img {
+    width: 100%;
+}
+
+.search_box {
+    margin: 0 20px;
+}
+
+.search_box form {
+    margin-left: 20px;
+    padding-left: 2px;
+    height: 40px;
+    width: 350px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+    overflow: hidden;
+}
+
+.search_box form .search_icon {
+    height: 35px;
+    width: 35px;
+}
+
+.search_box form .search_icon svg {
+    transform: scale(0.7);
+}
+
+.search_box form .search_icon svg path {
+    fill: #ccc;
+}
+
+.search_box form .search_input {
+    color: #555;
+    height: 100%;
+    width: 300px;
+    padding-right: 10px;
+    font-size: 15px;
+    border: 0;
+    outline: 0;
+}
+
+.user {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+}
+
+.user .annoucement {
+    background-color: transparent;
+    height: 40px;
+    width: 40px;
+    border: 0;
+    margin: 0 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.user .annoucement svg {
+    transform: scale(0.75);
+}
+
+.user .annoucement svg path {
+    fill: #666;
+}
+
+.user .account {
+    background-color: #7EBBF3;
+    border: 0;  
+    height: 40px;
+    width: 70px;
+    margin: 0 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.user .account svg {
+    transform: scale(0.3);
+}
+
+.user .account svg path {
+    fill: white;
+}

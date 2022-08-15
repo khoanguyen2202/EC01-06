@@ -1,0 +1,112 @@
+:root {
+    --activate-user-color: #A1F579;
+    --unavailable-user-color: #B4ABAB;
+    --deactivate-user-color: #EC9999;
+    --activate-text-color: #5CB531;
+    --unavailable-text-color: #777;
+    --deactivate-text-color: #EC0101;
+}
+
+.user_management {
+    margin: 0 60px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.user_management>h1 {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.user_management .filter_box #filter_droplist {
+    margin: 0 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.user_management .search_box {
+    background-color: white;
+    width: 500px;
+    height: 35px;
+    display: flex;
+    margin: 20px 0;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.user_management .search_box .search_icon {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+}
+
+.user_management .search_box .search_icon svg {
+    transform: scale(0.6);
+}
+
+.user_management .search_box .search_icon svg path {
+    fill: #777;
+}
+
+.user_management .search_box .search_input {
+    width: 100%;
+    padding-right: 20px;
+    border: 0;
+    outline: 0;
+    color: #555;
+    font-weight: bold;
+}
+
+.user_management table,
+.user_management td,
+.user_management th {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.user_management th,
+.user_management td {
+    padding: 10px 30px;
+}
+
+.user_management td {
+    font-weight: bold;
+}
+
+.user_management .user_detail th {
+    background-color: white;
+}
+
+.user_management .user_detail tbody .activate {
+    background-color: var(--activate-user-color);
+}
+
+.user_management .user_detail tbody .activate td:nth-child(n+3):nth-child(-n+4) {
+    color: var(--activate-text-color);
+}
+
+.user_management .user_detail tbody .unavailable {
+    background-color: var(--unavailable-user-color);
+}
+
+.user_management .user_detail tbody .unavailable td:nth-child(n+3):nth-child(-n+4) {
+    color: var(--unavailable-text-color);
+}
+
+.user_management .user_detail tbody .deactivate {
+    background-color: var(--deactivate-user-color);
+}
+
+.user_management .user_detail tbody .deactivate td:nth-child(n+3):nth-child(-n+4) {
+    color: var(--deactivate-text-color);
+}
+
+.user_management .user_detail tbody .activate td:nth-child(4),
+.user_management .user_detail tbody .unavailable td:nth-child(4),
+.user_management .user_detail tbody .deactivate td:nth-child(4) {
+    text-decoration: underline;
+    cursor: pointer;
+}
