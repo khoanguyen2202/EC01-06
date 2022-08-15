@@ -65,11 +65,19 @@
       <div id="results"></div>
       <div id="map"></div>
     </div>
-    
+    <!-- API google map free: -->
+    <!-- AIzaSyB1ocv2WtMq2nCaVslfdID401zLUygDCYg -->
+    <!-- AIzaSyCnyal98Ae7lWtCEas8Mxk8u--1GT6H8OQ -->
+    <!-- AIzaSyCzzojB8M7JKcvJQbcscUGa27mDhzzhsBM-->
+    <!-- AIzaSyA9xZWqMt2bCILiw_Vw49f5op9-OGxJWg8 -->
+    <!-- AIzaSyDNI_ZWPqvdS6r6gPVO50I4TlYkfkZdXh8 -->
+    <!-- AIzaSyDaOulQACiJzBfqumbsqg_-vKha8fCnL-s -->
+    <!-- AIzaSyDpuhPAXBFKTzK1P7n9vSW87mZtZBSG408 -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA9xZWqMt2bCILiw_Vw49f5op9-OGxJWg8&libraries=places"></script> -->
     <script
       async
       defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQ2Ud93iGz28KmptQjCh2M_0_Pd9oTLQg&libraries=places&callback=showMap"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjnY0luunVpak2VgwkAQuKEjEIYBj4iZw&libraries=places&callback=showMap"
     ></script>
     <script type="text/javascript">
       // address  to coordinates
@@ -88,7 +96,6 @@
 
       var addressArr = [];
       async function findAddress() {
-        console.log(typeof(address.value));
         var url =
           "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
           address.value;
@@ -99,9 +106,7 @@
           .then((show) => showAddress())
           .then((show) => showMap())
           .catch((err) => console.log(err));
-          console.log(typeof(addressArr[0]))
       }
-      
       let map;
       async function showMap() {
         if (addressArr.length > 0) {
@@ -170,7 +175,7 @@
 
       var distance = [];
       // console.log(distance);
-      async function findWay(start, end, ss) {
+      async function findWay(start, end) {
         var dstart = new google.maps.LatLng(start.lat, start.lon);
         var dend = new google.maps.LatLng(end.lat, end.lon);
 
@@ -185,25 +190,17 @@
           travelMode: "DRIVING",
           // provideRouteAlternatives: true,
         };
-        console.log("l");
+        
 
         await dservice.route(req, (result, status) => {
           if (status == "OK") {
-            ddisplay.setDirections(result);
+            // ddisplay.setDirections(result);
 
             //  console.log(result);
 
-            var d = result.routes[0].legs[0].distance;
-            var i = end.info;
-            const s = { d, i };
-            console.log({
-              distance: d,
-              info: i
-            });
-            const tempt = ss.push({
-              distance: d,
-              info: i
-            });
+            console.log(result.routes[0].legs[0].distance) ;
+            
+            
             // console.log("len: ", tempt, "ss: ", ss);
             // distance.push(result.routes[0].legs[0].distance);
           } else {
@@ -211,21 +208,20 @@
 
             map.setCenter(dstart);
           }
-          return "s";
+         
         });
-        return "oke"
+        
       }
 
       async function findClosestStore(centerPoint, stores) {
         var ss = []
         await stores.forEach((e) => {
-          console.log("pp");
-          findWay(centerPoint, e, ss);
-          // distance.push(findWay(centerPoint, e));
+         
+          findWay(centerPoint, e);
+         
         });
 
-        console.log(ss);
-        console.log(ss[0]);
+        
 
         // console.log(distance[0]);
 

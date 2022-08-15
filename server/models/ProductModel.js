@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const schema_product = new mongoose.Schema(
   {
+    warehouse_id: [],
     product_id: {
       type: String,
       unique: true,
@@ -11,12 +12,10 @@ const schema_product = new mongoose.Schema(
     category: {
       type: String,
       trim: true,
-      
     },
     brandName: {
       type: String,
       trim: true,
-      
     },
     productName: {
       type: String,

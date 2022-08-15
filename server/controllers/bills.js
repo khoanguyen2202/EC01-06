@@ -2,8 +2,40 @@ import { BillModel } from "../models/BillModel.js";
 import { CustomerModel } from "../models/CustomerModel.js";
 import { ProductModel } from "../models/ProductModel.js";
 import { WarehouseModel } from "../models/WarehouseModel.js";
-
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+///AIzaSyBQ2Ud93iGz28KmptQjCh2M_0_Pd9oTLQg
 import fetch from "node-fetch";
+
+
+
+async function findWay(start, end) {
+  var dstart = new google.maps.LatLng(start.lat, start.lon);
+  var dend = new google.maps.LatLng(end.lat, end.lon);
+
+  var dservice = new google.maps.DirectionsService();
+
+  var ddisplay = new google.maps.DirectionsRenderer();
+  ddisplay.setMap(map);
+
+  var req = {
+    origin: dstart,
+    destination: dend,
+    travelMode: "DRIVING",
+    // provideRouteAlternatives: true,
+  };
+
+  await dservice.route(req, (result, status) => {
+    if (status == "OK") {
+      // ddisplay.setDirections(result);
+
+      console.log(result.routes[0].legs[0].distance);
+    } else {
+      ddisplay.setDirections({ routes: [] });
+
+      map.setCenter(dstart);
+    }
+  });
+}
 
 function checkAddressExist(value, arr) {
   for (let index = 0; index < arr.length; index++) {
@@ -31,13 +63,14 @@ async function convertToCoordinate(address) {
       addressArr = data;
     })
     .catch((err) => console.log(err));
-  return addressArr[0]
+  return addressArr[0];
 }
 
 export const createBill = async (req, res) => {
   try {
     const { products, payment, customer_id, shippingAddress } = req.body;
     const customer = await CustomerModel.findOne({ customer_id });
+
     if (customer.shippingAddress.length < 0) {
       {
         customer.shippingAddress.push(shippingAddress);
@@ -58,9 +91,37 @@ export const createBill = async (req, res) => {
         shippingAddress.city;
     }
 
-    var coordinate = await convertToCoordinate(addressToString);
+    var location = await convertToCoordinate(addressToString);
+    var coordinate = {
+      lat: parseFloat(location.lat),
+      lon: parseFloat(location.lon),
+    };
+    console.log(coordinate);
+    var productList = [];
 
-    console.log(coordinate.lat);
+    for (let index = 0; index < products.length; index++) {
+      productList.push(
+        await ProductModel.findOne({
+          product_id: products[index].product_id,
+        }).exec()
+      );
+    }
+
+    var warehouse = [];
+    for (let i = 0; i < productList.length; i++) {
+      for (let k = 0; k < productList[i].warehouse_id.length; k++) {
+        // console.log(productList[i].warehouse_id[k])
+        warehouse.push(
+          await WarehouseModel.findOne({
+            warehouse_id: productList[i].warehouse_id[k],
+          })
+        );
+      }
+      console.log(warehouse[0].coordinate);
+    }
+
+    findWay(coordinate, warehouse[0].coordinate);
+
     // const newBill = new BillModel({
     //   products,
     //   payment,
@@ -176,6 +237,10 @@ export const deleteBill = async (req, res) => {
   }
 };
 
+export default GoogleApiWrapper({
+  apiKey: ("AIzaSyBQ2Ud93iGz28KmptQjCh2M_0_Pd9oTLQg"),
+  
+})
 class APIfeatures {
   constructor(query, queryString) {
     this.query = query;
