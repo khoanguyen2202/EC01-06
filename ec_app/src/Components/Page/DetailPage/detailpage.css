@@ -1,0 +1,365 @@
+.Detailpage{
+    background-color:#D9D9D9;
+    margin-top: 70px;
+    width: 100%;
+    /* height: 2000px; */
+}
+
+.Dpage_Product{
+    background-color: white;
+    width: 100%;
+    height: 400px;
+}
+
+.Product_Name_dt_1{
+    width: 100%;
+    height: 18%;
+    padding-top: 2%;
+}
+
+.Product_Name_dt_1 span{
+    font-size: larger;
+    font-weight: 700;
+    padding: none;
+    margin: none;
+}
+.Product_Name_dt_2{
+    background-color: #D9D9D9;
+    width: 95%;
+    height: 20%;
+    border-radius: 5px;
+    padding-left: 2%;
+    align-items: center;
+}
+.Product_Name_dt_2_h1{
+    text-decoration: line-through;
+}
+
+
+.Product_Name_dt_3_button{
+    background-color: antiquewhite;
+}
+.Product_Name_dt_3{
+    width: 100%;
+    height: 10%;
+}
+
+.Product_Name_dt_3_SL{
+    width: 20%;
+    height: 100%;
+    float: left;
+}
+
+.Product_Name_dt_3_SL p{
+    font-weight: 600;
+}
+
+.Product_Name_dt_3_button_12{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    margin-left: 5%;
+    align-items: center;
+}
+.Product_Name_dt_3_button_12 button{
+    width: 20px;
+    height: 30px;
+    background-color: white;
+}
+.Product_Name_dt_3_button_12_left{
+    border-top: 0.25px solid rgb(111, 111, 111);
+    border-bottom: 0.25px solid rgb(111, 111, 111);
+    border-left: 0.25px solid rgb(111, 111, 111);
+    border-right: none;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+
+.Product_Name_dt_3_button_12_right{
+    border-top: 0.25px solid rgb(111, 111, 111);
+    border-bottom: 0.25px solid rgb(111, 111, 111);
+    border-right: 0.25px solid rgb(111, 111, 111);
+    border-left: none;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+
+}
+.Product_Name_dt_3_button_12 div{
+    width: 50px;
+    height: 28.7px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-bottom: 0.5px solid black;
+    border-top: 0.5px solid black;
+}
+
+.Product_Name_dt_4{
+    /* background-color: rgb(51, 28, 221); */
+    width: 100%;
+    height: 15%;
+    overflow-x: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+.Product_Name_dt_4_color{
+    border: 1px solid black;
+    float: left;
+    height: 80%;
+    width: 80px;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    border-radius: 5px;
+    /* background-color: #D9D9D9; */
+    cursor: pointer;
+}
+.Product_Name_dt_4::-webkit-scrollbar {
+    width: 1px;       
+}
+
+
+.Product_Name_dt_5 div button{
+    width: 60%;
+    height: 40px;
+    margin-top: 12px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+}
+.Product_Name_dt_5{
+    width: 100%;
+    height: 24%;
+}
+.Product_Name_dt_5_buy{
+    width: 50%;
+    background-color: #564ceb;
+    border: none;
+}
+.Product_Name_dt_5_buy:hover{
+    background-color: #8983d8;
+}
+.Product_Name_dt_5_buy h3{
+    color: white;
+}
+.Product_Name_dt_5_add{
+    width: 30%;
+    border: 0.5px solid #897FF2;
+}
+.Product_Name_dt_5_add:hover{
+    border: 2px solid #897FF2;
+}
+.Dpage_Product_left{
+    float: left;
+    width: 40%;
+    height: 100%;
+}
+.Dpage_Product_right{
+    /* width: 55%; */
+    width: 30%;
+    padding-left: 2%;
+    height: 100%;
+    float: left;
+}
+.Dpage_Product_WH{
+    float: right;
+    height: 100%;
+    width: 28%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Dpage_Product_WH p{
+    color: #004AAD;
+    font-weight: 800;
+}
+.Dpage_WH_list{
+    border-radius: 5px;
+    border: 1px solid black;
+    overflow-y: scroll;
+} 
+.Dpage_WH_list{
+    width: 90%;
+    height: 70%;
+}
+.WH_list{
+    /* background-color: aliceblue; */
+    margin-bottom: 1px;
+    width: 100%;
+    height: 30px;
+    border-top: 1px solid black;
+    display: flex;
+}
+.WH_list img{
+    height: 50%;
+    width: auto;
+}
+.WH_list_img{
+    height: 100%;
+    width: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.WH_list_phone{
+    height: 100%;
+    width: 30%;
+    border-right: 1px solid black;
+    overflow: hidden;
+    color: rgb(76, 76, 250);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 4px;
+    font-size: smaller;
+}
+.WH_list_add{
+    overflow: hidden;
+    height: 90%;
+    width: 56%;
+}
+.WH_list_add span{
+    font-size: smaller;
+}
+.Dpage_WH_list::-webkit-scrollbar {
+    width: 5px;       
+}
+.Dpage_WH_list::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);        /* Màu nền ngoài của thanh scrollbar */
+}
+
+.Dpage_WH_list::-webkit-scrollbar-thumb {
+    border-radius: 5px;      
+    border: 2px solid #ccc;  
+}
+
+.pl_img{
+    margin-top: 5px;
+    width: 100%;
+    height: 80%;
+    background-color: white;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.pl_img_tt{
+    width: 60%;
+    height: 80%;
+    background-color: white;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5%;
+}
+
+.pl_img img{
+    width: 90%;
+    height: 90%;
+}
+
+.pl_img_list{
+    width: 100%;
+    height: 25%;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+.Dpage_TT{
+    background-color:rgb(236, 235, 235);
+    margin-top: 30px;
+    width: 100%;
+    height: 400px;
+}
+.Dpage_Name{
+    width: 100%;
+    height: 10%;
+    margin-bottom: 25px;
+    padding-top: 0.5px;
+}
+.Dpage_TT div h2{
+    padding-left: 15px;
+    color: #002c65;
+}
+.slide{
+    height: 90%;
+}
+.slide1{
+    height: 100%;
+}
+
+.slide1{
+    height: 100%;
+}
+
+.slide-img1 img{
+    height: 100%;
+    width: 60%;
+    border: 0.25px solid black;
+    border-radius: 2px;
+}
+
+.DPage_D{
+    height: 600px;
+    width: 100%;
+    margin-top: 60px;
+}
+.Dpage_Demonstration_1{
+    height: 100%;
+    width: 65%;
+    float: left;
+    /* margin-right: 5%; */
+    background-color: white;
+    margin-left: 2%;
+    border-radius: 7px;
+}
+.Dpage_Demonstration_1_header{
+    height: 10%;
+    width: 50%;
+    padding-left: 10%;
+}
+.Dpage_Demonstration_1_body{
+    background-color: #9c9c9c;
+    height: 85%;
+    overflow-y: scroll;
+}
+
+.Dpage_Demonstration_1_body::-webkit-scrollbar {
+    width: 10px;       
+}
+.Dpage_Demonstration_1_body::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);        /* Màu nền ngoài của thanh scrollbar */
+}
+
+.Dpage_Demonstration_1_body::-webkit-scrollbar-thumb {
+    border-radius: 5px;      
+    border: 2px solid #ccc;  
+}
+
+
+.Dpage_Demonstration_2{
+    background-color: white;
+    height: 100%;
+    width: 30%;
+    float: right;
+    margin-right: 1%;
+    border-radius: 7px;
+}
+.Dpage_Demonstration_2 h2{
+    padding-left: 10px  ;
+}
+
+.Dpage_Demonstration_2_body{
+    background-color: #ccc;
+    width: 100%;
+}

@@ -8,7 +8,7 @@ import axios from 'axios'
 
 function Login() {
     const [user, setUser] = useState({
-        phone:'', password:''   
+        phonenumber:'', password:''   
     })
 
     const onChangeInput = e => {
@@ -18,11 +18,12 @@ function Login() {
     const loginSubmit = async e =>{
         e.preventDefault()
         try {
-            const res = await axios.post('http://localhost:7000/user/login', {...user})
+            const res = await axios.post('http://localhost:5000/sign-in', {...user})
 
             // Save first login and accesstoken in localStorage of Chrome
             localStorage.setItem('firstLogin', true)
             localStorage.setItem('token', res.data.accesstoken)
+            console.log(res.data.accesstoken)
 
             window.location.href = "/";
 
@@ -43,7 +44,7 @@ function Login() {
                         <div>
                             <img src={phone} alt=""/>
                         </div>
-                        <input type="tel" name="tel" value={user.phone} onChange={onChangeInput} required placeholder="Phone Number"/>
+                        <input type="tel" name="phonenumber" value={user.phonenumber} onChange={onChangeInput} required placeholder="Phone Number"/>
                     </div>
                     <div className="Input-Form1">
                         <div>
@@ -58,7 +59,7 @@ function Login() {
 
                 </form>
                 <div className="Form-Button">
-                    <button type="submit" onclick={loginSubmit} ><span>Đăng Nhập</span></button>
+                    <button type="submit" onClick={loginSubmit} ><span>Đăng Nhập</span></button>
                 </div>
 
                 <div className="Form-Account">

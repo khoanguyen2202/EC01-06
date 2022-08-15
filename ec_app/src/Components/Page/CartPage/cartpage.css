@@ -1,0 +1,247 @@
+.Cartpage{
+    margin-top: 70px;
+    width: 100%;
+    text-align: center;
+}
+
+.cp_name{
+    width: 100%;
+    text-align: center;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+.cp_name h1{
+    color: #004AAD;
+}
+
+.cp_button{
+    width: 100%;
+    height: 50px;
+    margin-bottom: 20px;
+    align-items: center;
+    text-align: center;
+}
+.cp_button button{
+    height: 100%;
+}
+
+
+.cp_button button{
+    background-color: #004AAD;
+    border: none;
+    border-radius: 5px;
+}
+
+.cp_button button span{
+    color: white;
+    font-size: larger;
+}
+.cp_button button:hover{
+    color: #08264f;
+}
+.cp_button button span:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cp_products{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.cp_product{
+    min-width: 450px;
+    margin-bottom: 10px;
+    width: 50%;
+    height: 250px;
+    /* background-color: aquamarine; */
+    background-color: white;
+    border-radius: 5px;
+    border: 0.1 solid rgb(43, 40, 40);
+    box-shadow: 1px 1px 5px 2px rgb(209, 206, 206);
+}
+
+.cp_product_img{
+    width: 40%;
+    height: 100%;
+    float: left;
+}
+
+.cp_product_img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cp_product_img img{
+    width: 80%;
+    height: auto;
+}
+
+.cp_product_tt{
+    width: 60%;
+    height: 100%;
+    float: right;
+}
+
+.p_tt_name span{
+    color: black;
+    font-size: larger;
+    font-weight: 700;
+}
+.p_tt_name{
+    /* background-color: antiquewhite; */
+    height: 12%;
+    width: 100%;
+    padding-top: 5%;
+    overflow: hidden;
+}
+.p_tt_name span{
+    left: 0;
+}
+.p_tt_price{
+    height: 12%;
+    width: 100%;
+    display: flex;
+}
+.p_tt_number{
+    height: 15%;
+    width: 100%;
+}
+.p_tt_price_1{
+    color: #004AAD;
+    font-weight: 700;
+    margin-right: 10px;
+    overflow: hidden;
+}
+.p_tt_price_2{
+    color: rgb(70, 66, 66);
+    font-weight: 300;
+    text-decoration-line: line-through;
+    margin-right: 10px;
+    overflow: hidden;
+}
+.p_tt_price div{
+    background-color: #D70018;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    padding: 1px;
+    height: 80%;
+    overflow: hidden;
+}
+
+.p_tt_price div span{
+    color: white;
+    font-size: small;
+    font-weight: 700;
+}
+.p_tt_number{
+    display: flex;
+}
+.p_tt_number_button{
+    width: 80px;
+    height: 70%;
+    margin-left: 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+    display: flex;
+}
+.p_tt_number_button div{
+    flex: 1;
+}
+.p_tt_number_button button{
+    cursor: pointer;
+    background-color: white;
+    border: none;
+}
+.p_tt_demo{
+    width: 90%;
+    max-height: 50%;
+    background-color: #F6F6F6;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.p_tt_demo div{
+    float: left;
+    text-align: left;
+}
+
+.cp_button{
+    background-color: antiquewhite;
+}
+.cart_button{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    min-width: 450px;
+    margin-bottom: 10px;
+    width: 55%;
+    height: 180px;
+    background-color: white;
+    border-radius: 5px;
+    border: 0.1 solid rgb(43, 40, 40);
+    box-shadow: 0.5px 0.5px 3.5px 1px rgb(209, 206, 206);
+}
+
+.cart_button_value{
+    margin-top: 5px;
+    width: 90%;
+}
+.cart_button_value_1{
+    float: left;
+    margin-left: 10px;
+    color: black;
+    font-size: large;
+    font-weight: 700;
+}
+.cart_button_value_2{
+    float: right;
+    margin-right: 10px;
+    font-weight: 700;
+    font-size: large;
+    color: #004AAD;
+}
+
+.cart_button_1{
+    width: 95%;
+    height: 30%;
+    background-color: antiquewhite;
+    margin-top: 2%;
+}
+.cart_button_1 button:hover{
+    cursor: pointer;
+}
+.cart_button_1 button{
+    width: 100%;
+    height: 100%;
+}
+
+.cart_button_1_1{
+    background-color:#004AAD;
+    border: 1px solid #004AAD;
+}
+.cart_button_1_1 span{
+    color: white;
+    font-weight: 700;
+    font-size: large;
+}
+.cart_button_1_2{
+    background-color: #FFFFFF;
+    border: 1px solid black;
+}
+.cart_button_1_2{
+    color: #004AAD;
+    font-weight: 700;
+    font-size: large;
+}
+.cart_button_1_2:hover{
+    background-color: #1a61bd;
+    color: #FFFFFF;
+}

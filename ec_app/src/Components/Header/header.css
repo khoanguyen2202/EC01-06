@@ -5,6 +5,7 @@
     /* overflow: hidden; */
     position: fixed;
     top: 0;
+    z-index: 999;
 }
 .header1{
     width: 8%;

@@ -14,13 +14,17 @@ import component from './icon/Component.svg'
 import test from './icon/material-symbols_ev-charger-outline.svg'
 import test1 from './icon/selfie-stick 1.svg'
 import test2 from './icon/dt.svg'
+import { Link } from 'react-router-dom'
 
 function Header() {
     return (
         <div className="header">
-            <div className="header1">
-                <img src={asscessory_world_logo} alt="" />
-            </div>
+            <Link to="/">
+                <div className="header1">
+                    <img src={asscessory_world_logo} alt="" />
+                </div>
+            </Link>
+            
             <div className="header2">
                 <h3>Accessosy World</h3>
             </div>
@@ -88,10 +92,13 @@ function Header() {
                 <img src={struck_icon} alt=""/>
                 <h4>Đơn hàng</h4>
             </div>
-            <div className="header7">
-                <img src={cart_icon} alt=""/>
-                <h4>Giỏ hàng</h4>
-            </div>
+            <Link to="/cart">
+                <div className="header7">
+                    <img src={cart_icon} alt=""/>
+                    <h4>Giỏ hàng</h4>
+                </div>
+            </Link>
+            
             <div className="header8">
                 <h4>Acount</h4>
             </div>

@@ -19,3 +19,11 @@ code {
 @import url('./Components/Page/LoginPage/loginPage.css');
 
 @import url('./Components/Page/RegisterPage/registerPage.css');
+
+@import url('./Components/Page/MainPage/mainPage.css');
+
+@import url('./Components/Page/DetailPage/detailpage.css');
+
+@import url('./Components/Page/CartPage/cartpage.css');
+
+@import url('./Components/Page/UserPage/userPage.css')
