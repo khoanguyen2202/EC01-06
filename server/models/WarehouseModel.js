@@ -15,6 +15,11 @@ const schema_warehouse = new mongoose.Schema(
       district: String,
       city: String,
     },
+    coordinate:{
+      lat:Number,
+      lon:Number,
+      info:String,
+    },
     products: [
       {
         product_id: {

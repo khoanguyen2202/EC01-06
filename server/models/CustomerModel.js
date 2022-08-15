@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const schema_customer = new mongoose.Schema(
   {
+    customer_id:{
+      type: String,
+      unique:true,
+      required: true,
+    },
     phonenumber: {
       type: String,
       unique:true,
@@ -29,9 +34,29 @@ const schema_customer = new mongoose.Schema(
     ],
     role:{
       type:Number,
-      default:1 //0:customer , != 0 : admit access
+      default:1 //0:customer , 1 : admit access
     },
-    cart: [],
+    cart: 
+    [
+      {
+        product_id: {
+          type: String,
+          trim: true,
+        },
+        color: {
+          type: String,
+          trim: true,
+        },
+        quantity: {
+          type: Number,
+          default: 0,
+        },
+        status:{
+          type: String,   // true: Not existed in Cart     false: Existed in Cart
+          trim: true,
+        }
+      }
+    ],
     history: [],
     hidden: Boolean,
   },

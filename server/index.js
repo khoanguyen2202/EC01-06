@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import path from "path"
+import path from "path";
 
 import products from "./routers/products.js";
 import customers from "./routers/customers.js";
@@ -18,7 +18,7 @@ import fileUpload from "express-fileupload";
 const app = express();
 const PORT = process.env.port || 5000;
 // const URI = "mongodb+srv://khoa:khoa@cluster0.i7wqs.mongodb.net/?retryWrites=true&w=majority";
-const URI = process.env.MONGODB_URL
+const URI = process.env.MONGODB_URL;
 
 app.use(express.json());
 app.use(cookieParser());
@@ -32,7 +32,7 @@ app.use("/customers", customers);
 app.use("/bills", bills);
 app.use("/warehouses", warehouses);
 app.use("/api", upload);
-app.use("/category",categoryCtrl);
+app.use("/category", categoryCtrl);
 
 mongoose
   .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -45,3 +45,6 @@ mongoose
   .catch((err) => {
     console.log("err", err);
   });
+
+
+
