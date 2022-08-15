@@ -1,0 +1,12 @@
+.main_container {
+    background-color: #B5BAEE;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.main_container main {
+    margin-left: 250px;
+    border-left: 1px solid #bbb;
+    height: 100vh;
+}
