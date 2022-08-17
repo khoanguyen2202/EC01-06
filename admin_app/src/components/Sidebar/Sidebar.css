@@ -1,0 +1,67 @@
+.sidebar_container {
+    position: fixed;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    background-color: #ECF3FD;
+    overflow-y: auto;
+}
+
+.sidebar_container .menu_item {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebar_container .menu_item:hover {
+    background-color: #1A30A6;
+    opacity: 0.5;
+}
+
+.sidebar_container .menu_item:hover .el_icon svg path {
+    fill: white;
+}
+
+.sidebar_container .menu_item:hover .el_title {
+    color: white;
+}
+
+.sidebar_container .menu_item .el_icon {
+    height: 30px;
+    width: 30px;
+    margin: 0 10px;
+    display: inline-block;
+}
+
+.sidebar_container .menu_item .el_icon svg {
+    transform: scale(0.75);
+}
+
+.sidebar_container .menu_item .el_icon svg path {
+    fill: #777;
+}
+
+.sidebar_container .menu_item .el_title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #444;
+}
+
+.sidebar_container .active {
+    background-color: #1A30A6;
+    opacity: 0.9;
+}
+
+.sidebar_container .active:hover {
+    opacity: 1;
+}
+
+.sidebar_container .active .el_icon svg path {
+    fill: white;
+}
+
+.sidebar_container .active .el_title {
+    color: white;
+}

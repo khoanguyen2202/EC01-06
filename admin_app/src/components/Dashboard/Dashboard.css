@@ -1,0 +1,47 @@
+:root {
+    --blue-color-dashboard: #2E3CB8;
+    --pink-color_dashboard: #D84C86;
+    --orange-color-dashboard: #D9923E;
+    --green-color-dashboard: #44DE37;
+}
+
+.blue-bg {
+    background-color: var(--blue-color-dashboard);
+}
+
+.pink-bg {
+    background-color: var(--pink-color_dashboard);
+}
+
+.orange-bg {
+    background-color: var(--orange-color-dashboard);
+}
+
+.green-bg {
+    background-color: var(--green-color-dashboard);
+}
+
+.dashboard {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard .row {
+    display: flex;
+}
+
+.dashboard .monitor {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 30px;
+    border-radius: 20px;
+    width: 350px;
+    height: 175px;
+    color: white;
+    margin: 40px;
+}
+

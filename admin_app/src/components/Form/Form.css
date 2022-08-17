@@ -1,0 +1,114 @@
+.form_container {
+    position: fixed;
+    background-color: white;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 40%;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 10px 20px;
+}
+
+.form_container>h2 {
+    margin-bottom: 10px;
+}
+
+.form_container .row {
+    display: flex;
+    align-items: center;
+}
+
+.form_container .row .col {
+    display: flex;
+    flex-direction: column;
+}
+
+.form_container .row .col:nth-child(1) {
+    margin-right: 10px;
+}
+
+.form_container .row .col:nth-child(2) {
+    margin-left: 10px;
+}
+
+.form_container .price_input,
+.form_container .date_input {
+    display: block;
+}
+
+.form_container .product_name {
+    margin-top: 15px;
+}
+
+.form_container .product_name,
+.form_container #product_category,
+.form_container .price_input,
+.form_container .date_input {
+    
+    padding: 5px 10px;
+    outline-color: #aaa;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #aaa;
+}
+
+.form_container #product_category {
+    color: #777;
+}
+
+.form_container .file_upload {
+    background-color: #aaa;
+}
+
+.form_container .price_input,
+.form_container .date_input {
+    width: 100%;
+}
+
+.form_container .upload_wrap {
+    width: 200px;
+    height: 100px;
+    background-color: #d9d9d9;
+    margin-bottom: 10px;
+}
+
+.form_container .upload_wrap .upload_label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #777;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.footer {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.footer button {
+    margin-left: 10px;
+    padding: 10px;
+    font-weight: bold;
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.footer .cancel_button {
+    border: 1px solid #ccc;
+    width: 100px;
+    color: #B4ABAB;
+}
+
+.footer .add_button {
+    border: 1px solid #ccc;
+    background: linear-gradient(0deg, rgba(49, 32, 245, 0.2), rgba(49, 32, 245, 0.2)), linear-gradient(90deg, #2941BE -49.23%, rgba(53, 2, 255, 0) 221.68%);
+    color: white;
+}
