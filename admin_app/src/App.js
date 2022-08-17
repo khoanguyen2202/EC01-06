@@ -19,9 +19,9 @@ class App extends Component {
         <Header></Header>
         <Sidebar></Sidebar>
         <main id="main_component">
-          {/* <Dashboard></Dashboard> */}
+          <Dashboard></Dashboard>
           {/* <User></User> */}
-          <Product></Product>
+          {/* <Product></Product> */}
           {/* <Order></Order> */}
           {/* <Sale></Sale> */}
         </main>

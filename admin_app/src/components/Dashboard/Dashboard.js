@@ -22,7 +22,7 @@ class Dashboard extends React.Component {
             <h1>100.000</h1>
           </div>
           <div className="monitor green-bg">
-            <h5>Tổng doanh thu</h5>
+            <h5>Tổng doanh thu</h5> 
             <h1>$100.000</h1>
           </div>
         </div>
