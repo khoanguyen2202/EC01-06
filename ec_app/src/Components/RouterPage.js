@@ -4,6 +4,7 @@ import MainPage from './Page/MainPage.js'
 import DetailPage from './Page/DetailPage.js'
 import CartPage from './Page/CartPage.js'
 import UserPage from './Page/UserPage.js'
+import StorePage from './Page/StorePage.js'
 
 import {Routes, Route} from 'react-router-dom'
 
@@ -12,6 +13,8 @@ function RouterPage() {
     return (
         <Routes>
             <Route path="/product" element={<DetailPage />} />
+            <Route path="/storemap" element={<StorePage />} />
+            <Route path="product/:id" element={<DetailPage />} />
             <Route path="/register" element={<RegisterPage />}/>
             <Route path="/login" element={<LoginPage />}/>
             <Route path="/cart" element={<CartPage />} />

@@ -21,21 +21,26 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-
-const data = [
-    {"id": "121", "name": "xin chao 1"},
-    {"id": "122", "name": "xin chao 2"},
-    {"id": "123", "name": "xin chao 3"},
-    {"id": "124", "name": "xin chao 4"},
-    {"id": "125", "name": "xin chao 5"},
-    {"id": "126", "name": "xin chao 6"},
-    {"id": "126", "name": "xin chao 6"},
-    {"id": "126", "name": "xin chao 6"},
-    {"id": "126", "name": "xin chao 6"}
-  ]
-
+import axios from 'axios'
+import {useState, useEffect} from 'react'
 
 function Main(){
+    const [productsSale, setProduct] = useState([])
+    const [productsTop, setProduct1] = useState([])
+
+
+
+    useEffect(() =>{
+        const getProducts = async () => {
+            const res = await axios.get('http://localhost:5000/products/?sort=-discount&limit=20')
+            const res1 = await axios.get('http://localhost:5000/products/?sort=-sold&limit=12')
+            setProduct(res.data.products)
+            setProduct1(res1.data.products)
+        }
+        getProducts()
+    },[])
+    let dollarUSLocale = Intl.NumberFormat('en-US');
+
     return (
         <div className="mainPage">
             <div className="M_Panner">
@@ -60,37 +65,42 @@ function Main(){
                              return '<span class="' + className + '"> </span>';
                             },
                         }}
-                        // scrollbar={{ draggable: true }}
                         onSwiper={(swiper) => console.log(swiper)}
                         onSlideChange={() => console.log('slide change')}
                         className="slde"
                     >
                         {
-                            data.map(user => {
+                            productsSale.map(product => {
                                 return (
-                                <SwiperSlide key={user.id} className="slide">
-                                    <div className="slide-promotion">
-                                        <span>Giảm 25%</span>
-                                    </div>
-                                    <div className="slide-img">
-                                        <img src="https://image.cellphones.com.vn/200x/media/catalog/product//s/m/sm-s901_galaxys22_front_pinkgold_211122.jpg" alt="" />
-                                    </div>
-                                    <div className="slide-product-name">
-                                        <span>Samsung Galaxy S22 (8GB - 128GB)</span>
-                                    </div>
-                                    <div className="slide-price">
-                                        <span className="slide-price-promotion">16.190.000 đ</span>
-                                        <span className="slide-price-real"><del>21.999.000</del>đ</span>
-                                    </div>
-                                    <div className="rate"></div>
-                                </SwiperSlide>
+
+                                        <SwiperSlide className="slide">
+                                            <Link to={"/product/" + product._id} style={{textDecoration: 'none'}}>
+                                                <div className="slide-promotion">
+                                                    <span>Giảm {product.discount}%</span>
+                                                </div>
+                                                <div className="slide-img">
+                                                    <img src="https://image.cellphones.com.vn/200x/media/catalog/product//s/m/sm-s901_galaxys22_front_pinkgold_211122.jpg" alt="" />
+                                                    {/* <img src={product.images[0].url} alt="" /> */}
+                                                    {/* {console.log(product.images[0].url)} */}
+                                                    
+                                                </div>
+                                                <div className="slide-product-name">
+                                                    <span>{product.productName}</span>
+                                                </div>
+                                                <div className="slide-price">
+                                                    <span className="slide-price-promotion"> {dollarUSLocale.format(product.price * (1 - product.discount / 100))} đ</span>
+                                                    <span className="slide-price-real"><del>{dollarUSLocale.format(product.price)}</del> đ</span>
+                                                </div>
+                                                <div className="rate"></div>
+                                            </Link>
+                                            
+                                        </SwiperSlide>
                                 )
                                 
                             })
                         }
                         <></>
                     </Swiper>
-                    <div class="my-custom-pagination-div12" />
                 </div>
             
 
@@ -126,21 +136,23 @@ function Main(){
                         className="slde"
                     >
                         {
-                            data.map(user => {
+                            productsTop.map(product => {
                                 return (
-                                <SwiperSlide key={user.id} className="slide">
-                                    <div className="slide-img">
-                                        <img src="https://image.cellphones.com.vn/200x/media/catalog/product//s/m/sm-s901_galaxys22_front_pinkgold_211122.jpg" alt="" />
-                                    </div>
-                                    <div className="slide-product-name">
-                                        <span>Samsung Galaxy S22 (8GB - 128GB)</span>
-                                    </div>
-                                    <div className="slide-price">
-                                        <span className="slide-price-promotion">16.190.000 đ</span>
-                                        <span className="slide-price-real"><del>21.999.000</del>đ</span>
-                                    </div>
-                                    <div className="rate"></div>
-                                </SwiperSlide>
+                                    <SwiperSlide className="slide">
+                                        <Link to={"/product/" + product._id} style={{textDecoration: 'none'}}>
+                                            <div className="slide-img">
+                                                <img src="https://image.cellphones.com.vn/200x/media/catalog/product//s/m/sm-s901_galaxys22_front_pinkgold_211122.jpg" alt="" />
+                                            </div>
+                                            <div className="slide-product-name">
+                                                <span>{product.productName}</span>
+                                            </div>
+                                            <div className="slide-price">
+                                                <span className="slide-price-promotion"> {dollarUSLocale.format(product.price * (1 - product.discount / 100))} đ</span>
+                                                <span className="slide-price-real"><del>{dollarUSLocale.format(product.price)}</del> đ</span>
+                                            </div>
+                                            <div className="rate"></div>
+                                        </Link>
+                                    </SwiperSlide>
                                 )
                             })
                         }
@@ -194,46 +206,79 @@ function Main(){
                 </div>
                 <div className="M_Menu_Category1">
                     <div className="M_img">
-                        <img src={k1} alt="" />
-                        <p>Bàn Phím</p>
+                        <Link to="/search?category=ban%20phim" style={{textDecoration: 'none', color: 'black'}}>
+                            <img src={k1} alt="" />
+                            <p>Bàn Phím</p>
+                        </Link>
                     </div>
+
                     <div className="M_img">
-                        <img src={k2} alt="" />
-                        <p>Tai nghe </p>
+                        <Link to="/search?category=tai%20nghe" style={{textDecoration: 'none', color: 'black'}}>
+                            <img src={k2} alt="" />
+                            <p>Tai nghe </p>
+                        </Link>
                     </div>
+
+
                     <div className="M_img">
-                        <img src={k3} alt="" />
-                        <p>Chuột máy tính</p>
+                        <Link to="/search?category=chuot%20may%20tinh" style={{textDecoration: 'none', color: 'black'}}>
+                            <img src={k3} alt="" />
+                            <p>Chuột máy tính</p>
+                        </Link>
                     </div>
+
+
                     <div className="M_img">
-                        <img src={k4} alt="" />
-                        <p>Sạc dự phòng</p>
+                        <Link to="/search?category=sac%20du%20phong" style={{textDecoration: 'none', color: 'black'}}>
+                            <img src={k4} alt="" />
+                            <p>Sạc dự phòng</p>
+                        </Link>
                     </div>
+
+
                     <div className="M_img">
-                        <img src={k5} alt="" />
-                        <p>Bộ sạc</p>
+                        <Link to="/search?category=bo%20sac" style={{textDecoration: 'none', color: 'black'}}>
+                            <img src={k5} alt="" />
+                            <p>Bộ sạc</p>
+                        </Link>
                     </div>
+                    
                 </div>
                 <div className="M_Menu_Category1">
-                <div className="M_img">
-                        <img src={k6} alt="" />
-                        <p>Webcam</p>
-                    </div>
                     <div className="M_img">
-                        <img src={k7} alt="" />
-                        <p>Ốp lưng</p>
+                        <Link to="/search?category=webcame" style={{textDecoration: 'none', color: 'black'}}>
+                            <img src={k6} alt="" />
+                            <p>Webcam</p>
+                        </Link>
                     </div>
+
                     <div className="M_img">
-                        <img src={k8} alt="" />
-                        <p>Giá đỡ điện thoại</p>
+                        <Link to="/search?category=op%20lung" style={{textDecoration: 'none', color: 'black'}}>
+                            <img src={k7} alt="" />
+                            <p>Ốp lưng</p>
+                        </Link>
                     </div>
+
                     <div className="M_img">
-                        <img src={k9} alt="" />
-                        <p>Gậy selfie</p>
+                        <Link to="/search?category=gia%20do" style={{textDecoration: 'none', color: 'black'}}>
+                            <img src={k8} alt="" />
+                            <p>Giá đỡ điện thoại</p>
+                        </Link>
                     </div>
+
                     <div className="M_img">
-                        <img src={k10} alt="" />
-                        <p>Thiết bị mạng</p>
+                        <Link to="/search?category=gay%selfie" style={{textDecoration: 'none', color: 'black'}}>
+                            <img src={k9} alt="" />
+                            <p>Gậy selfie</p>
+                        </Link>
+                    </div>
+
+                    <div className="M_img">
+                        <Link to="/search?category=thiet%20bi%20mang" style={{textDecoration: 'none', color: 'black'}}>
+                            <img src={k10} alt="" />
+                            <p>Thiết bị mạng</p>
+                        </Link>
+
                     </div>
                 </div>
             </div>

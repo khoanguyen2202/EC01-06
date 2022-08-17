@@ -7,7 +7,9 @@ import 'swiper/css/scrollbar';
 // import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Link } from 'react-router-dom'
+import {useParams, Link} from 'react-router-dom'
+import React, {useContext, useState, useEffect} from 'react'
+import axios from 'axios';
 
 const data = [
     {"id": "121", "name": "xin chao 1"},
@@ -39,6 +41,19 @@ const colors = ["Đỏ", "Vàng", "Hồng", "Đen", "Xanh lá", "Xanh dương", 
 
 
 function Detailpage() {
+    const params = useParams()
+    const [product, setProduct] = useState({})
+
+    useEffect(() =>{
+        if(params.id){
+            const getDetailProduct = async () => {
+                const res = await axios.get('http://localhost:5000/products/?_id=' + String(params.id))
+                setProduct(res.data.products[0])
+            }
+            getDetailProduct()
+        }
+    },[params.id, product])
+    
     return (
         <div className="Detailpage">
             <div className="Dpage_Product">

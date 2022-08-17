@@ -26,4 +26,6 @@ code {
 
 @import url('./Components/Page/CartPage/cartpage.css');
 
-@import url('./Components/Page/UserPage/userPage.css')
+@import url('./Components/Page/UserPage/userPage.css');
+
+@import url('./Components/Page/StorePage/storepage.css');
