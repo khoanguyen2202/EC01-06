@@ -39,7 +39,7 @@ function Login() {
             </div>
             <div className="login__form">
                 <h1>Đăng Nhập</h1>
-                <form >
+                <form>
                     <div className="Input-Form1">
                         <div>
                             <img src={phone} alt=""/>

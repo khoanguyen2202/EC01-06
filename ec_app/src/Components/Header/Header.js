@@ -28,6 +28,7 @@ function Header() {
             <div className="header2">
                 <h3>Accessosy World</h3>
             </div>
+            
             <div className="header3">
                 <button type='submit'>
                     <img src={search_logo} alt="" />

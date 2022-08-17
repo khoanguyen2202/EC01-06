@@ -47,50 +47,59 @@ function Main(){
                     <h2>ON SALE</h2>
                     <img src={fire} alt = ""/>
                 </div>
-                
-                <Swiper
-                    modules={[Navigation, Pagination, Scrollbar, A11y]}
-                    spaceBetween={50}
-                    slidesPerView={5}
-                    navigation
-                    pagination={{ clickable: true }}
-                    // scrollbar={{ draggable: true }}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    onSlideChange={() => console.log('slide change')}
-                    className="slde"
-                >
-                    {
-                        data.map(user => {
-                            return (
-                              <SwiperSlide key={user.id} className="slide">
-                                <div className="slide-promotion">
-                                    <span>Giảm 25%</span>
-                                </div>
-                                <div className="slide-img">
-                                    <img src="https://image.cellphones.com.vn/200x/media/catalog/product//s/m/sm-s901_galaxys22_front_pinkgold_211122.jpg" alt="" />
-                                </div>
-                                <div className="slide-product-name">
-                                    <span>Samsung Galaxy S22 (8GB - 128GB)</span>
-                                </div>
-                                <div className="slide-price">
-                                    <span className="slide-price-promotion">16.190.000 đ</span>
-                                    <span className="slide-price-real"><del>21.999.000</del>đ</span>
-                                </div>
-                                <div className="rate"></div>
-                              </SwiperSlide>
-                            )
-                            
-                          })
-                    }
-                    <></>
-                </Swiper>
+                <div className='M_sale_1'>
+                    <Swiper
+                        modules={[Navigation, Pagination, Scrollbar, A11y]}
+                        spaceBetween={55}
+                        slidesPerView={5}
+                        navigation
+                        pagination={{
+                            el: '.my-custom-pagination-div12',
+                            clickable: true,
+                            renderBullet: (index, className) => {
+                             return '<span class="' + className + '"> </span>';
+                            },
+                        }}
+                        // scrollbar={{ draggable: true }}
+                        onSwiper={(swiper) => console.log(swiper)}
+                        onSlideChange={() => console.log('slide change')}
+                        className="slde"
+                    >
+                        {
+                            data.map(user => {
+                                return (
+                                <SwiperSlide key={user.id} className="slide">
+                                    <div className="slide-promotion">
+                                        <span>Giảm 25%</span>
+                                    </div>
+                                    <div className="slide-img">
+                                        <img src="https://image.cellphones.com.vn/200x/media/catalog/product//s/m/sm-s901_galaxys22_front_pinkgold_211122.jpg" alt="" />
+                                    </div>
+                                    <div className="slide-product-name">
+                                        <span>Samsung Galaxy S22 (8GB - 128GB)</span>
+                                    </div>
+                                    <div className="slide-price">
+                                        <span className="slide-price-promotion">16.190.000 đ</span>
+                                        <span className="slide-price-real"><del>21.999.000</del>đ</span>
+                                    </div>
+                                    <div className="rate"></div>
+                                </SwiperSlide>
+                                )
+                                
+                            })
+                        }
+                        <></>
+                    </Swiper>
+                    <div class="my-custom-pagination-div12" />
+                </div>
+            
 
             </div>
             <div className="M_TopProduct">
                 <div className="M_TopProduct_header">
                     <div className="top_Name">
                         <h1>Sản phẩm bán chạy</h1>
-                    </div>
+                    </div>  
                     <div className="top_watch">
                         <Link to="/">
                             <h3>{"Xem tất cả"}</h3>
@@ -103,8 +112,15 @@ function Main(){
                         spaceBetween={50}
                         slidesPerView={5}
                         navigation
-                        pagination={{ clickable: true }}
-                        // scrollbar={{ draggable: true }}
+
+                        pagination={{
+                            el: '.my-custom-pagination-div',
+                            clickable: true,
+                            renderBullet: (index, className) => {
+                             return '<span class="' + className + '"> </span>';
+                            },
+                        }}
+
                         onSwiper={(swiper) => console.log(swiper)}
                         onSlideChange={() => console.log('slide change')}
                         className="slde"
@@ -128,8 +144,10 @@ function Main(){
                                 )
                             })
                         }
-                        <></>
+                        
+                    ...
                     </Swiper>
+                    <div class="my-custom-pagination-div" />
                 </div>
             </div>
             <div className="M_Sologan">
