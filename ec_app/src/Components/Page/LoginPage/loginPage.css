@@ -51,6 +51,11 @@
     border: none;
     outline: none;
 }
+.Input_info span{
+    color: red;
+    font-size: smaller;
+    font-weight: 450;
+}
 
 
 .Input-Form1 div{

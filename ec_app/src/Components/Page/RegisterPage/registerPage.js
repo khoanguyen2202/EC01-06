@@ -15,26 +15,22 @@ function Register() {
         const {name, value} = e.target;
         setUser({...user, [name]:value})
     }
+    const [condi, setCondition] = useState(0)
+
     const loginSubmit = async e =>{
         e.preventDefault()
 
         try{
-            var MsgString = ""
             // check PhoneNumber
             var regExp = /[a-zA-Z]/g;
 
                         // check Pass
             if (user.phonenumber.length <= 3 || regExp.test(user.phonenumber)) {
-                MsgString = "Số Điện thoại không hợp lệ"
-            }
-
+                setCondition(1);
+            } else 
             if (user.password !== user.rePassword) {
-                MsgString = "Nhập lại mật khẩu không khớp"
-            }
-
-
-            if (MsgString !== ""){
-                alert(MsgString)
+                setCondition(2);
+                // MsgString = "Nhập lại mật khẩu không khớp"
             } else {
                 var msgReq = {"phonenumber":user.phonenumber, "password":user.password}
                 console.log(msgReq)
@@ -53,6 +49,20 @@ function Register() {
 
     }
 
+    const showCondition = ()  => {
+        if (condi === 1) {
+            return (
+                <div className='Input_info1'>
+                    <span>Số điện thoại không đúng định dạng!</span>
+                </div>
+            )
+        } else {
+            return (
+                <></>
+            )
+        }
+    }
+
     return (
         <div className="register">
             <div className="register__image">
@@ -67,6 +77,8 @@ function Register() {
                         </div>
                         <input type="tel" name="phonenumber" value={user.phonenumber} onChange={onChangeInput} required placeholder="Số Điện Thoại"/>
                     </div>
+                    {showCondition()}
+
                     <div className="Input-Form1">
                         <div>
                             <img src={pass} alt=""/>
