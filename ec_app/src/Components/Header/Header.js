@@ -28,6 +28,7 @@ function Header() {
             <div className="header2">
                 <h3>Accessosy World</h3>
             </div>
+            
             <div className="header3">
                 <button type='submit'>
                     <img src={search_logo} alt="" />
@@ -42,52 +43,81 @@ function Header() {
                         <ul>
                             <li>
                                 <img src={keyboard_icon} alt=""/>
-                                <p className='header4_checklist_p'>Bàn phím</p>
+                                <Link to="/search?category=ban%20phim" style={{textDecoration: 'none', color: 'black'}}>
+                                    <p className='header4_checklist_p'>Bàn phím</p>
+                                </Link>
                             </li>
                             <li>
                                 <img src={mouse_icon} alt=""/>
-                                <p className='header4_checklist_p'>Chuột</p>
+                                <Link to="/search?category=chuot%20may%20tinh" style={{textDecoration: 'none', color: 'black'}}>
+                                    <p className='header4_checklist_p'>Chuột</p>
+                                </Link>
                             </li>
                             <li>
                                 <img src={component} alt=""/>
-                                <p className='header4_checklist_p'>Tai nghe</p>
+                                <Link to="/search?category=tai%20nghe" style={{textDecoration: 'none', color: 'black'}}>
+                                    <p className='header4_checklist_p'>Tai nghe</p>
+                                </Link>
                             </li>
                             <li>
                                 <img src={group_icon} alt=""/>
-                                <p className='header4_checklist_p'>Bộ sạc</p>
+                                <Link to="/search?category=bo%20sac" style={{textDecoration: 'none', color: 'black'}}>
+                                    <p className='header4_checklist_p'>Bộ sạc</p>
+                                </Link>
                             </li>
                             <li>
                                 <img src={test} alt=""/>
-                                <p className='header4_checklist_p'>Sạc dự phòng</p>
+                                <Link to="/search?category=sac%20du%20phong" style={{textDecoration: 'none', color: 'black'}}>
+                                    <p className='header4_checklist_p'>Sạc dự phòng</p>
+                                </Link>
                             </li>
                             <li>
                                 <img src={test2} alt=""/>
-                                <p className='header4_checklist_p'>Ốp lưng</p>
+                                <Link to="/search?category=op%20lung" style={{textDecoration: 'none', color: 'black'}}>
+                                    <p className='header4_checklist_p'>Ốp lưng</p>
+                                </Link>
+
+                                
                             </li>
                             <li>
                                 <img src={test1} alt=""/>
-                                <p className='header4_checklist_p'>Gậy selfi</p>
+                                <Link to="/search?category=gay%20selfi" style={{textDecoration: 'none', color: 'black'}}>
+                                    <p className='header4_checklist_p'>Gậy selfi</p>
+                                </Link>
+                                
                             </li>
                             <li>
                                 <img src={group_icon1} alt=""/>
-                                <p className='header4_checklist_p'>Giá đỡ điện thoại</p>
+                                <Link to="/search?category=gia%20do" style={{textDecoration: 'none', color: 'black'}}>
+                                    <p className='header4_checklist_p'>Giá đỡ điện thoại</p>
+                                </Link>
+                                
                             </li>
                             <li>
                                 <img src={group_icon2} alt=""/>
-                                <p className='header4_checklist_p'>Webcam</p>
+                                <Link to="/search?category=webcam" style={{textDecoration: 'none', color: 'black'}}>
+                                    <p className='header4_checklist_p'>Webcam</p>
+                                </Link>
+                                
                             </li>
                             <li>
                                 <img src={group_icon3} alt=""/>
-                                <p className='header4_checklist_p'>Thiết bị mạng</p>
+                                <Link to="/search?category=thiet%20bi%20mang" style={{textDecoration: 'none', color: 'black'}}>
+                                    <p className='header4_checklist_p'>Thiết bị mạng</p>
+                                </Link>
+                                
                             </li>
                         </ul>
                     </div>
                 </h4>
             </div>
+            <Link to="/storemap">
             <div className="header5">
                 <img src={location_icon } alt=""/>
                 <h4>Cửa hàng gần nhất</h4>
             </div>
+            </Link>
+            
             <div className="header6">
                 <img src={struck_icon} alt=""/>
                 <h4>Đơn hàng</h4>
@@ -99,9 +129,12 @@ function Header() {
                 </div>
             </Link>
             
-            <div className="header8">
-                <h4>Acount</h4>
-            </div>
+            <Link to="/userinfo">
+                <div className="header8">
+                    <h4>Acount</h4>
+                </div>
+            </Link>
+            
         </div>
     )
 }

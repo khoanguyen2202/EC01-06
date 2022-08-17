@@ -2,10 +2,10 @@
     background-color: #004AAD;
     width: 100%;
     height: 70px;
-    /* overflow: hidden; */
     position: fixed;
     top: 0;
-    z-index: 999;
+    z-index: 19;
+    min-width: 1000px;
 }
 .header1{
     width: 8%;
@@ -88,6 +88,7 @@
 
 .header4:hover .header4_checklist{
     display: block;
+    z-index: 12;
 }
 .header4_checklist{
     background-color: rgb(255, 255, 255);
@@ -128,7 +129,6 @@
     width: 23%;
     height: auto;
 }
-
 
 .header4 h4{
     color: white;

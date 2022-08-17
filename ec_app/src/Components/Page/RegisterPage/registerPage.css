@@ -23,7 +23,7 @@
 } 
 
 .Input-Form1{
-    margin-bottom: 20px;
+    margin-bottom: 1    0px;
     display: flex;
     width: 70%;
     border-radius: 5px;
@@ -93,4 +93,8 @@
 }
 .Form-Account p{
     font-weight: bold;
+}
+
+.Input_info1{
+    background-color: royalblue;
 }
