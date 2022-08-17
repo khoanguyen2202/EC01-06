@@ -2,11 +2,21 @@ import { BillModel } from "../models/BillModel.js";
 import { CustomerModel } from "../models/CustomerModel.js";
 import { ProductModel } from "../models/ProductModel.js";
 import { WarehouseModel } from "../models/WarehouseModel.js";
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+
+
 ///AIzaSyBQ2Ud93iGz28KmptQjCh2M_0_Pd9oTLQg
 import fetch from "node-fetch";
+var script = document.createElement('script');
+script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBQ2Ud93iGz28KmptQjCh2M_0_Pd9oTLQg&callback=initMap';
+script.async = true;
 
+// Attach your callback function to the `window` object
+window.initMap = function() {
+  // JS API is loaded and available
+};
 
+// Append the 'script' element to 'head'
+document.head.appendChild(script);
 
 async function findWay(start, end) {
   var dstart = new google.maps.LatLng(start.lat, start.lon);
@@ -237,10 +247,7 @@ export const deleteBill = async (req, res) => {
   }
 };
 
-export default GoogleApiWrapper({
-  apiKey: ("AIzaSyBQ2Ud93iGz28KmptQjCh2M_0_Pd9oTLQg"),
-  
-})
+
 class APIfeatures {
   constructor(query, queryString) {
     this.query = query;
