@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 const schema_product = new mongoose.Schema(
   {
-    warehouse_id: [],
     product_id: {
       type: String,
       unique: true,

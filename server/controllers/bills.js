@@ -3,50 +3,9 @@ import { CustomerModel } from "../models/CustomerModel.js";
 import { ProductModel } from "../models/ProductModel.js";
 import { WarehouseModel } from "../models/WarehouseModel.js";
 
-
 ///AIzaSyBQ2Ud93iGz28KmptQjCh2M_0_Pd9oTLQg
-import fetch from "node-fetch";
-var script = document.createElement('script');
-script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBQ2Ud93iGz28KmptQjCh2M_0_Pd9oTLQg&callback=initMap';
-script.async = true;
 
-// Attach your callback function to the `window` object
-window.initMap = function() {
-  // JS API is loaded and available
-};
-
-// Append the 'script' element to 'head'
-document.head.appendChild(script);
-
-async function findWay(start, end) {
-  var dstart = new google.maps.LatLng(start.lat, start.lon);
-  var dend = new google.maps.LatLng(end.lat, end.lon);
-
-  var dservice = new google.maps.DirectionsService();
-
-  var ddisplay = new google.maps.DirectionsRenderer();
-  ddisplay.setMap(map);
-
-  var req = {
-    origin: dstart,
-    destination: dend,
-    travelMode: "DRIVING",
-    // provideRouteAlternatives: true,
-  };
-
-  await dservice.route(req, (result, status) => {
-    if (status == "OK") {
-      // ddisplay.setDirections(result);
-
-      console.log(result.routes[0].legs[0].distance);
-    } else {
-      ddisplay.setDirections({ routes: [] });
-
-      map.setCenter(dstart);
-    }
-  });
-}
-
+import axios from "axios";
 function checkAddressExist(value, arr) {
   for (let index = 0; index < arr.length; index++) {
     if (
@@ -61,21 +20,66 @@ function checkAddressExist(value, arr) {
   return false;
 }
 
-async function convertToCoordinate(address) {
-  var addressArr = [];
-  var url =
-    "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
-    address;
-
-  await fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-      addressArr = data;
-    })
-    .catch((err) => console.log(err));
-  return addressArr[0];
+function combineAddress(street, ward, district, city) {
+  return street + " " + ward + " " + district + " " + city;
 }
 
+async function getDistance(start, end) {
+  var distance;
+  var urlGoogleAPI =
+    "https://maps.googleapis.com/maps/api/distancematrix/json?origins=" +
+    start +
+    "&destinations=" +
+    end +
+    "&key=AIzaSyBQ2Ud93iGz28KmptQjCh2M_0_Pd9oTLQg";
+  await axios
+    .get(urlGoogleAPI)
+    .then((res) => (distance = res.data.rows[0].elements[0].distance.value));
+  return distance;
+}
+function checkProductExist( warehouse,products) {
+  warehouse.products.forEach(e=>{
+    for (let i = 0; i < products.length; i++) {
+      if(e.product_id==products[i].product_id){
+        for (let index = 0; index < array.length; index++) {
+          const element = array[index];
+          
+        }
+      }
+      
+    }
+  })
+}
+async function deliveryManagement(products, sAddress) {
+  var wh = await WarehouseModel.find();
+  var distance = [];
+  for (let i = 0; i < wh.length; i++) {
+    distance.push(
+      await getDistance(
+        sAddress,
+        combineAddress(
+          wh[i].address.street,
+          wh[i].address.ward,
+          wh[i].address.district,
+          wh[i].address.city
+        )
+      )
+    );
+  }
+
+  var min = distance[0];
+  var close = 0;
+  for (let i = 1; i < distance.length; i++) {
+    if (min > distance[i]) {
+      min = distance[i];
+      close = i;
+    }
+  }
+
+  console.log(min);
+  wh.splice(close, 1);
+  console.log(...wh);
+}
 export const createBill = async (req, res) => {
   try {
     const { products, payment, customer_id, shippingAddress } = req.body;
@@ -91,53 +95,18 @@ export const createBill = async (req, res) => {
         customer.shippingAddress.push(shippingAddress);
         customer.save();
       }
-      var addressToString =
-        shippingAddress.street +
-        " " +
-        shippingAddress.ward +
-        " " +
-        shippingAddress.district +
-        " " +
-        shippingAddress.city;
     }
 
-    var location = await convertToCoordinate(addressToString);
-    var coordinate = {
-      lat: parseFloat(location.lat),
-      lon: parseFloat(location.lon),
-    };
-    console.log(coordinate);
-    var productList = [];
+    var sAddress = combineAddress(
+      shippingAddress.street,
+      shippingAddress.ward,
+      shippingAddress.district,
+      shippingAddress.city
+    );
 
-    for (let index = 0; index < products.length; index++) {
-      productList.push(
-        await ProductModel.findOne({
-          product_id: products[index].product_id,
-        }).exec()
-      );
-    }
+    deliveryManagement(products, sAddress);
 
-    var warehouse = [];
-    for (let i = 0; i < productList.length; i++) {
-      for (let k = 0; k < productList[i].warehouse_id.length; k++) {
-        // console.log(productList[i].warehouse_id[k])
-        warehouse.push(
-          await WarehouseModel.findOne({
-            warehouse_id: productList[i].warehouse_id[k],
-          })
-        );
-      }
-      console.log(warehouse[0].coordinate);
-    }
-
-    findWay(coordinate, warehouse[0].coordinate);
-
-    // const newBill = new BillModel({
-    //   products,
-    //   payment,
-    //   shippingAddress,
-    //   customer_id,
-    // });
+    // var warehouse = await WarehouseModel.find(); //Get warehouse database
 
     res.json({ msg: "Created a bill." });
   } catch (error) {
@@ -246,7 +215,6 @@ export const deleteBill = async (req, res) => {
     res.status(500).json({ error: error });
   }
 };
-
 
 class APIfeatures {
   constructor(query, queryString) {

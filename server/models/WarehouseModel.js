@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 const schema_warehouse = new mongoose.Schema(
   {
+    role: {
+      type: String,  
+      default:"Store",  
+    },
     warehouse_id: {
       type: String,
       unique: true,
@@ -15,10 +19,10 @@ const schema_warehouse = new mongoose.Schema(
       district: String,
       city: String,
     },
-    coordinate:{
-      lat:Number,
-      lon:Number,
-      info:String,
+    coordinate: {
+      lat: Number,
+      lon: Number,
+      info: String,
     },
     products: [
       {
