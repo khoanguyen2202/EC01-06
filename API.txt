@@ -29,3 +29,4 @@ GET:http://localhost:5000/products/?sort=-sold&limit=10
 GET:http://localhost:5000/products/?_id=62e9da3d5a0aefedde743c35
 GET:http://localhost:5000/products/?category=test
 GET: http://localhost:5000/bills/?customerID=C1&status=Canceled
+GET: http://localhost:5000/warehouses/?product_id=P25

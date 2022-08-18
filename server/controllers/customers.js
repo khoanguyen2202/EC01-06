@@ -140,6 +140,45 @@ const customerCtrl = {
       res.status(500).json({ msg: error.message });
     }
   },
+  getCustomerCart: async (req,res) =>{
+    try {
+      const { phonenumber } = req.body;
+      const user = await CustomerModel.findOne({ phonenumber });
+      if (!user) {
+        return res.status(400).json({ msg: "User is not exist." });
+      }
+      await CustomerModel.deleteOne({ phonenumber });
+      res.json({ msg: "Deleted customer" });
+    } catch (error) {
+      res.status(500).json({ msg: error.message });
+    }
+  },
+  createCustomerCart: async (req,res) =>{
+    try {
+      const { phonenumber } = req.body;
+      const user = await CustomerModel.findOne({ phonenumber });
+      if (!user) {
+        return res.status(400).json({ msg: "User is not exist." });
+      }
+      await CustomerModel.deleteOne({ phonenumber });
+      res.json({ msg: "Deleted customer" });
+    } catch (error) {
+      res.status(500).json({ msg: error.message });
+    }
+  },
+  deleteCustomerCart: async (req,res) =>{
+    try {
+      const { phonenumber } = req.body;
+      const user = await CustomerModel.findOne({ phonenumber });
+      if (!user) {
+        return res.status(400).json({ msg: "User is not exist." });
+      }
+      await CustomerModel.deleteOne({ phonenumber });
+      res.json({ msg: "Deleted customer" });
+    } catch (error) {
+      res.status(500).json({ msg: error.message });
+    }
+  }
 };
 
 const createAccessToken = (user) => {
@@ -149,5 +188,6 @@ const createAccessToken = (user) => {
 const createRefreshToken = (user) => {
   return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "7d" });
 };
+
 
 export default customerCtrl;

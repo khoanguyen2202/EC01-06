@@ -49,10 +49,6 @@ export const findWarehouse = async (req, res) => {
                                                       },
                                                             }
                                                   }])
-      // .filtering()
-      // .sorting()
-      // .paginating();
-    //const products = await features.query;
     res.json({
       status: "success",
       result: features.length,
