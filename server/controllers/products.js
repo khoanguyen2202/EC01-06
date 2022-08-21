@@ -34,15 +34,15 @@ export const createProduct = async (req, res) => {
       reviews,
       images,
       sold,
-      checked
+      checked,
     } = req.body;
     if (!images) return res.status(400).json({ msg: "No images upload." });
     const product = await ProductModel.findOne({ product_id });
     if (product) {
       return res.status(400).json({ msg: "This product already exists." });
     }
-    if(discount !== 0){
-      price = price * (100-discount) / 100
+    if (discount !== 0) {
+      price = (price * (100 - discount)) / 100;
     }
     const newProduct = new ProductModel({
       product_id,
@@ -58,7 +58,7 @@ export const createProduct = async (req, res) => {
       reviews,
       images,
       sold,
-      checked
+      checked,
     });
     await newProduct.save();
     res.json({ msg: "Created a product." });
@@ -83,9 +83,8 @@ export const updateProduct = async (req, res) => {
       reviews,
       images,
       sold,
-      checked
+      checked,
     } = req.body;
-    if (!images) return res.status(400).json({ msg: "No images upload." });
 
     await ProductModel.findOneAndUpdate(
       { _id: req.params.id },
@@ -103,7 +102,7 @@ export const updateProduct = async (req, res) => {
         reviews,
         images,
         sold,
-        checked
+        checked,
       }
     );
 

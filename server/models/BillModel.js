@@ -4,19 +4,9 @@ const schema_bill = new mongoose.Schema(
   {
     products: [
       {
-        productID: String,
-        colors: [
-          {
-            color: {
-              type: String,
-              trim: true,
-            },
-            quantity: {
-              type: Number,
-              default: 0,
-            },
-          },
-        ],
+        product_id: String,
+        color: String,
+        quantity: Number,
       },
     ],
     payment: {
@@ -24,7 +14,10 @@ const schema_bill = new mongoose.Schema(
       type: Boolean,
       default: 0,
     },
-    totalPrice: Number,
+    totalPrice: {
+      type:Number,
+      default:0,
+    },
     status: String, //Delivery successful   Being delivery   In process  Canceled
     customer_id: {
       type: String,
@@ -40,7 +33,6 @@ const schema_bill = new mongoose.Schema(
 
     warehouseID: {
       type: String,
-      required: true,
       default: "None",
     },
     Cashier: String,

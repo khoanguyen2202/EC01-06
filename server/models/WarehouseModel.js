@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 const schema_warehouse = new mongoose.Schema(
   {
     role: {
-      type: String,  
-      default:"Store",  
+      type: String,
+      default: "Store",
     },
     warehouse_id: {
       type: String,
@@ -30,18 +30,14 @@ const schema_warehouse = new mongoose.Schema(
           type: String,
           trim: true,
         },
-        colors: [
-          {
-            color: {
-              type: String,
-              trim: true,
-            },
-            quantity: {
-              type: Number,
-              default: 0,
-            },
-          },
-        ],
+        color: {
+          type: String,
+          trim: true,
+        },
+        quantity: {
+          type: Number,
+          default: 0,
+        },
       },
     ],
   },
