@@ -4,7 +4,7 @@ import auth from "../middleware/auth.js";
 import authAdmin from "../middleware/authAdmin.js";
 
 const router = express.Router();
-//Ctrl=Controler
+//Ctrl = Controller
 router.get("/get",categoryCtrl.getCategories);
 router.post("/post", categoryCtrl.createCategory);
 router.delete("/delete/:name", categoryCtrl.deleteCategory);

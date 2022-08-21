@@ -11,8 +11,9 @@ router.post("/sign-in", customerCtrl.signIn);
 router.get("/sign-out", customerCtrl.singOut);
 router.get("/refresh_token", customerCtrl.refreshToken);
 router.post("/:id/update", customerCtrl.updateInfor);
-
-router.get("/infor", auth, customerCtrl.getCustomer);
-
+router.get("info", auth, customerCtrl.getCustomer);
 router.delete("/customer", customerCtrl.deleteUser);
+router.get("/get-cart",customerCtrl.getCustomerCart);
+router.post("/create-cart",customerCtrl.createCustomerCart);
+router.delete("/delete-cart",customerCtrl.deleteCustomerCart);
 export default router;
