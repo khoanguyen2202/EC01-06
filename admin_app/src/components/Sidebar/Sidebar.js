@@ -4,7 +4,7 @@ import "./Sidebar.css";
 class Sidebar extends React.Component {
   render() {
     return (
-      <div className="sidebar_container">
+        <div className="sidebar_container">
         <div className="menu_item active">
           <span className="el_icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

@@ -2,6 +2,7 @@ import React from "react";
 import "./Product.css";
 import ConfirmPopup from ".././ConfirmPopup/ConfirmPopup";
 import Form from ".././Form/Form";
+import { Link } from "react-router-dom";
 
 class Product extends React.Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class Product extends React.Component {
   render() {
     return (
       <div className="product_management">
+        {/* <Form></Form> */}
         <h1>Quản lý sản phẩm</h1>
         <div className="product_handling">
           <div className="filter_box">

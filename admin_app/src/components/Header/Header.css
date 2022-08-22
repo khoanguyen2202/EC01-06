@@ -1,10 +1,13 @@
+
+
 .header_container {
     background-color: #ECF3FD;
     height: 60px;
     width: 100%;
     display: flex;
     align-items: center;
-    position: relative;
+    position: sticky;
+    top: 0;
     border-bottom: 1px solid gray;
 }
 
