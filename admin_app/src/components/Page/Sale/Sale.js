@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 class Sale extends React.Component {
   render() {
     return (
-      <div>
+      <div className="sale">
         <h1>Quản lý khuyến mãi</h1>
       </div>
     );
