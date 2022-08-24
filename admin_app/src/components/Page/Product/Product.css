@@ -107,6 +107,7 @@
 
 .product_management td {
     font-weight: bold;
+    text-align: center;
 }
 
 .product_management .user_detail th {
@@ -142,4 +143,8 @@
 .product_management .user_detail tbody .sold_out td:nth-child(5) {
     text-decoration: underline;
     cursor: pointer;
+}
+
+.product_management .user_detail {
+    margin-bottom: 30px;
 }

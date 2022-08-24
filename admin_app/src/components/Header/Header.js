@@ -8,7 +8,7 @@ class Header extends React.Component {
       <div className="header_container">
         <div className="logo">
           <div id="logo-image">
-            <img src={logo} alt="" srcset="" />
+            <img src={logo} alt="" srcSet="" />
           </div>
           <h3>Accessory World</h3>
         </div>

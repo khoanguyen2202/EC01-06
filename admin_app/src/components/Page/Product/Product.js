@@ -2,7 +2,7 @@ import React from "react";
 import "./Product.css";
 import ConfirmPopup from ".././ConfirmPopup/ConfirmPopup";
 import Form from ".././Form/Form";
-import { Link } from "react-router-dom";
+import axios from "axios";
 
 class Product extends React.Component {
   constructor(props) {
@@ -11,30 +11,64 @@ class Product extends React.Component {
       products: "",
       showConfirmPopup: false,
       showAddItemForm: false,
+      filter: "-checked",
     };
   }
 
   async componentDidMount() {
-    const res = await fetch("http://localhost:5000/products");
-    const productList = await res.json();
-    this.setState({ products: productList });
+    var get_link = "http://localhost:5000/products?sort=" + this.state.filter;
+    await axios.get(get_link)
+      .then(res => {
+        this.setState({ products: res["data"]["products"] });
+      })
+      .catch(e => console.log(e));
+    // const userList = await res.json();
+    // this.setState({ customers: userList });
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    if (prevState.filter !== this.state.filter){
+      var get_link = "http://localhost:5000/products?sort=" + this.state.filter;
+      await axios.get(get_link)
+      .then(res => {
+        this.setState({ products: res["data"]["products"] });
+      })
+      .catch(e => console.log(e));
+    }
   }
 
   renderTable() {
     const table = [];
     for (let product of this.state.products) {
+      var state = "";
+      var state_dis = "";
+      product.createdAt = new Date(product.createdAt);
+      product.createdAt = product.createdAt.toDateString();
+      if (product.checked === true) {
+        state = "current_sale";
+        state_dis = "Đang kinh doanh";
+      }
+      else{
+        state = "sold_out";
+        state_dis = "Hết hàng";
+      }
       table.push(
-        <tr className="temp_stop">
+        <tr className={state}>
           <td>Ảnh</td>
-          <td>{product.type}</td>
-          <td>01/07/2022</td>
-          <td>Ngừng kinh doanh</td>
+          <td>{product.productName}</td>
+          <td>{product.createdAt}</td>
+          <td>{state_dis}</td>
           <td>Edit</td>
         </tr>
       );
     }
     return table;
   }
+  
+  handleChange = (e) => {
+    // console.log(event.target.value);
+    this.setState({ filter: e.target.value });
+  };
 
   render() {
     return (
@@ -44,12 +78,12 @@ class Product extends React.Component {
         <div className="product_handling">
           <div className="filter_box">
             <label htmlFor="filter_label">Hiển thị theo:</label>
-            <select name="filter_droplist" id="filter_droplist">
-              <option value="ascending_name">Thứ tự tên (tăng dần)</option>
-              <option value="descending_name">Thứ tự tên (giảm dần)</option>
-              <option value="ascending_date">Ngày thêm (tăng dần)</option>
-              <option value="descending_date">Ngày thêm (giảm dần)</option>
-              <option value="status">Trạng thái</option>
+            <select name="filter_droplist" defaultValue="status" id="filter_droplist" onChange={this.handleChange}>
+              <option value="productName">Thứ tự tên (tăng dần)</option>
+              <option value="-productName">Thứ tự tên (giảm dần)</option>
+              <option value="createdAt">Ngày thêm (tăng dần)</option>
+              <option value="-createdAt">Ngày thêm (giảm dần)</option>
+              <option value="-checked">Trạng thái</option>
             </select>
           </div>
           <button className="add_button">
@@ -73,14 +107,14 @@ class Product extends React.Component {
             placeholder="Tìm người dùng"
           />
         </div>
-        <table className="user_detail">
+        <table className="user_detail" style={{width:"100%"}}>
           <thead>
             <tr>
-              <th>Ảnh sản phẩm</th>
-              <th>Tên sản phẩm</th>
-              <th>Ngày thêm</th>
-              <th>Trạng thái</th>
-              <th>Edit</th>
+              <th style={{width:"35%"}}>Ảnh sản phẩm</th>
+              <th style={{width:"20%"}}>Tên sản phẩm</th>
+              <th style={{width:"20%"}}>Ngày thêm</th>
+              <th style={{width:"20%"}}>Trạng thái</th>
+              <th style={{width:"5%"}}>Edit</th>
             </tr>
           </thead>
           <tbody>{this.renderTable()}</tbody>

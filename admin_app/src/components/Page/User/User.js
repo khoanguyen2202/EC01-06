@@ -1,29 +1,53 @@
 import React from "react";
 import "./User.css";
+import axios from 'axios'
+import { tab } from "@testing-library/user-event/dist/tab";
 
 class User extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       customers: "",
+      filter: "-state",
     };
   }
 
   async componentDidMount() {
-    const res = await fetch("http://localhost:5000/customers");
-    const userList = await res.json();
-    this.setState({ customers: userList });
+    var get_link = "http://localhost:5000/customers?sort=" + this.state.filter;
+    await axios.get(get_link)
+      .then(res => {
+        this.setState({ customers: res["data"]["customers"] });
+      })
+      .catch(e => console.log(e));
   }
+
+  async componentDidUpdate(prevProps, prevState) {
+    if (prevState.filter !== this.state.filter){
+      var get_link = "http://localhost:5000/customers?sort=" + this.state.filter;
+      await axios.get(get_link)
+      .then(res => {
+        this.setState({ customers: res["data"]["customers"] });
+      })
+      .catch(e => console.log(e));
+    }
+  }
+
+  handleChange = (e) => {
+    // console.log(event.target.value);
+    this.setState({ filter: e.target.value });
+  };
 
   renderTable() {
     const table = [];
     for (let user of this.state.customers) {
+      user.createdAt = new Date(user.createdAt);
+      user.createdAt = user.createdAt.toDateString();
       table.push(
-        <tr className="activate">
+        <tr className={user.state}>
           <td>{user.firstName}</td>
-          <td>01/07/2022</td>
-          <td>Hoạt động</td>
-          <td>Deactivate</td>
+          <td>{user.createdAt}</td>
+          <td>{user.state.toUpperCase()}</td>
+          <td>Edit</td>
         </tr>
       );
     }
@@ -36,12 +60,12 @@ class User extends React.Component {
         <h1>Quản lý User</h1>
         <div className="filter_box">
           <label htmlFor="filter_label">Hiển thị theo:</label>
-          <select name="filter_droplist" id="filter_droplist">
-            <option value="ascending_name">Thứ tự tên (tăng dần)</option>
-            <option value="descending_name">Thứ tự tên (giảm dần)</option>
-            <option value="ascending_date">Ngày gia nhập (tăng dần)</option>
-            <option value="descending_date">Ngày gia nhập (giảm dần)</option>
-            <option value="status">Trạng thái</option>
+          <select name="filter_droplist" id="filter_droplist" defaultValue="-state" onChange={this.handleChange}>
+            <option value="firstName">Thứ tự tên (tăng dần)</option>
+            <option value="-firstName">Thứ tự tên (giảm dần)</option>
+            <option value="createdAt">Ngày gia nhập (tăng dần)</option>
+            <option value="-createdAt">Ngày gia nhập (giảm dần)</option>
+            <option value="-state">Trạng thái</option>
           </select>
         </div>
         <div className="search_box">
@@ -56,13 +80,13 @@ class User extends React.Component {
             placeholder="Tìm người dùng"
           />
         </div>
-        <table className="user_detail">
+        <table className="user_detail" style={{width:"100%"}}>
           <thead>
             <tr>
-              <th>Username</th>
-              <th>Ngày gia nhập</th>
-              <th>Trạng thái</th>
-              <th>Edit</th>
+              <th style={{width:"30%"}}>Username</th>
+              <th style={{width:"30%"}}>Ngày gia nhập</th>
+              <th style={{width:"30%"}}>Trạng thái</th>
+              <th style={{width:"10%"}}>Edit</th>
             </tr>
           </thead>
           <tbody>{this.renderTable()}</tbody>

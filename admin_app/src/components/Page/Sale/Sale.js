@@ -1,6 +1,5 @@
 import React from "react";
 import "./Sale.css";
-import { Link } from "react-router-dom";
 
 class Sale extends React.Component {
   render() {
