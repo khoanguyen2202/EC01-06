@@ -1,0 +1,143 @@
+:root {
+    --temp-stop-product-color: #B4ABAB;
+    --current-sale-product-color: #A1F579;
+    --sold-out-product-color: #EC9999;
+    --temp-stop-text-color: #777;
+    --current-sale-text-color: #5CB531;
+    --sold-out-text-color: #EC0101;
+}
+
+.product_management {
+    margin: 0 60px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.product_management>h1 {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.product_management .product_handling {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product_management .product_handling .filter_box #filter_droplist {
+    margin: 0 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.product_management .product_handling .add_button {
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    background: linear-gradient(0deg, rgba(49, 32, 245, 0.2), rgba(49, 32, 245, 0.2)), linear-gradient(90deg, #2941BE -49.23%, rgba(53, 2, 255, 0) 221.68%);
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+
+.product_management .product_handling .add_button .add_icon {
+    width: 30px;
+}
+
+.product_management .product_handling .add_button .add_icon svg {
+    transform: scale(0.5);
+}
+
+.product_management .product_handling .add_button .add_icon svg path {
+    fill: white;
+}
+
+.product_management .search_box {
+    background-color: white;
+    width: 500px;
+    height: 35px;
+    display: flex;
+    margin: 20px 0;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.product_management .search_box .search_icon {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+}
+
+.product_management .search_box .search_icon svg {
+    transform: scale(0.6);
+}
+
+.product_management .search_box .search_icon svg path {
+    fill: #777;
+}
+
+.product_management .search_box .search_input {
+    width: 100%;
+    padding-right: 20px;
+    border: 0;
+    outline: 0;
+    color: #555;
+    font-weight: bold;
+}
+
+.product_management table,
+.product_management td,
+.product_management th {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.product_management th,
+.product_management td {
+    padding: 10px 30px;
+}
+
+.product_management td {
+    font-weight: bold;
+}
+
+.product_management .user_detail th {
+    background-color: white;
+}
+
+.product_management .user_detail tbody .temp_stop {
+    background-color: var(--temp-stop-product-color);
+}
+
+.product_management .user_detail tbody .temp_stop td:nth-child(n+4):nth-child(-n+5) {
+    color: var(--temp-stop-text-color);
+}
+
+.product_management .user_detail tbody .current_sale {
+    background-color: var(--current-sale-product-color);
+}
+
+.product_management .user_detail tbody .current_sale td:nth-child(n+4):nth-child(-n+5) {
+    color: var(--current-sale-text-color);
+}
+
+.product_management .user_detail tbody .sold_out {
+    background-color: var(--sold-out-product-color);
+}
+
+.product_management .user_detail tbody .sold_out td:nth-child(n+4):nth-child(-n+5) {
+    color: var(--sold-out-text-color);
+}
+
+.product_management .user_detail tbody .temp_stop td:nth-child(5),
+.product_management .user_detail tbody .current_sale td:nth-child(5),
+.product_management .user_detail tbody .sold_out td:nth-child(5) {
+    text-decoration: underline;
+    cursor: pointer;
+}

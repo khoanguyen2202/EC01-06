@@ -1,0 +1,57 @@
+<svg width="213" height="400" viewBox="0 0 213 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="path-1-inside-1_73_174" fill="white">
+<path d="M0 0H213V400H0V0Z"/>
+</mask>
+<path d="M0 0H213V400H0V0Z" fill="black"/>
+<path d="M213 399H0V401H213V399Z" fill="#B4ABAB" mask="url(#path-1-inside-1_73_174)"/>
+<mask id="path-3-inside-2_73_174" fill="white">
+<path d="M0 0H213V40H0V0Z"/>
+</mask>
+<path d="M0 0H213V40H0V0Z" fill="white"/>
+<path d="M213 39H0V41H213V39Z" fill="#B4ABAB" mask="url(#path-3-inside-2_73_174)"/>
+<mask id="path-5-inside-3_73_174" fill="white">
+<path d="M0 40H213V80H0V40Z"/>
+</mask>
+<path d="M0 40H213V80H0V40Z" fill="white"/>
+<path d="M213 79H0V81H213V79Z" fill="#B4ABAB" mask="url(#path-5-inside-3_73_174)"/>
+<mask id="path-7-inside-4_73_174" fill="white">
+<path d="M0 80H213V120H0V80Z"/>
+</mask>
+<path d="M0 80H213V120H0V80Z" fill="white"/>
+<path d="M213 119H0V121H213V119Z" fill="#B4ABAB" mask="url(#path-7-inside-4_73_174)"/>
+<mask id="path-9-inside-5_73_174" fill="white">
+<path d="M0 120H213V160H0V120Z"/>
+</mask>
+<path d="M0 120H213V160H0V120Z" fill="white"/>
+<path d="M213 159H0V161H213V159Z" fill="#B4ABAB" mask="url(#path-9-inside-5_73_174)"/>
+<mask id="path-11-inside-6_73_174" fill="white">
+<path d="M0 160H213V200H0V160Z"/>
+</mask>
+<path d="M0 160H213V200H0V160Z" fill="white"/>
+<path d="M213 199H0V201H213V199Z" fill="#B4ABAB" mask="url(#path-11-inside-6_73_174)"/>
+<mask id="path-13-inside-7_73_174" fill="white">
+<path d="M0 200H213V240H0V200Z"/>
+</mask>
+<path d="M0 200H213V240H0V200Z" fill="white"/>
+<path d="M213 239H0V241H213V239Z" fill="#B4ABAB" mask="url(#path-13-inside-7_73_174)"/>
+<mask id="path-15-inside-8_73_174" fill="white">
+<path d="M0 240H213V280H0V240Z"/>
+</mask>
+<path d="M0 240H213V280H0V240Z" fill="white"/>
+<path d="M213 279H0V281H213V279Z" fill="#B4ABAB" mask="url(#path-15-inside-8_73_174)"/>
+<mask id="path-17-inside-9_73_174" fill="white">
+<path d="M0 280H213V320H0V280Z"/>
+</mask>
+<path d="M0 280H213V320H0V280Z" fill="white"/>
+<path d="M213 319H0V321H213V319Z" fill="#B4ABAB" mask="url(#path-17-inside-9_73_174)"/>
+<mask id="path-19-inside-10_73_174" fill="white">
+<path d="M0 320H213V360H0V320Z"/>
+</mask>
+<path d="M0 320H213V360H0V320Z" fill="white"/>
+<path d="M213 359H0V361H213V359Z" fill="#B4ABAB" mask="url(#path-19-inside-10_73_174)"/>
+<mask id="path-21-inside-11_73_174" fill="white">
+<path d="M0 360H213V400H0V360Z"/>
+</mask>
+<path d="M0 360H213V400H0V360Z" fill="white"/>
+<path d="M213 399H0V401H213V399Z" fill="#B4ABAB" mask="url(#path-21-inside-11_73_174)"/>
+</svg>
