@@ -34,6 +34,7 @@ export const deleteWarehouse = async (req, res) => {
   }
 };
 
+<<<<<<< HEAD
 // export const findWarehouse = async (req, res) => {
 //   try {
 // <<<<<<< HEAD
@@ -95,6 +96,41 @@ export const deleteWarehouse = async (req, res) => {
 //     res.status(500).json({ msg: error.message });
 //   }
 // };
+=======
+export const findWarehouse = async (req, res) => {
+  try {
+    const features = await WarehouseModel.aggregate([
+                                                    {
+                                                      $unwind: "$products",
+                                                    },
+                                                    {
+                                                      $match: {
+                                                        "products.product_id": req.query.product_id,
+                                                      },
+                                                    },
+                                                    {
+                                                      $group: {
+                                                        _id: {
+                                                          warehouse_id: "$warehouse_id",
+                                                          hotline: "$hotline",
+                                                          address: "$address",
+                                                        },
+                                                        products: {
+                                                          $push: "$products",
+                                                        },
+                                                      },
+                                                    },
+                                                  ])
+    res.json({
+      status: "success",
+      result: features.length,
+      products: features,
+    });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+>>>>>>> 99f6928e2bac84c22eb0a0814cb10c9893d765b5
 
 class APIfeatures {
   constructor(query, queryString) {
