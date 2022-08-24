@@ -83,6 +83,10 @@ const schema_product = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    totalQuantity: {
+      type: Number,
+      default: 0,
+    }
   },
   { timestamps: true }
 );
