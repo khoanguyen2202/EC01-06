@@ -93,7 +93,6 @@ export const updateProduct = async (req, res) => {
   }
 };
 
-
 export const deleteProduct = async(req,res) =>{
   try {
     await ProductModel.findByIdAndDelete(req.params.id)

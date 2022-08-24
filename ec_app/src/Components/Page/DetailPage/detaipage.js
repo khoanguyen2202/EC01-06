@@ -37,30 +37,109 @@ const wh = [
     {"id": "126", "name": "xin chao 6"},
     {"id": "126", "name": "xin chao 6"}
 ]
-const colors = ["Đỏ", "Vàng", "Hồng", "Đen", "Xanh lá", "Xanh dương", "Trắng"]
+// const colors = ["Đỏ", "Vàng", "Hồng", "Đen", "Xanh lá", "Xanh dương", "Trắng"]
 
 
 function Detailpage() {
+    let dollarUSLocale = Intl.NumberFormat('en-US');
     const params = useParams()
     const [product, setProduct] = useState({})
+    const [num, setNumber] = useState(1)
+    const [colors, setColor] = useState([])
+    const [chooseNum, setChooseNum] = useState(0)
+    const [quantity, setQuantity] = useState(0)
+    const [warehouse, setWarehouse] = useState([])
+    const [urlImg, seturlImg] = useState([])
+    const [img, setImg] = useState("")
+
+
+    const increaseNum = () => {
+        if (num < quantity) {
+            setNumber(num + 1)
+        }
+    }
+    const decreaseNum = () => {
+        if (num > 1) {
+            setNumber(num - 1)
+        }
+    }
+    const KkHtml = () => {
+        if (product.discount === 0) {
+            return (
+                <h3>{dollarUSLocale.format(product.price)}đ</h3>
+            )
+        } else {
+            return (
+                <>
+                    <h3 className="Product_Name_dt_2_h1">{dollarUSLocale.format(product.price)}đ</h3>
+                    <h3>{dollarUSLocale.format(product.price * ( 1 - product.discount))}</h3>
+                </>
+            )
+        }
+    }
+    const changeValue = (v, cl) => {
+        setChooseNum(cl.color)
+        setQuantity(cl.quantity)
+    }
+
+
+    const colorShow = () => {
+        if (Object.keys(product).length === 0) {
+            return (
+                <></>
+            )
+        } else {
+            return (
+                product.colors.map(cl => {
+                    return (
+                        <div  className="Product_Name_dt_4_color" 
+                              style={{backgroundColor: (cl.color === chooseNum)? "red": "", color: (cl.color === chooseNum)? "white": "" }} 
+                              onClick={(e) => changeValue(e, cl)}>{cl.color}
+                        </div>
+                    )
+                })
+            )
+        }
+    }
 
     useEffect(() =>{
-        if(params.id){
-            const getDetailProduct = async () => {
-                const res = await axios.get('http://localhost:5000/products/?_id=' + String(params.id))
-                setProduct(res.data.products[0])
-            }
-            getDetailProduct()
+        const getDetailProduct = async () => {
+            const res = await axios.get('http://192.168.165.80:5000/products/?_id=' + String(params.id))
+            setProduct(res.data.products[0]);
+            seturlImg(res.data.product[0].images);
         }
-    },[params.id, product])
-    
+        getDetailProduct()
+    },[])   
+
+    const showImage = () => {
+        if (Object.keys(product).length === 0) {
+            return (
+                <img src="" alt=""/>
+            )
+        } else {
+           if (Object.keys(product.images).length === 0) {
+                return (
+                    <img src="" alt=""/>
+                )
+           } else {
+                console.log(product.images);
+                return (
+                    // <img src={product[0].images[0].url} alt=""/>
+                    <img src={product[0].images[0].url} alt=""/>
+                )
+           }
+        }
+    }
+
+
     return (
+
         <div className="Detailpage">
             <div className="Dpage_Product">
                 <div className="Dpage_Product_left">
                     <div className="pl_img">
                         <div className="pl_img_tt">
-                            <img src="https://cdn2.cellphones.com.vn/358x/media/catalog/product/i/p/ip13-pro_2.jpg" alt=""/>
+                            {showImage()}
                         </div>
                     </div>
                     <div className="pl_img_list">
@@ -81,7 +160,6 @@ function Detailpage() {
                                         </div>
                                     </SwiperSlide>
                                     )
-                                    
                                 })
                             }
                             <></>
@@ -90,12 +168,11 @@ function Detailpage() {
                 </div>
                 <div className="Dpage_Product_right">
                     <div className="Product_Name_dt_1">
-                        <span>iPhone 13 128GB | Chính hãng VN/A</span>
-                        <p>(12 đáng giá)| Đã bán 100 sản phẩm</p>
+                        <span>{product.productName}</span>
+                        <p>{product.sold} đã bán sản phẩm</p>
                     </div>
                     <div className="Product_Name_dt_2">
-                        <h3 className="Product_Name_dt_2_h1">1.750.000đ</h3>
-                        <h3>1.250.000đ (Khuyến mãi 25%)</h3>
+                        {KkHtml()}
                     </div>
                     <div className="Product_Name_dt_3">
                         <div className="Product_Name_dt_3_SL">
@@ -103,19 +180,14 @@ function Detailpage() {
                         </div>
                         
                         <div className='Product_Name_dt_3_button_12'>
-                            <button className='Product_Name_dt_3_button_12_left'>-</button>
-                            <div>1</div>
-                            <button className='Product_Name_dt_3_button_12_right'>+</button>
+                            <button className='Product_Name_dt_3_button_12_left' onClick={decreaseNum}>-</button>
+                            <div>{num}</div>
+                            <button className='Product_Name_dt_3_button_12_right' onClick={increaseNum}>+</button>
                         </div>
                     </div>
+
                     <div className="Product_Name_dt_4">
-                        {
-                            colors.map(cl => {
-                                return (
-                                    <div className="Product_Name_dt_4_color">{cl}</div>
-                                )
-                            })
-                        }
+                        {colorShow()}
                         
                     </div>
                     <div className="Product_Name_dt_5">
@@ -163,7 +235,13 @@ function Detailpage() {
                     spaceBetween={50}
                     slidesPerView={5}
                     navigation
-                    pagination={{ clickable: true }}
+                    pagination={{
+                        el: '.my-custom-pagination-divtt',
+                        clickable: true,
+                        renderBullet: (index, className) => {
+                         return '<span class="' + className + '"></span>';
+                        },
+                    }}
                     // scrollbar={{ draggable: true }}
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log('slide change')}
@@ -192,7 +270,7 @@ function Detailpage() {
                             
                         })
                     }
-                    <></>
+                ...
                 </Swiper>
                 
             </div>

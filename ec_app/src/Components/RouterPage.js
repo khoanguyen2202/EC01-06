@@ -12,14 +12,14 @@ import {Routes, Route} from 'react-router-dom'
 function RouterPage() {
     return (
         <Routes>
-            <Route path="/product" element={<DetailPage />} />
+            <Route path="/" element={<MainPage />} />
+            <Route path="/product/:id" element={<DetailPage />} />
             <Route path="/storemap" element={<StorePage />} />
-            <Route path="product/:id" element={<DetailPage />} />
             <Route path="/register" element={<RegisterPage />}/>
             <Route path="/login" element={<LoginPage />}/>
             <Route path="/cart" element={<CartPage />} />
             <Route path="/userinfo" element={<UserPage />} />
-            <Route path="/" element={<MainPage />} />
+            <Route path="/home" element={<MainPage />} />
             
         </Routes>
     )
