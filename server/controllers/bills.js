@@ -3,7 +3,7 @@ import { CustomerModel } from "../models/CustomerModel.js";
 import { ProductModel } from "../models/ProductModel.js";
 import { WarehouseModel } from "../models/WarehouseModel.js";
 
-///AIzaSyBQ2Ud93iGz28KmptQjCh2M_0_Pd9oTLQg
+
 
 import axios from "axios";
 function checkAddressExist(value, arr) {
@@ -31,7 +31,7 @@ async function getDistance(start, end) {
     start +
     "&destinations=" +
     end +
-    "&key=AIzaSyBQ2Ud93iGz28KmptQjCh2M_0_Pd9oTLQg";
+    "&key=AIzaSyBcLS_NNZVTiNFzyTOzkytdJzIxhRNyebA";
   await axios
     .get(urlGoogleAPI)
     .then((res) => (distance = res.data.rows[0].elements[0].distance.value));
@@ -137,7 +137,8 @@ export const createBill = async (req, res) => {
   try {
     const { products, payment, customer_id, shippingAddress } = req.body;
     const customer = await CustomerModel.findOne({ customer_id });
-
+    let warehouseBill;
+    let totalPrice = 0;
     if (customer.shippingAddress.length < 0) {
       {
         customer.shippingAddress.push(shippingAddress);
@@ -157,13 +158,18 @@ export const createBill = async (req, res) => {
       });
       for (let j = 0; j < updateProduct.colors.length; j++) {
         if (updateProduct.colors[j].color === products[i].color) {
+          
           updateProduct.colors[j].quantity -= products[i].quantity;
-          updateProduct.save();
+          updateProduct.sold += products[i].quantity
+          totalPrice = totalPrice + updateProduct.price*((100-updateProduct.discount)/100)*products[i].quantity
+          console.log(products[i]);
+          await updateProduct.save();
+          
         }
       }
     }
 
-    let warehouseBill;
+    
     var customerAddress = combineAddress(
       shippingAddress.street,
       shippingAddress.ward,
@@ -201,6 +207,8 @@ export const createBill = async (req, res) => {
       mergeArray = mergeArray.concat(infoWH[i]);
       // console.log(infoWH[i])
     }
+
+    
 
     const countAppear = {};
     for (const element of mergeArray) {
@@ -243,7 +251,7 @@ export const createBill = async (req, res) => {
       //If there's only one warehouse has all of the input so We will deliver the order from that warehouse
       
       if (warehouseList.length === 1) {
-        console.log("first");
+        console.log("Truong hop 1: chi co duy nhat 1 warehouse chua toan bo san pham input");
         let distanceCusToStores = await distanceInfo(
           customerAddress,
           warehouseList[0]
@@ -261,14 +269,14 @@ export const createBill = async (req, res) => {
       }
       //If there more than one warehouse which has all of the input We will calculate the distance from each warehouse to the customer address
       else {
-        console.log("second");
+        console.log("Truong hop 2: co nhieu hon 1 warehouse chua toan bo san pham input");
         let distanceCusToStores = [];
         
         for (let i = 0; i < warehouseList.length; i++) {
           distanceCusToStores.push(
             await distanceInfo(customerAddress, warehouseList[i])
           );
-          console.log(await distanceInfo(customerAddress, warehouseList[i]))
+          
         }
         
         distanceCusToStores.sort((a, b) => a.distance - b.distance);
@@ -277,16 +285,17 @@ export const createBill = async (req, res) => {
           warehouse_id: distanceCusToStores[0].info,
         });
         for (let i = 0; i < products.length; i++) {
-          updateWarehouse(products[i], productWarehouse);
+          await updateWarehouse(products[i], productWarehouse);
         }
 
         warehouseBill = distanceCusToStores[0].info;
+        console.log(distanceCusToStores[0])
       }
     } else {
       infoWH = [];
 
       // Nhung truong hop ma so luong cua san pham rai rac o nhieu store
-      console.log("third");
+      console.log("Truong hop 3: san pham input rai rac o nhieu warehouse");
       for (let i = 0; i < products.length; i++) {
         var findProductInWH = await WarehouseModel.aggregate([
           {
@@ -387,6 +396,7 @@ export const createBill = async (req, res) => {
       products,
       payment,
       warehouse_id: warehouseBill,
+      totalPrice:totalPrice
     });
     await newBill.save();
     res.json({ msg: "Created a bill." });

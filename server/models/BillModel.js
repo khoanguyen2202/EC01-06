@@ -31,7 +31,7 @@ const schema_bill = new mongoose.Schema(
       city: String,
     },
 
-    warehouseID: {
+    warehouse_id: {
       type: String,
       default: "None",
     },
