@@ -28,12 +28,10 @@ function Main(){
     const [productsSale, setProduct] = useState([])
     const [productsTop, setProduct1] = useState([])
 
-
-
     useEffect(() =>{
         const getProducts = async () => {
-            const res = await axios.get('http://localhost:5000/products/?sort=-discount&limit=20')
-            const res1 = await axios.get('http://localhost:5000/products/?sort=-sold&limit=12')
+            const res = await axios.get('http://192.168.165.80:5000/products/?sort=-discount&limit=20')
+            const res1 = await axios.get('http://192.168.165.80:5000/products/?sort=-sold&limit=12')
             setProduct(res.data.products)
             setProduct1(res1.data.products)
         }
@@ -50,6 +48,8 @@ function Main(){
                 <div className="M_Sale_Name">
                     <img src={fire} alt = ""/>
                     <h2>ON SALE</h2>
+
+                    
                     <img src={fire} alt = ""/>
                 </div>
                 <div className='M_sale_1'>
