@@ -148,3 +148,8 @@
 .product_management .user_detail {
     margin-bottom: 30px;
 }
+
+.product_img{
+    width: 200px;
+    height: 200px;
+}
