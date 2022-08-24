@@ -34,67 +34,67 @@ export const deleteWarehouse = async (req, res) => {
   }
 };
 
-export const findWarehouse = async (req, res) => {
-  try {
-<<<<<<< HEAD
-    const features = await WarehouseModel.aggregate([
-      {
-        $unwind: "$products",
-      },
-      {
-        $match: {
-          "products.product_id": req.query.product_id,
-        },
-      },
-      {
-        $group: {
-          _id: {
-            warehouse_id: "$warehouse_id",
-            hotline: "$hotline",
-            address: "$address",
-          },
-          products: {
-            $push: "$products",
-          },
-        },
-      },
-    ]);
-    // .filtering()
-    // .sorting()
-    // .paginating();
-    //const products = await features.query;
-=======
-    const features = await WarehouseModel.aggregate
-                                                  ([{
-                                                    $unwind: "$products"
-                                                  },
-                                                  {
-                                                    $match: {
-                                                      "products.product_id" : req.query.product_id
-                                                        }
-                                                  },
-                                                  {
-                                                    $group: {
-                                                      _id: {
-                                                        warehouse_id: "$warehouse_id",
-                                                        hotline: "$hotline",
-                                                        address: "$address"
-                                                      },
-                                                      products: {
-                                                        $push: "$products",    
-                                                      },
-                                                            }
-                                                  }])
->>>>>>> 202fef22134176f1b7cafb35e7dbe41322bdfae8
-    res.json({
-      status: "success",
-      result: features.length,
-      products: features,
-    });
-  } catch (error) {
-    res.status(500).json({ msg: error.message });
-  }
-};
+// export const findWarehouse = async (req, res) => {
+//   try {
+// <<<<<<< HEAD
+//     const features = await WarehouseModel.aggregate([
+//       {
+//         $unwind: "$products",
+//       },
+//       {
+//         $match: {
+//           "products.product_id": req.query.product_id,
+//         },
+//       },
+//       {
+//         $group: {
+//           _id: {
+//             warehouse_id: "$warehouse_id",
+//             hotline: "$hotline",
+//             address: "$address",
+//           },
+//           products: {
+//             $push: "$products",
+//           },
+//         },
+//       },
+//     ]);
+//     // .filtering()
+//     // .sorting()
+//     // .paginating();
+//     //const products = await features.query;
+// =======
+//     const features = await WarehouseModel.aggregate
+//                                                   ([{
+//                                                     $unwind: "$products"
+//                                                   },
+//                                                   {
+//                                                     $match: {
+//                                                       "products.product_id" : req.query.product_id
+//                                                         }
+//                                                   },
+//                                                   {
+//                                                     $group: {
+//                                                       _id: {
+//                                                         warehouse_id: "$warehouse_id",
+//                                                         hotline: "$hotline",
+//                                                         address: "$address"
+//                                                       },
+//                                                       products: {
+//                                                         $push: "$products",    
+//                                                       },
+//                                                             }
+//                                                   }])
+// >>>>>>> 202fef22134176f1b7cafb35e7dbe41322bdfae8
+//     res.json({
+//       status: "success",
+//       result: features.length,
+//       products: features,
+//     });
+//   } catch (error) {
+//     res.status(500).json({ msg: error.message });
+//   }
+// };
 
 class APIfeatures {
   constructor(query, queryString) {

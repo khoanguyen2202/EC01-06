@@ -57,17 +57,20 @@ async function distanceInfo(customerAddress, warehouse_id) {
   warehouseChoose = await WarehouseModel.findOne({
     warehouse_id: warehouse_id,
   });
+ 
   warehouseAddress = combineAddress(
     warehouseChoose.address.street,
     warehouseChoose.address.ward,
     warehouseChoose.address.district,
     warehouseChoose.address.city
   );
+  
   var distanceInfo = {
     info: warehouseChoose.warehouse_id,
     distance: await getDistance(customerAddress, warehouseAddress),
   };
-
+  console.log(distanceInfo.info)
+  
   return distanceInfo;
 }
 async function checkProduct(product, warehouse) {
@@ -191,6 +194,7 @@ export const createBill = async (req, res) => {
     }
 
     infoWH = HandleArrayObject(infoWH);
+    
     var mergeArray = infoWH[0];
     // console.log(infoWH[0])
     for (let i = 1; i < infoWH.length; i++) {
@@ -213,6 +217,7 @@ export const createBill = async (req, res) => {
         appearThrough = 1;
       }
     }
+    
     // console.log(warehouseDB)
     // console.log(infoWH);
     //Truong hop nhung warehouse chua toan bo san pham input
@@ -236,16 +241,18 @@ export const createBill = async (req, res) => {
         }
       }
       //If there's only one warehouse has all of the input so We will deliver the order from that warehouse
-
+      
       if (warehouseList.length === 1) {
         console.log("first");
         let distanceCusToStores = await distanceInfo(
           customerAddress,
           warehouseList[0]
         );
+        
         var productWarehouse = await WarehouseModel.findOne({
           warehouse_id: distanceCusToStores.info,
         });
+        
         for (let i = 0; i < products.length; i++) {
           await updateWarehouse(products[i], productWarehouse);
         }
@@ -256,14 +263,16 @@ export const createBill = async (req, res) => {
       else {
         console.log("second");
         let distanceCusToStores = [];
-
+        
         for (let i = 0; i < warehouseList.length; i++) {
           distanceCusToStores.push(
             await distanceInfo(customerAddress, warehouseList[i])
           );
-          // console.log(distanceCusToStores[i])
+          console.log(await distanceInfo(customerAddress, warehouseList[i]))
         }
+        
         distanceCusToStores.sort((a, b) => a.distance - b.distance);
+        
         var productWarehouse = await WarehouseModel.findOne({
           warehouse_id: distanceCusToStores[0].info,
         });
