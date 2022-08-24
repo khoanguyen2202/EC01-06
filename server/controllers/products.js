@@ -151,6 +151,7 @@ class APIfeatures {
   }
 
   sorting() {
+    console.log(this.queryString.sort);
     if (this.queryString.sort) {
       const sortBy = this.queryString.sort.split(",").join(" ");
       console.log(sortBy);
@@ -164,7 +165,7 @@ class APIfeatures {
 
   paginating() {
     const page = this.queryString.page * 1 || 1;
-    const limit = this.queryString.limit * 1 || 28;
+    const limit = this.queryString.limit * 1 || 140;
     const skip = (page - 1) * limit;
     this.query = this.query.skip(skip).limit(limit);
 

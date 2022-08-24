@@ -16,4 +16,5 @@ router.delete("/customer", customerCtrl.deleteUser);
 router.get("/get-cart",customerCtrl.getCustomerCart);
 router.post("/create-cart",customerCtrl.createCustomerCart);
 router.delete("/delete-cart",customerCtrl.deleteCustomerCart);
+router.get('/', customerCtrl.getCustomers);
 export default router;
