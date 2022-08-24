@@ -1,4 +1,5 @@
 :root {
+    background-color: #B5BAEE;
     --temp-stop-product-color: #B4ABAB;
     --current-sale-product-color: #A1F579;
     --sold-out-product-color: #EC9999;
@@ -9,7 +10,8 @@
 
 .product_management {
     margin: 0 60px;
-    margin-top: 30px;
+    margin-top: 5px;
+    margin-left: 300px;
     display: flex;
     flex-direction: column;
 }
@@ -105,6 +107,7 @@
 
 .product_management td {
     font-weight: bold;
+    text-align: center;
 }
 
 .product_management .user_detail th {
@@ -140,4 +143,8 @@
 .product_management .user_detail tbody .sold_out td:nth-child(5) {
     text-decoration: underline;
     cursor: pointer;
+}
+
+.product_management .user_detail {
+    margin-bottom: 30px;
 }

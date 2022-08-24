@@ -2,6 +2,7 @@ import React from "react";
 import "./ConfirmPopup.css";
 
 class ConfirmPopup extends React.Component {
+  
   constructor(props) {
     super(props);
   }
