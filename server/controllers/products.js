@@ -1,4 +1,41 @@
 import { ProductModel } from "../models/ProductModel.js";
+export const listProducts = async (req, res) => {
+  try {
+    const { product_id } = req.body;
+    var list = [];
+    var numberFound = 0;
+    var notFound = 0;
+    for (let i = 0; i < product_id.length; i++) {
+      var product = await ProductModel.findOne({ product_id: product_id[i] });
+      if (product) {
+        ++numberFound;
+        var info = {
+          productName: product.productName,
+          productPrice: product.price,
+          productDiscount: product.discount,
+          productDescription: product.description,
+        };
+        list.push(info);
+      } else {
+        var info = { product_id: product_id[i], error: "Not found" };
+        ++notFound
+        list.push(info);
+      }
+    }
+
+    res
+      .status(200)
+      .json({
+        status: "success",
+        input: product_id.length,
+        result: numberFound,
+        notFound:notFound,
+        list: list,
+      });
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
 export const getProducts = async (req, res) => {
   try {
     //query in DB
