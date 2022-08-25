@@ -2,7 +2,8 @@
     background-color:#D9D9D9;
     margin-top: 70px;
     width: 100%;
-    /* height: 2000px; */
+    overflow-x: hidden;
+    min-width: 1100px;
 }
 
 .Dpage_Product{
@@ -74,7 +75,12 @@
     border-top-left-radius: 2px;
     border-bottom-left-radius: 2px;
 }
-
+.Product_Name_dt_3_button_12_left:hover{
+    cursor: pointer;
+}
+.Product_Name_dt_3_button_12_right:hover{
+    cursor: pointer;
+}
 .Product_Name_dt_3_button_12_right{
     border-top: 0.25px solid rgb(111, 111, 111);
     border-bottom: 0.25px solid rgb(111, 111, 111);
@@ -95,20 +101,18 @@
 }
 
 .Product_Name_dt_4{
-    /* background-color: rgb(51, 28, 221); */
     width: 100%;
     height: 15%;
     overflow-x: scroll;
     display: flex;
     align-items: center;
-    justify-content: center;
     margin-top: 5px;
 }
+
 .Product_Name_dt_4_color{
     border: 1px solid black;
     float: left;
     height: 80%;
-    width: 80px;
     padding: 2px;
     display: flex;
     justify-content: center;
@@ -117,7 +121,10 @@
     border-radius: 5px;
     /* background-color: #D9D9D9; */
     cursor: pointer;
+    /* background-color: rgb(248, 136, 136);
+    color: white; */
 }
+
 .Product_Name_dt_4::-webkit-scrollbar {
     width: 1px;       
 }
@@ -142,7 +149,8 @@
     border: none;
 }
 .Product_Name_dt_5_buy:hover{
-    background-color: #8983d8;
+    background-color: #251abd;
+    cursor: pointer;
 }
 .Product_Name_dt_5_buy h3{
     color: white;
@@ -153,6 +161,7 @@
 }
 .Product_Name_dt_5_add:hover{
     border: 2px solid #897FF2;
+    cursor: pointer;
 }
 .Dpage_Product_left{
     float: left;
@@ -362,4 +371,9 @@
 .Dpage_Demonstration_2_body{
     background-color: #ccc;
     width: 100%;
+}
+
+.my-custom-pagination-divtt{
+    text-align: center;
+    margin-top: 10px;
 }
