@@ -31,6 +31,10 @@ const schema_customer = new mongoose.Schema(
       type: Number,
       default: 0, // 0:customer , 1: admit access
     },
+    state: {
+      type: String,
+      default: "activate",
+    },	
     cart: [
       {
         product_id: {
