@@ -4,7 +4,7 @@ import "./Order.css";
 class Order extends React.Component {
   render() {
     return (
-      <div>
+      <div className="order">
         <h1>Quản lý đơn hàng</h1>
       </div>
     );

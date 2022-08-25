@@ -1,13 +1,33 @@
-* {
-    margin: 0;
-    bottom: 0;
-    box-sizing: border-box;
-    /* border: 1px solid black; */
-}
-
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+  
+  @import url('./components/Header/Header.css');
+  
+  @import url('./components/Sidebar/Sidebar.css');
+  
+  @import url('./components/Page/ConfirmPopup/ConfirmPopup.css');
+  
+  @import url('./components/Page/Dashboard/Dashboard.css');
+  
+  @import url('./components/Page/Form/Form.css');
+  
+  @import url('./components/Page/Login/Login.css');
+  
+  @import url('./components/Page/Order/Order.css');
+  
+  @import url('./components/Page/Product/Product.css');
+  
+  @import url('./components/Page/Sale/Sale.css');
 
-}
+  @import url('./components/Page/User/User.css');
