@@ -1,12 +1,12 @@
 import { ProductModel } from "../models/ProductModel.js";
 export const listProducts = async (req, res) => {
   try {
-    const { product_id } = req.body;
+    const { _id } = req.body;
     var list = [];
     var numberFound = 0;
     var notFound = 0;
-    for (let i = 0; i < product_id.length; i++) {
-      var product = await ProductModel.findOne({ product_id: product_id[i] });
+    for (let i = 0; i < _id.length; i++) {
+      var product = await ProductModel.findById(_id[i])
       if (product) {
         ++numberFound;
         var info = {
@@ -17,7 +17,7 @@ export const listProducts = async (req, res) => {
         };
         list.push(info);
       } else {
-        var info = { product_id: product_id[i], error: "Not found" };
+        var info = { _id: _id[i], error: "Not found" };
         ++notFound
         list.push(info);
       }
@@ -27,7 +27,7 @@ export const listProducts = async (req, res) => {
       .status(200)
       .json({
         status: "success",
-        input: product_id.length,
+        input: _id.length,
         result: numberFound,
         notFound:notFound,
         list: list,
