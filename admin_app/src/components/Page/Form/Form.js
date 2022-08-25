@@ -58,7 +58,7 @@ class Form extends React.Component {
     data["category"] = this.state.category
     data["brandName"] = this.state.brand_name
     data["productName"] = this.state.proc_name
-    data["price"] = +this.state.price
+    data["price"] = Number(this.state.price)
     data["description"] = this.state.item_des
     data["rate"] = 0
     data["discount"] = 25

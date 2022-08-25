@@ -69,13 +69,19 @@ class Product extends React.Component {
     });
   }
 
-  handleNewProDucts(data){
+  async handleNewProDucts(data){
     try{
-      const res = axios.post('http://localhost:5000/products/add', data)
-      alert("Thêm sản phẩm thành công")
+      // var regExp = /^\d+$/;
+      // if (data.price.length < 4 || regExp.test(data.price)) {
+      //   alert("Số tiền nhập vào không hợp lệ")
+      // }
+      // else {
+        const res = await axios.post('http://localhost:5000/products/add', data)
+        alert("Thêm sản phẩm thành công")
+      // }
     }
     catch (err) {
-      alert("Thêm sản phẩm thất bại")
+      alert(err.response.data.msg)
     }
 
   }
@@ -89,7 +95,7 @@ class Product extends React.Component {
       product.createdAt = product.createdAt.toDateString();
       if (product.totalQuantity > 0) {
         state = "current_sale";
-        state_dis = "Đang kinh doanh";
+        state_dis = "Còn hàng";
       }
       else{
         state = "sold_out";
@@ -105,6 +111,7 @@ class Product extends React.Component {
           <td><img src={product.images[0].url} alt="" className="product_img"/></td>
           <td>{product.productName}</td>
           <td>{product.createdAt}</td>
+          <td>{product.discount}</td>
           <td>{state_dis}</td>
           <td>Edit</td>
         </tr>
@@ -177,7 +184,8 @@ class Product extends React.Component {
               <th style={{width:"30%"}}>Ảnh sản phẩm</th>
               <th style={{width:"25%"}}>Tên sản phẩm</th>
               <th style={{width:"20%"}}>Ngày thêm</th>
-              <th style={{width:"20%"}}>Trạng thái</th>
+              <th style={{width:"10%"}}>Khuyến mãi (%)</th>
+              <th style={{width:"10%"}}>Trạng thái</th>
               <th style={{width:"5%"}}>Edit</th>
             </tr>
           </thead>
