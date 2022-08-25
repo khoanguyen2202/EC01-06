@@ -3,6 +3,7 @@ import express from "express";
 // const customerCtrl = require("../controllers/customers.js")
 import customerCtrl from "../controllers/customers.js";
 import auth from "../middleware/auth.js";
+import authAdmin from "../middleware/authAdmin.js";
 
 const router = express.Router();
 // router.get("/list",customerCtrl.getCustomer);
