@@ -12,6 +12,7 @@ export const listProducts = async (req, res) => {
         var info = {
           productName: product.productName,
           productPrice: product.price,
+          productColors:product.colors,
           productDiscount: product.discount,
           productDescription: product.description,
         };
