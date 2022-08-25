@@ -135,8 +135,8 @@ async function updateWarehouse(product, warehouse) {
 }
 export const createBill = async (req, res) => {
   try {
-    const { products, payment, customer_id, shippingAddress } = req.body;
-    const customer = await CustomerModel.findOne({ customer_id });
+    const { products, payment, phonenumber, shippingAddress } = req.body;
+    const customer = await CustomerModel.findOne({ phonenumber });
     let warehouseBill;
     let totalPrice = 0;
     if (customer.shippingAddress.length < 0) {
@@ -391,7 +391,7 @@ export const createBill = async (req, res) => {
       console.log(order);
     }
     var newBill = new BillModel({
-      customer_id,
+      phonenumber,
       shippingAddress,
       products,
       payment,
