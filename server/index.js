@@ -37,7 +37,7 @@ app.use("/warehouses", warehouses);
 app.use("/api", upload);
 app.use("/category", categoryCtrl);
 app.use("/banners", banners);
-app.use("/payments",payment)
+app.use("/payments", payment)
 
 mongoose
   .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })

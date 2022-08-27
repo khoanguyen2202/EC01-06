@@ -13,8 +13,9 @@ export const listProducts = async (req, res) => {
           productName: product.productName,
           productPrice: product.price,
           productColors:product.colors,
+          productURL: product.images,
           productDiscount: product.discount,
-          productDescription: product.description,
+          productFeature: product.feature,
         };
         list.push(info);
       } else {
