@@ -37,18 +37,18 @@ const schema_product = new mongoose.Schema(
       },
     ],
     feature: {
-      madeIn: {
-        type: String,
-        default: "Updating",
-      },
-      status: {
-        type: String,
-        default: "Updating",
-      },
-      insurance: {
-        type: String,
-        default: "Updating",
-      },
+//       madeIn: {
+//         type: String,
+//         default: "Updating",
+//       },
+//       status: {
+//         type: String,
+//         default: "Updating",
+//       },
+//       insurance: {
+//         type: String,
+//         default: "Updating",
+//       },
     },
 
     description: {
