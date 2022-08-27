@@ -53,20 +53,28 @@
 }
 
 .cp_product{
-    min-width: 450px;
+    min-width: 470px;
     margin-bottom: 10px;
     width: 50%;
-    height: 250px;
-    /* background-color: aquamarine; */
+    min-height: 250px;
     background-color: white;
     border-radius: 5px;
     border: 0.1 solid rgb(43, 40, 40);
     box-shadow: 1px 1px 5px 2px rgb(209, 206, 206);
 }
 
+.cp_product_remove{
+    float: right;
+    margin-right: 15px;
+    margin-top: 5px;
+    font-size: large;
+    font-weight: 700;
+    color: #004AAD;
+    cursor: pointer;
+}
+
 .cp_product_img{
     width: 40%;
-    height: 100%;
     float: left;
 }
 
@@ -74,10 +82,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* background-color: #004AAD; */
+    height: 100%;
+    width: 40%;
+    text-align: center;
+    margin-top: 10%;
 }
 
 .cp_product_img img{
-    width: 80%;
+    width: 60%;
     height: auto;
 }
 
@@ -89,15 +102,17 @@
 
 .p_tt_name span{
     color: black;
-    font-size: larger;
-    font-weight: 700;
+    font-size: medium;
+    font-weight: 500;
 }
 .p_tt_name{
     /* background-color: antiquewhite; */
-    height: 12%;
+    /* height: 1%; */
     width: 100%;
     padding-top: 5%;
-    overflow: hidden;
+    text-align: left;
+    margin-bottom: 5px;
+    /* overflow: hidden; */
 }
 .p_tt_name span{
     left: 0;
@@ -124,17 +139,34 @@
     margin-right: 10px;
     overflow: hidden;
 }
-.p_tt_price div{
-    background-color: #D70018;
+
+.p_tt_sp{
+    background-color:bisque;
+    color:rgb(43, 40, 40);
+    margin-left: 15px;
     border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    padding: 1px;
-    height: 80%;
     overflow: hidden;
 }
 
-.p_tt_price div span{
+.p_tt_price_3{
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    height: 80%;
+    overflow: hidden;
+}
+.p_tt_price_3{
+    background-color: red;
+}
+
+
+.p_tt_sp span{
+    color: black;
+    font-size: small;
+    font-weight: 700;
+}
+
+.p_tt_price_3 span{
     color: white;
     font-size: small;
     font-weight: 700;
@@ -171,9 +203,6 @@
     text-align: left;
 }
 
-.cp_button{
-    background-color: antiquewhite;
-}
 .cart_button{
     display: flex;
     flex-direction: column;

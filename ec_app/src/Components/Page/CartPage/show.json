@@ -1,0 +1,149 @@
+{
+    "status": "success",
+    "input": 4,
+    "result": 4,
+    "notFound": 0,
+    "list": [
+        {
+            "productName": "Chuột gaming không dây Asus ROG Keris Wireless EVA Edition",
+            "productPrice": 1900000,
+            "productColors": [
+                {
+                    "color": "Tím than",
+                    "quantity": 4,
+                    "_id": "62e9da3d5a0aefedde743c36"
+                },
+                {
+                    "color": "Đen",
+                    "quantity": 6,
+                    "_id": "6305e761e713a8a08253a260"
+                }
+            ],
+            "productDiscount": 50,
+            "productFeature": {
+                "madeIn": "Updating",
+                "status": "Updating",
+                "insurance": "Updating",
+                "MadeIn": "Dai Loan",
+                "Weight": "79 g",
+                "Connectivity": "USB 2.0, Bluetooth 5.1, RF 2.4GHz",
+                "Resolution": "16000 DPI",
+                "Insurance": "1 nam"
+            },
+            "productURL": [
+                {
+                    "url": "https://xgear.net/wp-content/uploads/2022/07/ASUS-ROG-Keris-Wireless-EVA-02.png",
+                    "color": "Tím than"
+                },
+                {
+                    "url": "https://xgear.net/wp-content/uploads/2022/07/ASUS-ROG-Keris-Wireless-EVA-03.png",
+                    "color": "Tím than"
+                },
+                {
+                    "url": "https://xgear.net/wp-content/uploads/2022/07/ASUS-ROG-Keris-Wireless-EVA-07.png",
+                    "color": "Tím than"
+                },
+                {
+                    "url": "https://xgear.net/wp-content/uploads/2021/06/ROG-Keris-Wireless-03.png",
+                    "color": "Đen"
+                },
+                {
+                    "url": "https://xgear.net/wp-content/uploads/2021/06/ROG-Keris-Wireless-02.png",
+                    "color": "Đen"
+                },
+                {
+                    "url": "https://xgear.net/wp-content/uploads/2021/06/ROG-Keris-Wireless-01.png",
+                    "color": "Đen"
+                }
+            ]
+        },
+        {
+            "productName": "Chuột gaming không dây Asus ROG Keris Wireless EVA Edition",
+            "productPrice": 1900000,
+            "productColors": [
+                {
+                    "color": "Tím than",
+                    "quantity": 4,
+                    "_id": "62e9da3d5a0aefedde743c36"
+                },
+                {
+                    "color": "Đen",
+                    "quantity": 6,
+                    "_id": "6305e761e713a8a08253a260"
+                }
+            ],
+            "productDiscount": 50,
+            "productFeature": {
+                "madeIn": "Updating",
+                "status": "Updating",
+                "insurance": "Updating",
+                "MadeIn": "Dai Loan",
+                "Weight": "79 g",
+                "Connectivity": "USB 2.0, Bluetooth 5.1, RF 2.4GHz",
+                "Resolution": "16000 DPI",
+                "Insurance": "1 nam"
+            },
+            "productURL": [
+                {
+                    "url": "https://xgear.net/wp-content/uploads/2022/07/ASUS-ROG-Keris-Wireless-EVA-02.png",
+                    "color": "Tím than"
+                },
+                {
+                    "url": "https://xgear.net/wp-content/uploads/2022/07/ASUS-ROG-Keris-Wireless-EVA-03.png",
+                    "color": "Tím than"
+                },
+                {
+                    "url": "https://xgear.net/wp-content/uploads/2022/07/ASUS-ROG-Keris-Wireless-EVA-07.png",
+                    "color": "Tím than"
+                },
+                {
+                    "url": "https://xgear.net/wp-content/uploads/2021/06/ROG-Keris-Wireless-03.png",
+                    "color": "Đen"
+                },
+                {
+                    "url": "https://xgear.net/wp-content/uploads/2021/06/ROG-Keris-Wireless-02.png",
+                    "color": "Đen"
+                },
+                {
+                    "url": "https://xgear.net/wp-content/uploads/2021/06/ROG-Keris-Wireless-01.png",
+                    "color": "Đen"
+                }
+            ]
+        },
+        {
+            "productName": "Xmobile CSA004",
+            "productColors": [
+                {
+                    "color": "Xanh dương",
+                    "quantity": 79,
+                    "_id": "62f6899a90d018ba3f032565"
+                }
+            ],
+            "productDiscount": 30,
+            "productFeature": {
+                "madeIn": "Trung Quoc",
+                "status": "Moi",
+                "insurance": "24 thang "
+            },
+            "productURL": []
+        },
+        {
+            "productName": "Cu sac nhanh ZMI HA716 Type C 20W PD",
+            "productPrice": 1900000,
+            "productColors": [
+                {
+                    "color": "Den",
+                    "quantity": 100,
+                    "_id": "62ef23557287ca8741da3681"
+                }
+            ],
+            "productDiscount": 10,
+            "productFeature": {
+                "madeIn": "Trung Quoc",
+                "status": "Moi",
+                "insurance": "24 thang "
+            },
+            "productURL": []
+        }
+    ]
+}

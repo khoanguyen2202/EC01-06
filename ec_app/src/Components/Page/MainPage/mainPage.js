@@ -30,8 +30,8 @@ function Main(){
 
     useEffect(() =>{
         const getProducts = async () => {
-            const res = await axios.get('http://192.168.165.80:5000/products/?sort=-discount&limit=20')
-            const res1 = await axios.get('http://192.168.165.80:5000/products/?sort=-sold&limit=12')
+            const res = await axios.get('http://localhost:5000/products/?sort=-discount&limit=20')
+            const res1 = await axios.get('http://localhost:5000/products/?sort=-sold&limit=12')
             setProduct(res.data.products)
             setProduct1(res1.data.products)
         }
@@ -80,9 +80,6 @@ function Main(){
                                                 </div>
                                                 <div className="slide-img">
                                                     <img src="https://image.cellphones.com.vn/200x/media/catalog/product//s/m/sm-s901_galaxys22_front_pinkgold_211122.jpg" alt="" />
-                                                    {/* <img src={product.images[0].url} alt="" /> */}
-                                                    {/* {console.log(product.images[0].url)} */}
-                                                    
                                                 </div>
                                                 <div className="slide-product-name">
                                                     <span>{product.productName}</span>

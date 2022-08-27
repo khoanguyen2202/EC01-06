@@ -23,19 +23,19 @@ function Register() {
         try{
             // check PhoneNumber
             var regExp = /[a-zA-Z]/g;
-
-                        // check Pass
+            // check Pass
             if (user.phonenumber.length <= 3 || regExp.test(user.phonenumber)) {
                 setCondition(1);
             } else 
             if (user.password !== user.rePassword) {
                 setCondition(2);
-                // MsgString = "Nhập lại mật khẩu không khớp"
             } else {
                 var msgReq = {"phonenumber":user.phonenumber, "password":user.password}
-                console.log(msgReq)
-                console.log({...user})
-                const res = await axios.post('http://localhost:5000/sign-up', msgReq)
+                // console.log(msgReq)
+                // console.log({...user})
+
+                const res = await axios.post('http://localhost:5000/customers/sign-up', msgReq)
+                
                 localStorage.setItem('token', res.data.accesstoken)
                 alert("Đăng ký thành công")
 

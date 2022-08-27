@@ -199,11 +199,9 @@
     height: 70%;
 }
 .WH_list{
-    /* background-color: aliceblue; */
-    margin-bottom: 1px;
     width: 100%;
     height: 30px;
-    border-top: 1px solid black;
+    border-bottom: 1px solid black;
     display: flex;
 }
 .WH_list img{
@@ -279,9 +277,12 @@
 
 .pl_img_list{
     width: 100%;
-    height: 25%;
+    height: 19%;
     padding-right: 10px;
     padding-top: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .Dpage_TT{
@@ -309,6 +310,7 @@
 
 .slide1{
     height: 100%;
+    cursor: pointer;
 }
 
 .slide-img1 img{
@@ -319,18 +321,16 @@
 }
 
 .DPage_D{
-    height: 600px;
     width: 100%;
-    margin-top: 60px;
+    margin-top: 50px;
 }
 .Dpage_Demonstration_1{
-    height: 100%;
     width: 65%;
     float: left;
-    /* margin-right: 5%; */
     background-color: white;
     margin-left: 2%;
     border-radius: 7px;
+    padding-bottom: 30px;
 }
 .Dpage_Demonstration_1_header{
     height: 10%;
@@ -338,9 +338,10 @@
     padding-left: 10%;
 }
 .Dpage_Demonstration_1_body{
-    background-color: #9c9c9c;
     height: 85%;
     overflow-y: scroll;
+    width: 85%;
+    margin-left: 5%;
 }
 
 .Dpage_Demonstration_1_body::-webkit-scrollbar {
@@ -358,22 +359,45 @@
 
 .Dpage_Demonstration_2{
     background-color: white;
-    height: 100%;
+    /* height: 100%; */
     width: 30%;
     float: right;
     margin-right: 1%;
     border-radius: 7px;
+    padding-bottom: 30px;
 }
 .Dpage_Demonstration_2 h2{
     padding-left: 10px  ;
 }
 
 .Dpage_Demonstration_2_body{
-    background-color: #ccc;
     width: 100%;
 }
 
 .my-custom-pagination-divtt{
     text-align: center;
+    margin-top: 10px;
+}
+.Dpage_Demonstration_2_body_left{
+    /* background-color: #004AAD; */
+    float: left;
+    width: 30%;
+    height: 100%;
+    border-right: 1px solid black;
+}
+.Dpage_Demonstration_2_body_right{
+    float: right;
+    width: 58%;
+    height: 100%;
+    padding-left: 2%;
+    overflow-x: hidden;
+}
+.Dpage_Demonstration_2_body_center{
+    background-color: #F2F2F2;
+    width: 82%;
+    height: 30px;
+    margin-left: 8%;
+    padding-left: 2%;
+    border-radius: 5px;
     margin-top: 10px;
 }

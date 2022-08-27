@@ -24,7 +24,7 @@ function Login() {
             if (user.phonenumber.length !== 10 || regExp.test(user.phonenumber)) {
                 setCondition(2)
             } else {
-                const res = await axios.post('http://localhost:5000/sign-in', {...user})
+                const res = await axios.post('http://localhost:5000/customers/sign-in', {...user})
                 localStorage.setItem('firstLogin', true)
                 localStorage.setItem('token', res.data.accesstoken)
 
