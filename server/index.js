@@ -8,6 +8,8 @@ import products from "./routers/products.js";
 import customers from "./routers/customers.js";
 import bills from "./routers/bills.js";
 import warehouses from "./routers/warehouses.js";
+import banners from "./routers/banners.js";
+
 import upload from "./routers/upload.js";
 import categoryCtrl from "./routers/categories.js";
 
@@ -33,6 +35,7 @@ app.use("/bills", bills);
 app.use("/warehouses", warehouses);
 app.use("/api", upload);
 app.use("/category", categoryCtrl);
+app.use("/banners", banners);
 
 mongoose
   .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -45,7 +48,3 @@ mongoose
   .catch((err) => {
     console.log("err", err);
   });
-
-  
-
-
