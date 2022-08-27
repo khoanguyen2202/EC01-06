@@ -2,13 +2,14 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import path from "path";
+
 
 import products from "./routers/products.js";
 import customers from "./routers/customers.js";
 import bills from "./routers/bills.js";
 import warehouses from "./routers/warehouses.js";
 import banners from "./routers/banners.js";
+import payment from "./routers/payment.js"
 
 import upload from "./routers/upload.js";
 import categoryCtrl from "./routers/categories.js";
@@ -36,6 +37,7 @@ app.use("/warehouses", warehouses);
 app.use("/api", upload);
 app.use("/category", categoryCtrl);
 app.use("/banners", banners);
+app.use("/payments",payment)
 
 mongoose
   .connect(URI, { useNewUrlParser: true, useUnifiedTopology: true })
