@@ -31,7 +31,7 @@ async function getDistance(start, end) {
     start +
     "&destinations=" +
     end +
-    "&key=AIzaSyBcLS_NNZVTiNFzyTOzkytdJzIxhRNyebA";
+    "&key=AIzaSyA6189S8sHWCrM5el5AEwj2S_PmOtyL3Rk";
   await axios
     .get(urlGoogleAPI)
     .then((res) => (distance = res.data.rows[0].elements[0].distance.value));
@@ -135,8 +135,8 @@ async function updateWarehouse(product, warehouse) {
 }
 export const createBill = async (req, res) => {
   try {
-    const { products, payment, phonenumber, shippingAddress } = req.body;
-    const customer = await CustomerModel.findOne({ phonenumber });
+    const { products, payment, phonenumber, shippingAddress,shippingPhonenumber, email,name } = req.body;
+    const customer = await CustomerModel.findOne({phonenumber: phonenumber });
     let warehouseBill;
     let totalPrice = 0;
     if (customer.shippingAddress.length < 0) {
@@ -396,7 +396,10 @@ export const createBill = async (req, res) => {
       products,
       payment,
       warehouse_id: warehouseBill,
-      totalPrice:totalPrice
+      totalPrice:totalPrice,
+      shippingPhonenumber:shippingPhonenumber,
+      email,
+      name
     });
     await newBill.save();
     res.json({ msg: "Created a bill." });
