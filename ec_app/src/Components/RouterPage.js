@@ -5,6 +5,7 @@ import DetailPage from './Page/DetailPage.js'
 import CartPage from './Page/CartPage.js'
 import UserPage from './Page/UserPage.js'
 import StorePage from './Page/StorePage.js'
+import Paymentpage from './Page/PaymentPage.js'
 
 import {Routes, Route} from 'react-router-dom'
 
@@ -20,6 +21,7 @@ function RouterPage() {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/userinfo" element={<UserPage />} />
             <Route path="/home" element={<MainPage />} />
+            <Route path="/cart/payment-info" element={<Paymentpage />} />
             
         </Routes>
     )

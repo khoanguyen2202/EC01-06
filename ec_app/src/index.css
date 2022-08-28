@@ -29,3 +29,5 @@ code {
 @import url('./Components/Page/UserPage/userPage.css');
 
 @import url('./Components/Page/StorePage/storepage.css');
+
+@import url('./Components/Page/PaymentPage/payment.css');

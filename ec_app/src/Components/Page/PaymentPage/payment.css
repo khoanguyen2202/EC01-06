@@ -1,0 +1,216 @@
+.paymentPage{
+    margin-top: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.payment_info{
+    width: 30%;
+    min-width: 500px;
+    text-align: center;
+    margin-left: 15%;
+    /* background-color: #004AAD; */
+}
+.payment_info h2{
+    color: #004AAD;
+}
+
+.payment_input{
+    border-radius: 5px;
+    margin-bottom: 15px;
+    width: 100%;
+    height: 500px;
+    box-shadow: 0.5px 0.5px 3.5px 1px rgb(209, 206, 206);
+}
+
+.payment_input_1{
+    width: 100%;
+    min-height: 32%;
+    margin-bottom: 1%;
+    text-align: left;
+    padding-top: 1px;
+}
+
+.payment_input_1a{
+    width: 100%;
+    height: 32%;
+    margin-bottom: 1%;
+    text-align: left;
+    padding-top: 1px;
+}
+.payment_input_1 p{
+    margin-left: 10px;
+    font-weight: 600;
+}
+
+.payment_input_1 span{
+    margin-left: 10px;
+    font-weight: 600;
+}
+.payment_value{
+    width: 90%;
+    margin-left: 3%;
+    height: 28px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border: none;
+    border: 1px solid rgb(145, 143, 143);
+    padding-left: 4px;
+}
+
+.payment_input_1 div input{
+    border: none;
+    outline: none;
+    width: 90%;
+    height: 90%;
+    border-radius: 5px;
+}
+.payment_input_1 div input:focus{
+    border: none;
+    outline: none;
+}
+
+.payment_input_1 div select{
+    border: none;
+    outline: none;
+    width: 98%;
+    height: 90%;
+    border-radius: 5px;
+}
+.payment_method{
+    cursor: pointer;
+    width: 22%;
+    height: 85px;
+    float: left;
+    margin-right: 8%;
+    border-radius: 5px;
+    box-shadow: 0.5px 0.5px 0.5px 1px rgb(209, 206, 206);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.payment_aa{
+    width: 100%;
+    height: 120px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.payment_method img{
+    width: 50%;
+    height: 50%;
+    text-align: center;
+}
+.Momo{
+    display: block;
+    text-align: center;
+    color: #A50064;
+}
+.paypal{
+    color: #263B80;
+}
+.pay{
+    color: #FF8400;
+}
+.payment_button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    background-color:#004AAD;
+    width: 100%;
+    height: 55px;
+    box-shadow: 0.5px 0.5px 3.5px 1px rgb(209, 206, 206);
+}
+.payment_button p{
+    color: white;
+    font-size: large;
+}
+.payment_button:hover{
+    background-color:#1a539d;
+}
+.payment_info_product{
+    width: 25%;
+    margin-left: 2%;
+}
+.payment_info_product_detail{
+    width: 100%;
+    /* height: 300px; */
+    margin-top: 70px;
+    border: 5px;
+    box-shadow: 0.5px 0.5px 3.5px 1px rgb(209, 206, 206);
+}
+
+.p_value{
+    margin-top: 10px;
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid rgb(209, 206, 206);
+}
+.p_value_left{
+    float: left;
+    margin-left: 10px;
+    font-size: larger;
+    font-weight: 500;
+}
+
+.p_value_right{
+    float: right;
+    margin-right: 10px;
+    color: #2274E5;
+}
+.p_value_1{
+    margin-top: 15px;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: scroll;
+}
+
+.p_value_1::-webkit-scrollbar {
+    width: 5px;       
+}
+.p_value_1::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);        /* Màu nền ngoài của thanh scrollbar */
+}
+
+.p_value_1::-webkit-scrollbar-thumb {
+    border-radius: 5px;      
+    border: 2px solid #ccc;  
+}
+.p_value_sum{
+    width: 100%;
+    height: 30px;
+    border-top: 1px solid rgb(209, 206, 206);
+}
+.p_value_SUM_left{
+    float: left;
+    margin-left: 10px;
+    font-size: larger;
+}
+
+.p_value_SUM_right{
+    float: right;
+    margin-right: 10px;
+    font-size: larger;
+    font-weight: 500;
+    color: #004AAD;
+}
+
+.p_value_12 div span{
+    font-size: small;
+    font-weight: 400;
+}
+.p_value_12{
+    width: 100%;
+    height: 50px;
+}
+.p_value_12_left{
+    float: left;
+    height: 100%;
+    width: 15%;
+    padding-left: 5%;
+}

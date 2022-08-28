@@ -175,7 +175,7 @@ function Cartpage() {
             console.log(error);
         }); 
     }
-    
+
     const showfeature = (productFeature) => {
         if (Object.keys(productFeature).length >= 3) {
             return (
@@ -275,7 +275,6 @@ function Cartpage() {
                                 </div>
                             )
                         })}
-
                         <div className="cart_button">
                             <div className="cart_button_value">
                                 <span className="cart_button_value_1">Tổng tiền tạm tính:</span>
@@ -298,7 +297,10 @@ function Cartpage() {
     }
 
     return (
-        showCart()
+        <>
+            {showCart()}
+        </>
+        
     )
 }
 
