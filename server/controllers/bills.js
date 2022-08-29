@@ -174,6 +174,7 @@ export const createBill = async (req, res) => {
       });
       for (let j = 0; j < updateProduct.colors.length; j++) {
         if (updateProduct.colors[j].color === products[i].color) {
+          updateProduct.restQuantity -= products[i].quantity;
           updateProduct.colors[j].quantity -= products[i].quantity;
           updateProduct.sold += products[i].quantity;
           totalPrice =
