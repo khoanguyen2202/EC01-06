@@ -22,6 +22,7 @@
     "express": "^4.18.1",
     "express-fileupload": "^1.4.0",
     "jsonwebtoken": "^8.5.1",
+    "money": "^0.2.0",
     "mongoose": "^6.5.2",
     "nodemon": "^2.0.18",
     "paypal-rest-sdk": "^1.8.1"

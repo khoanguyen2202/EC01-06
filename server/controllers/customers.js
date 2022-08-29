@@ -22,10 +22,11 @@ const customerCtrl = {
     }
   },
 
-  getCustomer: async (req, res) => {
+  getInfo: async (req, res) => {
     try {
       //query in DB
-      const customer = await CustomerModel.findById(req.customer.id).select("-password");
+      const {_id} = req.params
+      const customer = await CustomerModel.findById(_id).select("-password");
       if (!customer) return res.status(400).json({ msg:"Customer does not exist" });
       res.json(customer)
     } catch (error) {
