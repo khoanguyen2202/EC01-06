@@ -15,8 +15,15 @@ import test from './icon/material-symbols_ev-charger-outline.svg'
 import test1 from './icon/selfie-stick 1.svg'
 import test2 from './icon/dt.svg'
 import { Link } from 'react-router-dom'
+import {useState} from 'react'
 
 function Header() {
+    const [search, setSearch] = useState("")
+
+    const onChangeSearch = e => {
+        setSearch(e.target.value)
+    }
+
     return (
         <div className="header">
             <Link to="/">
@@ -30,10 +37,13 @@ function Header() {
             </div>
             
             <div className="header3">
+                <Link to={"/show/search=" + search}>
                 <button type='submit'>
                     <img src={search_logo} alt="" />
                 </button>
-                <input type="text" placeholder='Search...' name="q"/>
+                </Link>
+                <input onChange={(e) => {onChangeSearch(e)}} type="text" placeholder='Search...' name="q"/>
+                
             </div>
             <div className="header4">
                 <img src={check_list_icon} alt=""/>
@@ -43,37 +53,37 @@ function Header() {
                         <ul>
                             <li>
                                 <img src={keyboard_icon} alt=""/>
-                                <Link to="/search?category=ban%20phim" style={{textDecoration: 'none', color: 'black'}}>
+                                <Link to="/show/category=Bàn%20phím" style={{textDecoration: 'none', color: 'black'}}>
                                     <p className='header4_checklist_p'>Bàn phím</p>
                                 </Link>
                             </li>
                             <li>
                                 <img src={mouse_icon} alt=""/>
-                                <Link to="/search?category=chuot%20may%20tinh" style={{textDecoration: 'none', color: 'black'}}>
+                                <Link to="/show/category=Chuột" style={{textDecoration: 'none', color: 'black'}}>
                                     <p className='header4_checklist_p'>Chuột</p>
                                 </Link>
                             </li>
                             <li>
                                 <img src={component} alt=""/>
-                                <Link to="/search?category=tai%20nghe" style={{textDecoration: 'none', color: 'black'}}>
+                                <Link to="/show/category=Tai%20nghe" style={{textDecoration: 'none', color: 'black'}}>
                                     <p className='header4_checklist_p'>Tai nghe</p>
                                 </Link>
                             </li>
                             <li>
                                 <img src={group_icon} alt=""/>
-                                <Link to="/search?category=bo%20sac" style={{textDecoration: 'none', color: 'black'}}>
+                                <Link to="/show/category=Bộ%20sạc" style={{textDecoration: 'none', color: 'black'}}>
                                     <p className='header4_checklist_p'>Bộ sạc</p>
                                 </Link>
                             </li>
                             <li>
                                 <img src={test} alt=""/>
-                                <Link to="/search?category=sac%20du%20phong" style={{textDecoration: 'none', color: 'black'}}>
+                                <Link to="/show/category=Sạc%20dự%20phòng" style={{textDecoration: 'none', color: 'black'}}>
                                     <p className='header4_checklist_p'>Sạc dự phòng</p>
                                 </Link>
                             </li>
                             <li>
                                 <img src={test2} alt=""/>
-                                <Link to="/search?category=op%20lung" style={{textDecoration: 'none', color: 'black'}}>
+                                <Link to="/show/category=Ốp%20lưng" style={{textDecoration: 'none', color: 'black'}}>
                                     <p className='header4_checklist_p'>Ốp lưng</p>
                                 </Link>
 
@@ -81,21 +91,21 @@ function Header() {
                             </li>
                             <li>
                                 <img src={test1} alt=""/>
-                                <Link to="/search?category=gay%20selfi" style={{textDecoration: 'none', color: 'black'}}>
-                                    <p className='header4_checklist_p'>Gậy selfi</p>
+                                <Link to="/show/category=Gậy%20selfie" style={{textDecoration: 'none', color: 'black'}}>
+                                    <p className='header4_checklist_p'>Gậy selfie</p>
                                 </Link>
                                 
                             </li>
                             <li>
                                 <img src={group_icon1} alt=""/>
-                                <Link to="/search?category=gia%20do" style={{textDecoration: 'none', color: 'black'}}>
+                                <Link to="/show/category=Giá%20đỡ%20điện%20thoại" style={{textDecoration: 'none', color: 'black'}}>
                                     <p className='header4_checklist_p'>Giá đỡ điện thoại</p>
                                 </Link>
                                 
                             </li>
                             <li>
                                 <img src={group_icon2} alt=""/>
-                                <Link to="/search?category=webcam" style={{textDecoration: 'none', color: 'black'}}>
+                                <Link to="/show/category=Webcame" style={{textDecoration: 'none', color: 'black'}}>
                                     <p className='header4_checklist_p'>Webcam</p>
                                 </Link>
                                 
@@ -131,7 +141,7 @@ function Header() {
             
             <Link to="/userinfo">
                 <div className="header8">
-                    <h4>Acount</h4>
+                    <h4>Tài khoản</h4>
                 </div>
             </Link>
             

@@ -39,6 +39,17 @@ function Main(){
     },[])
     let dollarUSLocale = Intl.NumberFormat('en-US');
 
+    const showImg = (img) => {
+        if (img.length === 0) {
+            return (
+                <img src="https://image.cellphones.com.vn/200x/media/catalog/product//s/m/sm-s901_galaxys22_front_pinkgold_211122.jpg" alt="" />
+            )
+        } else {
+            return (
+                <img src={img[0].url} alt="" />
+            )
+        }
+    }
     return (
         <div className="mainPage">
             <div className="M_Panner">
@@ -48,8 +59,6 @@ function Main(){
                 <div className="M_Sale_Name">
                     <img src={fire} alt = ""/>
                     <h2>ON SALE</h2>
-
-                    
                     <img src={fire} alt = ""/>
                 </div>
                 <div className='M_sale_1'>
@@ -79,7 +88,7 @@ function Main(){
                                                     <span>Giảm {product.discount}%</span>
                                                 </div>
                                                 <div className="slide-img">
-                                                    <img src="https://image.cellphones.com.vn/200x/media/catalog/product//s/m/sm-s901_galaxys22_front_pinkgold_211122.jpg" alt="" />
+                                                    {showImg(product.images)}
                                                 </div>
                                                 <div className="slide-product-name">
                                                     <span>{product.productName}</span>
@@ -108,7 +117,7 @@ function Main(){
                         <h1>Sản phẩm bán chạy</h1>
                     </div>  
                     <div className="top_watch">
-                        <Link to="/">
+                        <Link to="/show/all">
                             <h3>{"Xem tất cả"}</h3>
                         </Link>
                     </div>
@@ -138,7 +147,7 @@ function Main(){
                                     <SwiperSlide className="slide">
                                         <Link to={"/product/" + product._id} style={{textDecoration: 'none'}}>
                                             <div className="slide-img">
-                                                <img src="https://image.cellphones.com.vn/200x/media/catalog/product//s/m/sm-s901_galaxys22_front_pinkgold_211122.jpg" alt="" />
+                                                {showImg(product.images)}
                                             </div>
                                             <div className="slide-product-name">
                                                 <span>{product.productName}</span>
@@ -203,14 +212,14 @@ function Main(){
                 </div>
                 <div className="M_Menu_Category1">
                     <div className="M_img">
-                        <Link to="/search?category=ban%20phim" style={{textDecoration: 'none', color: 'black'}}>
+                        <Link to="/show/category=Bàn%20phím" style={{textDecoration: 'none', color: 'black'}}>
                             <img src={k1} alt="" />
                             <p>Bàn Phím</p>
                         </Link>
                     </div>
 
                     <div className="M_img">
-                        <Link to="/search?category=tai%20nghe" style={{textDecoration: 'none', color: 'black'}}>
+                        <Link to="/show/category=Tai%20nghe" style={{textDecoration: 'none', color: 'black'}}>
                             <img src={k2} alt="" />
                             <p>Tai nghe </p>
                         </Link>
@@ -218,7 +227,7 @@ function Main(){
 
 
                     <div className="M_img">
-                        <Link to="/search?category=chuot%20may%20tinh" style={{textDecoration: 'none', color: 'black'}}>
+                        <Link to="/show/category=Chuột" style={{textDecoration: 'none', color: 'black'}}>
                             <img src={k3} alt="" />
                             <p>Chuột máy tính</p>
                         </Link>
@@ -226,7 +235,7 @@ function Main(){
 
 
                     <div className="M_img">
-                        <Link to="/search?category=sac%20du%20phong" style={{textDecoration: 'none', color: 'black'}}>
+                        <Link to="/show/category=Sạc%20dự%20phòng" style={{textDecoration: 'none', color: 'black'}}>
                             <img src={k4} alt="" />
                             <p>Sạc dự phòng</p>
                         </Link>
@@ -234,7 +243,7 @@ function Main(){
 
 
                     <div className="M_img">
-                        <Link to="/search?category=bo%20sac" style={{textDecoration: 'none', color: 'black'}}>
+                        <Link to="/show/category=Bộ%20sạc" style={{textDecoration: 'none', color: 'black'}}>
                             <img src={k5} alt="" />
                             <p>Bộ sạc</p>
                         </Link>
@@ -243,35 +252,35 @@ function Main(){
                 </div>
                 <div className="M_Menu_Category1">
                     <div className="M_img">
-                        <Link to="/search?category=webcame" style={{textDecoration: 'none', color: 'black'}}>
+                        <Link to="/show/category=Webcame" style={{textDecoration: 'none', color: 'black'}}>
                             <img src={k6} alt="" />
                             <p>Webcam</p>
                         </Link>
                     </div>
 
                     <div className="M_img">
-                        <Link to="/search?category=op%20lung" style={{textDecoration: 'none', color: 'black'}}>
+                        <Link to="/show/category=Ốp%20lưng" style={{textDecoration: 'none', color: 'black'}}>
                             <img src={k7} alt="" />
                             <p>Ốp lưng</p>
                         </Link>
                     </div>
 
                     <div className="M_img">
-                        <Link to="/search?category=gia%20do" style={{textDecoration: 'none', color: 'black'}}>
+                        <Link to="/show/category=Giá%20đỡ" style={{textDecoration: 'none', color: 'black'}}>
                             <img src={k8} alt="" />
                             <p>Giá đỡ điện thoại</p>
                         </Link>
                     </div>
 
                     <div className="M_img">
-                        <Link to="/search?category=gay%selfie" style={{textDecoration: 'none', color: 'black'}}>
+                        <Link to="/show/category=Gậy%20selfie" style={{textDecoration: 'none', color: 'black'}}>
                             <img src={k9} alt="" />
                             <p>Gậy selfie</p>
                         </Link>
                     </div>
 
                     <div className="M_img">
-                        <Link to="/search?category=thiet%20bi%20mang" style={{textDecoration: 'none', color: 'black'}}>
+                        <Link to="/show/category=Thiết%20bị%20mạng" style={{textDecoration: 'none', color: 'black'}}>
                             <img src={k10} alt="" />
                             <p>Thiết bị mạng</p>
                         </Link>

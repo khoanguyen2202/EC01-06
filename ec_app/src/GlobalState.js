@@ -12,7 +12,11 @@ export const DataProvider = ({children}) =>{
         if(firstLogin){
             setToken(localStorage.getItem('token'))
         }
-        setCart(JSON.parse(localStorage.getItem("cartuser")))
+        if (localStorage.getItem("cartuser") === "") {
+            setCart([])
+        } else {
+            setCart(JSON.parse(localStorage.getItem("cartuser")))
+        }
     },[])
     //oke
 

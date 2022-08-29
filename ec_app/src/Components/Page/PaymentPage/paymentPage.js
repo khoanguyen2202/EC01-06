@@ -20,7 +20,11 @@ function Paymentpage() {
     const [City, setCity] = useState('')
     const [district, setDistricts] = useState('') 
     const [wards, setWards] = useState("")
+    const [payment, setPayment] = useState("")
+    const [wait, setWait] = useState(false)
+    const [payment_info, setPaymentInfo] = useState([])
 
+    var data_payment_product = []
     var array_id = []
 
 
@@ -59,9 +63,18 @@ function Paymentpage() {
     useEffect(() => {
         if ((Cart.length !== 0) && (productList.length !== 0)) {
             var tempt = 0.0
+            data_payment_product = []
             for (let i = 0; i < Cart.length; i++) {
+                var obj = {}
                 tempt = tempt + Cart[i].quantity * productList[i].productPrice * (1 - productList[i].productDiscount / 100)
+
+                // create object
+                obj["product_id"] = productList[i].productID
+                obj["color"] = Cart[i].color
+                obj["quantity"] = Cart[i].quantity
+                data_payment_product.push(obj)
             }
+            setPaymentInfo(data_payment_product)
             setValue(tempt)
         } else {
             setValue(0.0)
@@ -119,10 +132,92 @@ function Paymentpage() {
         setDistricts(e.currentTarget.value)
         setWards("")    
     }
+    const clickPayment = () => {
+        // payment
+        setWait(true)
+
+        // thanh toan truc tiep
+        if (payment === "pay") {
+            const data_info = {
+                "shippingPhoneAddress": user.phonenumber,
+                "shippingAddress": {
+                    "street": user.address,
+                    "ward": wards,
+                    "district": district,
+                    "city": City
+                },
+                "name": user.name,
+                "email": user.email,
+                "payment": "Thanh toán sau",
+                "products": payment_info,
+                "phonenumber": "0905378945"
+            }
+            var data = JSON.stringify(data_info);
+
+            var config = {
+                method: 'post',
+                url: 'http://localhost:5000/bills/create',
+                headers: { 
+                  'Content-Type': 'application/json',
+                  'responseEncoding': 'utf-8'
+                },
+                data: data
+            };
+            axios(config)
+            .then(function (res) {
+                console.log(res.data);
+                setWait(true)
+                if (res.data.msg === "Created a bill.") {
+                    // remove local store
+
+                    localStorage.setItem('cartuser', "")
+
+                    // new tab don hang thanh cong
+                    window.location.href = "/cart/success"
+                }
+               
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        }
+        if (payment === "paypal") {
+            var data = JSON.stringify({"products": Cart})
+
+            var config = {
+                method: 'post',
+                url: 'http://localhost:5000/payments/get',
+                headers: { 
+                'Content-Type': 'application/json'
+                },
+                data: data
+            };
+            axios(config)
+            .then(function (res) {
+                window.location.href = res.data.link
+            })
+            .catch(function (error) {
+                console.log(error);
+            }); 
+        } 
+    }
+    const showSpinner = () => {
+        if (wait) {
+            return (
+                <div className="spinner"></div>
+            )
+        } else {
+            return (
+                <></>
+            )
+        }
+    }
 
     return (
-        <div className="paymentPage">
-            <div className="payment_info">
+        <div className="paymentPage" style={{backgroundColor: (wait)? "rgb(247, 243, 243)": ""}}>
+            {showSpinner()}
+            <div className="payment_info" >
                 <h2>Thông tin đặt hàng</h2>
                 <div className="payment_input">
                     <div className="payment_input_1">
@@ -169,22 +264,22 @@ function Paymentpage() {
                     <div className="payment_input_1">
                         <span>Phương thức thanh toán</span>
                         <div className="payment_aa">
-                            <div className='payment_method'>
-                                <img src={momo} alt="" />
+                            <div className='payment_method' style={{backgroundColor: (payment === "momo")? "#aca8a8": ""}}>
+                                <img src={momo} alt="" onClick={(e) => {setPayment("momo")}}/>
                                 <span className='Momo'>MOMO</span>
                             </div>
-                            <div className='payment_method'>
-                                <img src={paypal_icon} alt="" />
+                            <div className='payment_method' style={{backgroundColor: (payment === "paypal")? "#aca8a8": ""}}>
+                                <img src={paypal_icon} alt="" onClick={(e) => {setPayment("paypal")}}/>
                                 <span className='paypal'>PayPal</span>
                             </div>
-                            <div className='payment_method'>
-                                <img src={pay} alt="" />
+                            <div className='payment_method' style={{backgroundColor: (payment === "pay")? "#aca8a8": ""}}>
+                                <img src={pay} alt="" onClick={(e) => {setPayment("pay")}}/>
                                 <span className='pay'>Thanh toán sau khi nhận</span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button className="payment_button">
+                <button className="payment_button" onClick={(e) => {clickPayment()}}>
                     <p>Thanh toán</p>
                 </button>
             </div>
@@ -211,7 +306,6 @@ function Paymentpage() {
                                 </div>
                             )
                         }
-
                         )}
 
                     </div>

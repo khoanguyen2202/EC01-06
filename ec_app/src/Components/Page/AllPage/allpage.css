@@ -1,0 +1,30 @@
+
+.top_name_h{
+    text-align: center;
+    color: white;
+    
+}
+.top_Name_12{
+    padding-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.M_TopProduct_product_all{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.slide_all{
+    border-radius: 5px;
+    width: 230px;
+    height: 300px;
+    margin-left: 30px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    box-shadow: 0.5px 0.5px 3.5px 1px rgb(209, 206, 206);
+}

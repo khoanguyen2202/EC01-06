@@ -173,7 +173,8 @@ function Cartpage() {
         })
         .catch(function (error) {
             console.log(error);
-        }); 
+        });
+        window.location.href = "/cart/payment-info"
     }
 
     const showfeature = (productFeature) => {

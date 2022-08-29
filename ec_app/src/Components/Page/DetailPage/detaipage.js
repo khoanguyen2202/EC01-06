@@ -278,7 +278,6 @@ function Detailpage() {
                          return '<span class="' + className + '"></span>';
                         },
                     }}
-                    // scrollbar={{ draggable: true }}
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log('slide change')}
                     className="slde"
@@ -292,7 +291,7 @@ function Detailpage() {
                                             <span>Giảm {product.discount}%</span>
                                         </div>
                                         <div className="slide-img">
-                                            <img src="https://image.cellphones.com.vn/200x/media/catalog/product//s/m/sm-s901_galaxys22_front_pinkgold_211122.jpg" alt="" />
+                                            {showImg12(product.images)}
                                         </div>
                                         <div className="slide-product-name">
                                             <span>{product.productName}</span>
@@ -362,6 +361,17 @@ function Detailpage() {
 
     }
 
+    const showImg12 = (img) => {
+        if (img.length === 0) {
+            return (
+                <img src="https://image.cellphones.com.vn/200x/media/catalog/product//s/m/sm-s901_galaxys22_front_pinkgold_211122.jpg" alt="" />
+            )
+        } else {
+            return (
+                <img src={img[0].url} alt="" />
+            )
+        }
+    }
     return (
         <div className="Detailpage">
             <div className="Dpage_Product">

@@ -31,3 +31,7 @@ code {
 @import url('./Components/Page/StorePage/storepage.css');
 
 @import url('./Components/Page/PaymentPage/payment.css');
+
+@import url('./Components/Page/SuccessPage/successpage.css');
+
+@import url('./Components/Page/AllPage/allpage.css');

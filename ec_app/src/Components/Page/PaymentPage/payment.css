@@ -68,6 +68,7 @@
 }
 .payment_input_1 div input:focus{
     border: none;
+    background-color: white;
     outline: none;
 }
 
