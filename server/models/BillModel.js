@@ -18,7 +18,6 @@ const schema_bill = new mongoose.Schema(
       type:Number,
       default:0,
     },
-    status: String, //Delivery successful   Being delivery   In process  Canceled
     phonenumber : {
       type: String,
       required: true,
@@ -30,12 +29,28 @@ const schema_bill = new mongoose.Schema(
       district: String,
       city: String,
     },
-
+    shippingPhonenumber: {
+      type: String,
+      default: "None",
+    },
+    name: {
+      type: String,
+      default: "None",
+    },
+    status: {
+      type: String,
+      default: "Dang xu ly", /// DangXuLy, DangGiao, HoanThanh, Huy
+    },
+    email: {
+      type: String,
+      default: "None",
+    },
     warehouse_id: {
       type: String,
       default: "None",
     },
     Cashier: String,
+
   },
   { timestamps: true }
 );

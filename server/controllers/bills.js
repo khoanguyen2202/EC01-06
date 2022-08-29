@@ -3,9 +3,9 @@ import { CustomerModel } from "../models/CustomerModel.js";
 import { ProductModel } from "../models/ProductModel.js";
 import { WarehouseModel } from "../models/WarehouseModel.js";
 
-
-
 import axios from "axios";
+import fetch from "node-fetch";
+
 function checkAddressExist(value, arr) {
   for (let index = 0; index < arr.length; index++) {
     if (
@@ -31,10 +31,18 @@ async function getDistance(start, end) {
     start +
     "&destinations=" +
     end +
-    "&key=AIzaSyBcLS_NNZVTiNFzyTOzkytdJzIxhRNyebA";
-  await axios
-    .get(urlGoogleAPI)
-    .then((res) => (distance = res.data.rows[0].elements[0].distance.value));
+    "&key=AIzaSyA6189S8sHWCrM5el5AEwj2S_PmOtyL3Rk";
+  // await axios
+  //   .get(urlGoogleAPI)
+  //   .then((res) => (distance = res.data.rows[0].elements[0].distance.value));
+  // return distance;
+
+  const response = await fetch(urlGoogleAPI, {
+    method: "get",
+    headers: { "Content-Type": "application/json" },
+  });
+  const data = await response.json();
+  distance = data.rows[0].elements[0].distance.value;
   return distance;
 }
 
@@ -53,29 +61,29 @@ function HandleArrayObject(arr) {
 async function distanceInfo(customerAddress, warehouse_id) {
   var warehouseChoose;
   var warehouseAddress;
-
+  // console.log(customerAddress);
   warehouseChoose = await WarehouseModel.findOne({
     warehouse_id: warehouse_id,
   });
- 
+
   warehouseAddress = combineAddress(
     warehouseChoose.address.street,
     warehouseChoose.address.ward,
     warehouseChoose.address.district,
     warehouseChoose.address.city
   );
-  
+  // console.log(warehouseAddress);
   var distanceInfo = {
     info: warehouseChoose.warehouse_id,
     distance: await getDistance(customerAddress, warehouseAddress),
   };
-  console.log(distanceInfo.info)
-  
+  // console.log(distanceInfo.info);
+
   return distanceInfo;
 }
 async function checkProduct(product, warehouse) {
   var get;
-  var left
+  var left;
   for (let j = 0; j < warehouse.products.length; j++) {
     //Neu ton tai thi kiem tra so luong
     if (
@@ -135,8 +143,16 @@ async function updateWarehouse(product, warehouse) {
 }
 export const createBill = async (req, res) => {
   try {
-    const { products, payment, phonenumber, shippingAddress } = req.body;
-    const customer = await CustomerModel.findOne({ phonenumber });
+    const {
+      products,
+      payment,
+      phonenumber,
+      shippingAddress,
+      shippingPhonenumber,
+      email,
+      name,
+    } = req.body;
+    const customer = await CustomerModel.findOne({ phonenumber: phonenumber });
     let warehouseBill;
     let totalPrice = 0;
     if (customer.shippingAddress.length < 0) {
@@ -158,18 +174,20 @@ export const createBill = async (req, res) => {
       });
       for (let j = 0; j < updateProduct.colors.length; j++) {
         if (updateProduct.colors[j].color === products[i].color) {
-          
+          updateProduct.restQuantity -= products[i].quantity;
           updateProduct.colors[j].quantity -= products[i].quantity;
-          updateProduct.sold += products[i].quantity
-          totalPrice = totalPrice + updateProduct.price*((100-updateProduct.discount)/100)*products[i].quantity
+          updateProduct.sold += products[i].quantity;
+          totalPrice =
+            totalPrice +
+            updateProduct.price *
+              ((100 - updateProduct.discount) / 100) *
+              products[i].quantity;
           console.log(products[i]);
           await updateProduct.save();
-          
         }
       }
     }
 
-    
     var customerAddress = combineAddress(
       shippingAddress.street,
       shippingAddress.ward,
@@ -200,15 +218,13 @@ export const createBill = async (req, res) => {
     }
 
     infoWH = HandleArrayObject(infoWH);
-    
+
     var mergeArray = infoWH[0];
     // console.log(infoWH[0])
     for (let i = 1; i < infoWH.length; i++) {
       mergeArray = mergeArray.concat(infoWH[i]);
       // console.log(infoWH[i])
     }
-
-    
 
     const countAppear = {};
     for (const element of mergeArray) {
@@ -225,7 +241,7 @@ export const createBill = async (req, res) => {
         appearThrough = 1;
       }
     }
-    
+
     // console.log(warehouseDB)
     // console.log(infoWH);
     //Truong hop nhung warehouse chua toan bo san pham input
@@ -249,18 +265,20 @@ export const createBill = async (req, res) => {
         }
       }
       //If there's only one warehouse has all of the input so We will deliver the order from that warehouse
-      
+
       if (warehouseList.length === 1) {
-        console.log("Truong hop 1: chi co duy nhat 1 warehouse chua toan bo san pham input");
+        console.log(
+          "Truong hop 1: chi co duy nhat 1 warehouse chua toan bo san pham input"
+        );
         let distanceCusToStores = await distanceInfo(
           customerAddress,
           warehouseList[0]
         );
-        
+
         var productWarehouse = await WarehouseModel.findOne({
           warehouse_id: distanceCusToStores.info,
         });
-        
+
         for (let i = 0; i < products.length; i++) {
           await updateWarehouse(products[i], productWarehouse);
         }
@@ -269,18 +287,19 @@ export const createBill = async (req, res) => {
       }
       //If there more than one warehouse which has all of the input We will calculate the distance from each warehouse to the customer address
       else {
-        console.log("Truong hop 2: co nhieu hon 1 warehouse chua toan bo san pham input");
+        console.log(
+          "Truong hop 2: co nhieu hon 1 warehouse chua toan bo san pham input"
+        );
         let distanceCusToStores = [];
-        
+
         for (let i = 0; i < warehouseList.length; i++) {
           distanceCusToStores.push(
             await distanceInfo(customerAddress, warehouseList[i])
           );
-          
         }
-        
+
         distanceCusToStores.sort((a, b) => a.distance - b.distance);
-        
+
         var productWarehouse = await WarehouseModel.findOne({
           warehouse_id: distanceCusToStores[0].info,
         });
@@ -289,7 +308,7 @@ export const createBill = async (req, res) => {
         }
 
         warehouseBill = distanceCusToStores[0].info;
-        console.log(distanceCusToStores[0])
+        console.log(distanceCusToStores[0]);
       }
     } else {
       infoWH = [];
@@ -314,7 +333,6 @@ export const createBill = async (req, res) => {
         }
       }
       infoWH = HandleArrayObject(infoWH);
-      console.log(infoWH);
       var warehouseList = infoWH[0];
       for (let i = 1; i < infoWH.length; i++) {
         for (let j = 0; j < infoWH[i].length; j++) {
@@ -323,7 +341,7 @@ export const createBill = async (req, res) => {
           }
         }
       }
-
+      // console.log(warehouseList);
       //Tim khoang cach tu cac store chua san pham input den dia chi khach hang
       let distanceCusToStores = [];
       // console.log(warehouseList)
@@ -334,7 +352,7 @@ export const createBill = async (req, res) => {
         // console.log(distanceCusToStores[i])
       }
       distanceCusToStores.sort((a, b) => a.distance - b.distance);
-      // console.log(distanceCusToStores)
+      console.log(distanceCusToStores[0])
 
       /// Tim khoang cach tu cac store chua san pham input den store duoc trong lam vi tri trung chuyen
       let distanceStoresToCenter = [];
@@ -396,7 +414,10 @@ export const createBill = async (req, res) => {
       products,
       payment,
       warehouse_id: warehouseBill,
-      totalPrice:totalPrice
+      totalPrice: totalPrice,
+      shippingPhonenumber: shippingPhonenumber,
+      email,
+      name,
     });
     await newBill.save();
     res.json({ msg: "Created a bill." });
@@ -408,8 +429,8 @@ export const createBill = async (req, res) => {
 export const updateBill = async (req, res) => {
   try {
     const { _id, status, warehouse_id, Cashier, payment } = req.body;
-    var billExist = await BillModel.findOne({ _id })
-    if(!billExist){
+    var billExist = await BillModel.findOne({ _id });
+    if (!billExist) {
       res.status(400).json({ msg: "Updated a bill." });
     }
     await BillModel.findOneAndUpdate(

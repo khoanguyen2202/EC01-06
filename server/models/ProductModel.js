@@ -83,7 +83,7 @@ const schema_product = new mongoose.Schema(
       type: Boolean,
       default: true,
     },
-    totalQuantity: {
+    restQuantity: {
       type: Number,
       default: 0,
     }

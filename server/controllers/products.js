@@ -13,8 +13,9 @@ export const listProducts = async (req, res) => {
           productName: product.productName,
           productPrice: product.price,
           productColors:product.colors,
+          productURL: product.images,
           productDiscount: product.discount,
-          productDescription: product.description,
+          productFeature: product.feature,
         };
         list.push(info);
       } else {
@@ -73,7 +74,7 @@ export const createProduct = async (req, res) => {
       images,
       sold,
       checked,
-      totalQuantity,
+      restQuantity,
     } = req.body;
     if (!images) return res.status(400).json({ msg: "No images upload." });
     const product = await ProductModel.findOne({ product_id });
@@ -98,7 +99,7 @@ export const createProduct = async (req, res) => {
       images,
       sold,
       checked,
-      totalQuantity,
+      restQuantity,
     });
     await newProduct.save();
     res.json({ msg: "Created a product." });
@@ -124,7 +125,7 @@ export const updateProduct = async (req, res) => {
       images,
       sold,
       checked,
-      totalQuantity,
+      restQuantity,
     } = req.body;
 
     await ProductModel.findOneAndUpdate(
@@ -144,7 +145,7 @@ export const updateProduct = async (req, res) => {
         images,
         sold,
         checked,
-        totalQuantity,
+        restQuantity,
       }
     );
 

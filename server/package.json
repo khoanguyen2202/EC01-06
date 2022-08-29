@@ -24,6 +24,7 @@
     "jsonwebtoken": "^8.5.1",
     "money": "^0.2.0",
     "mongoose": "^6.5.2",
+    "node-fetch": "^3.2.10",
     "nodemon": "^2.0.18",
     "paypal-rest-sdk": "^1.8.1"
   },
