@@ -11,7 +11,7 @@ router.post("/sign-up", customerCtrl.createCustomer);
 router.post("/sign-in", customerCtrl.signIn);
 router.get("/sign-out", customerCtrl.singOut);
 router.get("/refresh_token", customerCtrl.refreshToken);
-router.post("/:id/update", customerCtrl.updateInfor);
+router.post("/update/:_id", customerCtrl.updateInfo);
 router.get("/info/:_id", customerCtrl.getInfo);
 router.delete("/customer", customerCtrl.deleteUser);
 router.get("/get-cart",customerCtrl.getCustomerCart);

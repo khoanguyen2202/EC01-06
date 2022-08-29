@@ -3,8 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const customerCtrl = {
-
-  getCustomers : async (req, res) => {
+  getCustomers: async (req, res) => {
     try {
       //query in DB
       const features = new APIfeatures(CustomerModel.find(), req.query)
@@ -18,17 +17,18 @@ const customerCtrl = {
         customers: customers,
       });
     } catch (error) {
-        res.status(500).json({ msg: error.message });
+      res.status(500).json({ msg: error.message });
     }
   },
 
   getInfo: async (req, res) => {
     try {
       //query in DB
-      const {_id} = req.params
+      const { _id } = req.params;
       const customer = await CustomerModel.findById(_id).select("-password");
-      if (!customer) return res.status(400).json({ msg:"Customer does not exist" });
-      res.json(customer)
+      if (!customer)
+        return res.status(400).json({ msg: "Customer does not exist" });
+      res.json(customer);
     } catch (error) {
       res.status(500).json({ msg: error.message });
     }
@@ -116,14 +116,14 @@ const customerCtrl = {
           });
         const accesstoken = createAccessToken({ id: user.id });
 
-        res.json({  accesstoken });
+        res.json({ accesstoken });
       });
     } catch (error) {
       res.status(500).json({ msg: error.message });
     }
   },
 
-  updateInfor: async (req, res) => {
+  updateInfo: async (req, res) => {
     try {
       const {
         phonenumber,
@@ -131,16 +131,36 @@ const customerCtrl = {
         firstName,
         lastName,
         Address,
+        nickname,
+        gender,
+        dateOfBirth,
         shippingAddress,
       } = req.body;
-      const user = await CustomerModel.findOne({ phonenumber });
-      if (user)
-        return res
-          .status(400)
-          .json({ msg: "This phonenumber is already used" });
+      if (phonenumber) {
+        var checkPhonenumberExist = await CustomerModel.find().select(
+          "phonenumber"
+        );
+        for (let i = 0; i < checkPhonenumberExist.length; i++) {
+          if (checkPhonenumberExist[i].phonenumber === phonenumber) {
+            res.status(400).json({ msg: "This phonenumber is already used." });
+            return;
+          }
+        }
+      }
+
       await CustomerModel.findOneAndUpdate(
-        { _id: req.params.id },
-        { phonenumber, password, firstName, lastName, Address, shippingAddress }
+        { _id: req.params },
+        {
+          phonenumber,
+          password,
+          firstName,
+          lastName,
+          Address,
+          nickname,
+          gender,
+          dateOfBirth,
+          shippingAddress,
+        }
       );
       res.status(200).json({ msg: "Update successful." });
     } catch (error) {
@@ -160,7 +180,7 @@ const customerCtrl = {
       res.status(500).json({ msg: error.message });
     }
   },
-  getCustomerCart: async (req,res) =>{
+  getCustomerCart: async (req, res) => {
     try {
       const { phonenumber } = req.body;
       const user = await CustomerModel.findOne({ phonenumber });
@@ -173,7 +193,7 @@ const customerCtrl = {
       res.status(500).json({ msg: error.message });
     }
   },
-  createCustomerCart: async (req,res) =>{
+  createCustomerCart: async (req, res) => {
     try {
       const { phonenumber } = req.body;
       const user = await CustomerModel.findOne({ phonenumber });
@@ -186,7 +206,7 @@ const customerCtrl = {
       res.status(500).json({ msg: error.message });
     }
   },
-  deleteCustomerCart: async (req,res) =>{
+  deleteCustomerCart: async (req, res) => {
     try {
       const { phonenumber } = req.body;
       const user = await CustomerModel.findOne({ phonenumber });
@@ -198,7 +218,7 @@ const customerCtrl = {
     } catch (error) {
       res.status(500).json({ msg: error.message });
     }
-  }
+  },
 };
 
 const createAccessToken = (user) => {

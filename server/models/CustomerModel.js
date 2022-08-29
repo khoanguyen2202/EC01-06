@@ -2,6 +2,16 @@ import mongoose from "mongoose";
 
 const schema_customer = new mongoose.Schema(
   {
+    nickname:{
+      type: String,
+      default:"None"
+    },
+    gender:{
+      type: String,
+    },
+    dateOfBirth:{
+      type:Date
+    },
     phonenumber: {
       type: String,
       unique: true,
