@@ -352,7 +352,7 @@ export const createBill = async (req, res) => {
         // console.log(distanceCusToStores[i])
       }
       distanceCusToStores.sort((a, b) => a.distance - b.distance);
-      console.log(distanceCusToStores[0])
+      console.log(distanceCusToStores[0]);
 
       /// Tim khoang cach tu cac store chua san pham input den store duoc trong lam vi tri trung chuyen
       let distanceStoresToCenter = [];
@@ -473,52 +473,25 @@ export const findAllBill = async (req, res) => {
   }
 };
 
-export const findSuccessBill = async (req, res) => {
+export const findBillsByCusId = async (req, res) => {
   try {
-    const findBill = await BillModel.findById({
-      status: "Being delivery",
-    }).exec();
-    res.json({
-      findBill,
-    });
+    const { phonenumber } = req.body;
+    const billsByCusId = await BillModel.find({ phonenumber: phonenumber });
+    if (billsByCusId.length == 0) {
+      res.status(400).json({
+        msg: "This phonenumber not exist or This phonenumber has no bill",
+      });
+    } else {
+      res
+        .status(200)
+        .json({
+          status: "success",
+          result: billsByCusId.length,
+          bills: billsByCusId,
+        });
+    }
   } catch (error) {
-    res.status(500).json({ error: error });
-  }
-};
-
-export const findDeliveryBill = async (req, res) => {
-  try {
-    const { _id } = req.body;
-    const findBill = await BillModel.findById({
-      status: "Being delivery",
-    }).exec();
-    res.json({
-      findBill,
-    });
-  } catch (error) {
-    res.status(500).json({ error: error });
-  }
-};
-
-export const findProcessingBill = async (req, res) => {
-  try {
-    const findBill = await BillModel.find({ status: "In process" }).exec();
-    res.json({
-      findBill,
-    });
-  } catch (error) {
-    res.status(500).json({ error: error });
-  }
-};
-
-export const findCancelledBill = async (req, res) => {
-  try {
-    const findBill = await BillModel.find({ status: "Canceled" }).exec();
-    res.json({
-      findBill,
-    });
-  } catch (error) {
-    res.status(500).json({ error: error });
+    res.status(500).json({ msg: error.message });
   }
 };
 

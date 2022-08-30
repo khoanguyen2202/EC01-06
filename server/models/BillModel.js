@@ -15,10 +15,10 @@ const schema_bill = new mongoose.Schema(
       default: 0,
     },
     totalPrice: {
-      type:Number,
-      default:0,
+      type: Number,
+      default: 0,
     },
-    phonenumber : {
+    phonenumber: {
       type: String,
       required: true,
       default: "None",
@@ -50,7 +50,6 @@ const schema_bill = new mongoose.Schema(
       default: "None",
     },
     Cashier: String,
-
   },
   { timestamps: true }
 );
