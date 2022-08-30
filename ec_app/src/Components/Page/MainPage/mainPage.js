@@ -30,8 +30,8 @@ function Main(){
 
     useEffect(() =>{
         const getProducts = async () => {
-            const res = await axios.get('http://localhost:5000/products/?sort=-discount&limit=20')
-            const res1 = await axios.get('http://localhost:5000/products/?sort=-sold&limit=12')
+            const res = await axios.get('https://aw-ec01-06.herokuapp.com/products/?sort=-discount&limit=20')
+            const res1 = await axios.get('https://aw-ec01-06.herokuapp.com/products/?sort=-sold&limit=12')
             setProduct(res.data.products)
             setProduct1(res1.data.products)
         }

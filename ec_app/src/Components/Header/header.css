@@ -167,7 +167,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
+.header7 span{
+    position: absolute;
+    color: red;
+    font-size: small;
+    font-weight: 600;
+    top: 20%;
+    left: 20px;
+    background-color: white;
+    border-radius: 50%;
+    width: 15px;
+    text-align: center;
+}
+
 .header7 h4{
     color: white;
 }

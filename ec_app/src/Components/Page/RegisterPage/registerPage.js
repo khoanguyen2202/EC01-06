@@ -31,10 +31,7 @@ function Register() {
                 setCondition(2);
             } else {
                 var msgReq = {"phonenumber":user.phonenumber, "password":user.password}
-                // console.log(msgReq)
-                // console.log({...user})
-
-                const res = await axios.post('http://localhost:5000/customers/sign-up', msgReq)
+                const res = await axios.post('https://aw-ec01-06.herokuapp.com/customers/sign-up', msgReq)
                 
                 localStorage.setItem('token', res.data.accesstoken)
                 alert("Đăng ký thành công")

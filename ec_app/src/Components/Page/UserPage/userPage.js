@@ -3,11 +3,105 @@ import ic_sup from './img/support.svg'
 import ic_exit from './img/exit.svg'
 import ic_hiss from './img/icon_hiss.svg'
 import ic_map from './img/bxs_map.svg'
+import {GlobalState} from '../../../GlobalState'
+import React, { useContext, useEffect, useState} from 'react'
+import axios from 'axios'
 
 
 function Userpage() {
+    const state = useContext(GlobalState)
+    const [userInfo, setUserInfo] = state.userAPI.userInfo
+    const [logout, setLogout] = useState(false)
+
+    const [user, setUser] = useState({
+        name:"", nickname:"", dateOfBirth:"", email:"", phone:""
+    })
+    const [wait, setWait] = useState(false)
+
+    const onChangeInput = e => {
+        const {name, value} = e.target;
+        setUser({...user, [name]:value})
+    }
+    useEffect(() => {
+        const tempt = {
+            name:userInfo.name, nickname:userInfo.nickname, dateOfBirth:userInfo.dateOfBirth, email: userInfo.email, phone: userInfo.phone
+        }
+        setUser({...tempt})
+    }, [userInfo])
+
+    const onClickButton = () => {
+        setWait(true)
+        const token = localStorage.getItem("token")
+        // Update
+        var data = JSON.stringify(user)
+        var config = {
+            method: 'post',
+            url: 'https://aw-ec01-06.herokuapp.com/customers/update',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Authorization': token
+            },
+            data: data
+        }
+        axios(config)
+        .then(function (res) {
+            setWait(false)
+            alert("Cập nhật thông tin thành công!")
+        })
+        .catch(function (error) {
+            setWait(false)
+            alert("Cập nhật thông tin thất bại!")
+        });
+        
+    }
+    const showSpinner = () => {
+        if (wait) {
+            return (
+                <div className="spinner_12"></div>
+            )
+        } else {
+            return (
+                <></>
+            )
+        }
+    }
+
+    const ClickLogout = () => {
+        setLogout(true)
+    }
+
+    const ClickCancel = () => {
+        setLogout(false)
+    }
+    const ClickLO = () => {
+        localStorage.removeItem("firstLogin")
+        localStorage.removeItem("refreshtoken")
+        window.location.href = "/";
+    }
+
+
+    const showLogout = () => {
+        if (logout) {
+            return (
+                <div className='place_logout'>
+                    <h2>Xác nhận thoát tài khoản</h2>
+                    <div className="place_logout_12">
+                        <button className='place_logout_12_left' onClick={(e) => {ClickLO()}}>Xác nhận</button>
+                        <button className='place_logout_12_right' onClick={(e) => {ClickCancel()}}>Hủy</button>
+                    </div>
+                </div>
+            )
+        } else {
+            return (
+                <></>
+            )
+        }
+    }
+
     return (
         <div className="Userpage">
+            {showSpinner()}
+            {showLogout()}
             <div className="userpage_meta">
                 <div className="meta_info">
                     <div className="meta_info_img">
@@ -51,11 +145,11 @@ function Userpage() {
                             <p>Hỗ trợ</p>
                         </div>
                     </div>
-                    <div className="meta_info_selection_aa">
+                    <div className="meta_info_selection_aa" onClick={() => {ClickLogout()}}>
                         <div className="meta_info_selection_aa_img">
                             <img src={ic_exit} alt=""/>
                         </div>
-                        <div className="meta_info_selection_aa_name">
+                        <div className="meta_info_selection_aa_name" >
                             <p>Thoát tài khoản</p>
                         </div>
                     </div>
@@ -78,7 +172,7 @@ function Userpage() {
                                     <span>Họ & Tên</span>
                                 </div>
                                 <div className='userpage_2_name2'>
-                                    <input />
+                                    <input name="name" value={user.name} onChange={onChangeInput} />
                                 </div>
                             </div>
                             <div className='userpage_2_name'>
@@ -86,7 +180,7 @@ function Userpage() {
                                     <span>NickName</span>
                                 </div>
                                 <div className='userpage_2_name2'>
-                                    <input />
+                                    <input name="nickname" value={user.nickname} onChange={onChangeInput} />
                                 </div>
                             </div>
                         </div>
@@ -97,28 +191,16 @@ function Userpage() {
                         </div>
             
                         <div className='userpage_user_born_12'>
-                            <input className="userpage_user_born_12_date" type="date"/>
+                            <input name="dateOfBirth" value={user.dateOfBirth} onChange={onChangeInput} className="userpage_user_born_12_date" type="date"/>
                         </div>
                     </div>
-                    <div className='userpage_user_born'>
-                        <div className='userpage_user_born_11'>
-                            <span>Giới tính</span>
-                        </div>
-            
-                        <div className='userpage_user_born_12'>
-                            <input type="radio" name="gender" value="male" checked /> <span>Nam</span>
-                            <input type="radio" name="gender" value="male" checked /> <span>Nữ</span>
-                            <input type="radio" name="gender" value="male" checked /> <span>Khác</span>
-                        </div>
-                    </div>
-        
                     <div className='userpage_user_born'>
                         <div className='userpage_user_born_11'>
                             <span>Số điện thoại</span>
                         </div>
             
                         <div className='userpage_user_born_12'>
-                            <input type="tel" name="usrtel" className="userpage_user_born_12_tel"/>
+                            <input value={user.phone} type="tel" name="phone" onChange={onChangeInput} className="userpage_user_born_12_tel"/>
                         </div>
                     </div>
                     <div className='userpage_user_born'>
@@ -127,45 +209,14 @@ function Userpage() {
                         </div>
             
                         <div className='userpage_user_born_12'>
-                            <input type="email" name="usrtel" className="userpage_user_born_12_tel"/>
+                            <input value={user.email} type="email" name="email" onChange={onChangeInput} className="userpage_user_born_12_tel"/>
                         </div>
                     </div>
 
                     <div className='userpage_user_button'>
-                        <button>Cập nhật</button>
+                        <button onClick={(e) => {onClickButton()}}>Cập nhật</button>
                     </div>
                 </div>
-                <div className='userpage_userPass'>
-                    <h3>Thay đổi mật khẩu</h3>
-                    <div className="userpage_userPass_oo">
-                        <div className='userpage_userPass_oo_1'>
-                            <h4>Mật khẩu cũ</h4>
-                        </div>
-                        <div className='userpage_userPass_oo_2'>
-                            <input type="password" />
-                        </div>
-                    </div>
-                    <div className="userpage_userPass_oo">
-                        <div className='userpage_userPass_oo_1'>
-                            <h4>Mật khẩu mới</h4>
-                        </div>
-                        <div className='userpage_userPass_oo_2'>
-                            <input type="password" />
-                        </div>
-                    </div>
-                    <div className="userpage_userPass_oo">
-                        <div className='userpage_userPass_oo_1'>
-                            <h4>Nhập lại mật khẩu</h4>
-                        </div>
-                        <div className='userpage_userPass_oo_2'>
-                            <input type="password" />
-                        </div>
-                    </div>
-                    <div className='userpage_user_button1'>
-                        <button>Cập nhật</button>
-                    </div>
-                </div>
-
             </div>
         </div>
     )

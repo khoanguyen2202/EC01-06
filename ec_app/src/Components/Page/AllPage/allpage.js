@@ -1,18 +1,8 @@
 import banner from './img/banner1.jpg'
 import fire from './img/fire.svg'
-import k1 from './img/key.png'
-import k2 from './img/HeadPhone.png'
-import k3 from './img/mount.png'
-import k4 from './img/sac.png'
-import k5 from './img/bosac.png'
-import k6 from './img/webcame.png'
-import k7 from './img/oplung.png'
-import k8 from './img/giado.png'
-import k9 from './img/gay.png'
-import k10 from './img/mang.png'
 
 import {useParams, Link} from 'react-router-dom'
-import { useSearchParams } from "react-router-dom";
+
 
 
 // Import Swiper styles
@@ -31,20 +21,20 @@ function AllMain(){
     useEffect(() =>{
         if (params.category !== undefined) {       
             const getProducts = async () => {
-                const res1 = await axios.get('http://localhost:5000/products/?category=' + params.category)
+                const res1 = await axios.get('https://aw-ec01-06.herokuapp.com/products/?category=' + params.category)
                 setProduct1(res1.data.products)
             }
             getProducts()
         } else
         if (params.name !== undefined) {     
             const getProducts = async () => {
-                const res1 = await axios.get('http://localhost:5000/products/?productName[regex]=' + params.name)
+                const res1 = await axios.get('https://aw-ec01-06.herokuapp.com/products/?productName[regex]=' + params.name)
                 setProduct1(res1.data.products)
             }
             getProducts()
         } else {
             const getProducts = async () => {
-                const res1 = await axios.get('http://localhost:5000/products/?limit=20')
+                const res1 = await axios.get('https://aw-ec01-06.herokuapp.com/products/?limit=20')
                 setProduct1(res1.data.products)
             }
             getProducts()

@@ -8,6 +8,7 @@ import StorePage from './Page/StorePage.js'
 import Paymentpage from './Page/PaymentPage.js'
 import SuccessPage from './Page/SucessPage.js'
 import AllPage from './Page/AllPage.js'
+import OrderPage from './Page/OrderPage.js'
 
 import {Routes, Route} from 'react-router-dom'
 
@@ -28,6 +29,7 @@ function RouterPage() {
             <Route path="/show/category=:category" element={<AllPage />} />
             <Route path="/show/search=:name" element={<AllPage />} />
             <Route path="/show/all" element={<AllPage />} />
+            <Route path="/customer/order" element={<OrderPage />} />
         </Routes>
     )
 }

@@ -123,11 +123,11 @@ function Detailpage() {
             setQuantity(product.colors[0].quantity)
         }
         const callWarehouse = async () => {
-            const res = await axios.get('http://localhost:5000/warehouses/?product_id=' + product.product_id)
+            const res = await axios.get('https://aw-ec01-06.herokuapp.com/warehouses/?product_id=' + product.product_id)
             setWarehouse(res.data.products)
         }
         const productTT = async () => {
-            const res = await axios.get('http://localhost:5000/products/?limit=11&category=' + product.category)
+            const res = await axios.get('https://aw-ec01-06.herokuapp.com/products/?limit=11&category=' + product.category)
             setTT(res.data.products)
         }
         
@@ -141,7 +141,7 @@ function Detailpage() {
     useEffect(() =>{
         const getDetailProduct = async () => {
             
-            const res = await axios.get('http://localhost:5000/products/?_id=' + String(params.id))
+            const res = await axios.get('https://aw-ec01-06.herokuapp.com/products/?_id=' + String(params.id))
             setProduct(res.data.products[0]);
         }
         getDetailProduct()
@@ -286,7 +286,7 @@ function Detailpage() {
                         tt.map(product => {
                             return (
                                 <SwiperSlide className="slide">
-                                    <Link to={"/product/" + product._id} style={{textDecoration: 'none'}}>
+                                    <Link to={"/product/" + product._id} onClick={()=>{window.location.href="/product/" + product._id}} style={{textDecoration: 'none'}}>
                                         <div className="slide-promotion">
                                             <span>Giảm {product.discount}%</span>
                                         </div>

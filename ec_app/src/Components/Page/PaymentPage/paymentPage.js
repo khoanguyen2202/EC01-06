@@ -11,6 +11,7 @@ import city from './show.json'
 function Paymentpage() {
     let dollarUSLocale = Intl.NumberFormat('en-US');
     const state = useContext(GlobalState)
+    const [userInfo, setUserInfo] = state.userAPI.userInfo
     const [Cart, setCart] = state.Cart
     const [value, setValue] = useState(0.0)
     const [productList, setProductList] = useState([])
@@ -43,7 +44,7 @@ function Paymentpage() {
 
             var config = {
                 method: 'post',
-                url: 'http://localhost:5000/products/list',
+                url: 'https://aw-ec01-06.herokuapp.com/products/list',
                 headers: { 
                   'Content-Type': 'application/json'
                 },
@@ -81,6 +82,12 @@ function Paymentpage() {
         }
     }, [productList])
 
+    useEffect(() => {
+        const tempt = {
+            name:userInfo.name, phonenumber:userInfo.phone, email: userInfo.email, address:""
+        }
+        setUser({...tempt})
+    }, [userInfo])
 
     const showDistrict = () => {
         if (City === "") {
@@ -156,7 +163,7 @@ function Paymentpage() {
 
             var config = {
                 method: 'post',
-                url: 'http://localhost:5000/bills/create',
+                url: 'https://aw-ec01-06.herokuapp.com/bills/create',
                 headers: { 
                   'Content-Type': 'application/json',
                   'responseEncoding': 'utf-8'
@@ -169,13 +176,11 @@ function Paymentpage() {
                 setWait(true)
                 if (res.data.msg === "Created a bill.") {
                     // remove local store
-
                     localStorage.setItem('cartuser', "")
 
                     // new tab don hang thanh cong
                     window.location.href = "/cart/success"
                 }
-               
             })
             .catch(function (error) {
                 console.log(error);
@@ -187,7 +192,7 @@ function Paymentpage() {
 
             var config = {
                 method: 'post',
-                url: 'http://localhost:5000/payments/get',
+                url: 'https://aw-ec01-06.herokuapp.com/payments/get',
                 headers: { 
                 'Content-Type': 'application/json'
                 },

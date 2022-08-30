@@ -22,7 +22,7 @@ function Cartpage() {
 
             var config = {
                 method: 'post',
-                url: 'http://localhost:5000/products/list',
+                url: 'https://aw-ec01-06.herokuapp.com/products/list',
                 headers: { 
                   'Content-Type': 'application/json'
                 },
@@ -161,7 +161,7 @@ function Cartpage() {
 
         var config = {
             method: 'post',
-            url: 'http://localhost:5000/payments/get',
+            url: 'https://aw-ec01-06.herokuapp.com/payments/get',
             headers: { 
               'Content-Type': 'application/json'
             },
@@ -256,7 +256,7 @@ function Cartpage() {
                                     </div>
                                     <div className="cp_product_tt">
                                         <div className="p_tt_name">
-                                            <span>{product.productName}</span>
+                                            <span>{product.productName + "- Màu sắc: " + Cart[index].color}</span>
                                         </div>
                                         <div className="p_tt_price">
                                             {showPrice(product.productPrice, product.productDiscount)}

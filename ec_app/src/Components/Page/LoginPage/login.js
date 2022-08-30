@@ -4,7 +4,7 @@ import phone from './img/phone.svg'
 import pass from './img/pass.svg'
 import React, {useState} from 'react'
 import axios from 'axios'
-
+import fetch from 'node-fetch'
 
 function Login() {
     const [user, setUser] = useState({
@@ -24,17 +24,15 @@ function Login() {
             if (user.phonenumber.length !== 10 || regExp.test(user.phonenumber)) {
                 setCondition(2)
             } else {
-                const res = await axios.post('http://localhost:5000/customers/sign-in', {...user})
+                const res = await axios.post('https://aw-ec01-06.herokuapp.com/customers/sign-in', {...user})
                 localStorage.setItem('firstLogin', true)
-                localStorage.setItem('token', res.data.accesstoken)
-
+                localStorage.setItem('refreshtoken', res.data.refreshtoken)
                 window.location.href = "/";
             }
         } catch (err) {
             if (err.response.data.msg === "Username is not exist." || err.response.data.msg === "Incorrect password.") {
                 setCondition(1)
             } 
-
         }
     }
     const conditionInfo = () => {
