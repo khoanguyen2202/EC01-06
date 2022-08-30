@@ -81,9 +81,9 @@ export const createProduct = async (req, res) => {
     if (product) {
       return res.status(400).json({ msg: "This product already exists." });
     }
-    if (discount !== 0) {
-      price = (price * (100 - discount)) / 100;
-    }
+    // if (discount !== 0) {
+    //   price = (price * (100 - discount)) / 100;
+    // }
     const newProduct = new ProductModel({
       product_id,
       category,
