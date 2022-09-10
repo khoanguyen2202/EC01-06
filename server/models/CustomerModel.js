@@ -2,8 +2,19 @@ import mongoose from "mongoose";
 
 const schema_customer = new mongoose.Schema(
   {
+    nickname:{
+      type: String,
+      default:"None"
+    },
+    gender:{
+      type: String,
+    },
+    dateOfBirth:{
+      type:Date
+    },
     phonenumber: {
       type: String,
+      unique: true,
       required: true,
     },
     password: {
@@ -24,6 +35,34 @@ const schema_customer = new mongoose.Schema(
         ward: String,
         district: String,
         city: String,
+      },
+    ],
+    role: {
+      type: Number,
+      default: 0, // 0:customer , 1: admit access
+    },
+    state: {
+      type: String,
+      default: "activate",
+    },	
+    cart: [
+      {
+        product_id: {
+          type: String,
+          trim: true,
+        },
+        color: {
+          type: String,
+          trim: true,
+        },
+        quantity: {
+          type: Number,
+          default: 0,
+        },
+        status: {
+          type: String, // true: Not existed in Cart     false: Existed in Cart
+          trim: true,
+        },
       },
     ],
     history: [],

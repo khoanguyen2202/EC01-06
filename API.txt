@@ -1,0 +1,32 @@
+Product: Khoa
+createProduct (done)
+getProduct (done)
+deleteProduct (done)
+updateProduct (done)
+
+Customer: Khoa
+getCustomer (done) 
+createCustomer (done)
+signIn (½)
+updateInfor (done)
+
+Category: Phước 
+Xem danh sách category (done)
+Tạo category    (done)
+Xóa category    (done)
+Cập nhật category   (done)
+
+
+Bill: Phước
+Xem danh sách Bill (done)
+Tìm kiếm các trạng thái Bill (done)
+Tạo Bill   (done)
+Xóa Bill   (done)
+Cập nhật Bill   (done)
+
+GET: http://localhost:5000/products/?sort=-discount&limit=10
+GET:http://localhost:5000/products/?sort=-sold&limit=10
+GET:http://localhost:5000/products/?_id=62e9da3d5a0aefedde743c35
+GET:http://localhost:5000/products/?category=test
+GET: http://localhost:5000/bills/?customerID=C1&status=Canceled
+GET: http://localhost:5000/warehouses/?product_id=P25

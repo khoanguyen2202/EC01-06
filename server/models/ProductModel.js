@@ -2,23 +2,34 @@ import mongoose from "mongoose";
 
 const schema_product = new mongoose.Schema(
   {
-    type: {
+    product_id: {
       type: String,
+      unique: true,
+      trim: true,
       required: true,
+    },
+    category: {
+      type: String,
+      trim: true,
     },
     brandName: {
       type: String,
-      required: true,
+      trim: true,
     },
     productName: {
       type: String,
+      trim: true,
     },
     price: {
       type: Number,
+      trim: true,
     },
     colors: [
       {
-        color: String,
+        color: {
+          type: String,
+          trim: true,
+        },
         quantity: {
           type: Number,
           default: 0,
@@ -26,9 +37,18 @@ const schema_product = new mongoose.Schema(
       },
     ],
     feature: {
-      madeIn: String,
-      status: String,
-      insurance: String,
+//       madeIn: {
+//         type: String,
+//         default: "Updating",
+//       },
+//       status: {
+//         type: String,
+//         default: "Updating",
+//       },
+//       insurance: {
+//         type: String,
+//         default: "Updating",
+//       },
     },
 
     description: {
@@ -46,20 +66,27 @@ const schema_product = new mongoose.Schema(
     reviews: [
       {
         type: String,
-        defaut: "No comment yet",
+        default: "No comment yet",
       },
     ],
-    attachments: [
+    images: [
       {
-        type: String,
-        default: "Updating",
+        type: Object,
+        required: true,
       },
     ],
     sold: {
       type: Number,
       default: 0,
     },
-    hidden: Boolean,
+    checked: {
+      type: Boolean,
+      default: true,
+    },
+    restQuantity: {
+      type: Number,
+      default: 0,
+    }
   },
   { timestamps: true }
 );

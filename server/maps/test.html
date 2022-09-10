@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        text-align: center;
+      }
+      input,
+      button,.results {
+        height: 50px;
+        font-size: 20px;
+      }
+      input {
+        width: 500px;
+        margin-top: 100px;
+      }
+      button {
+        margin-top: 10px;
+        background-color: green;
+        color: white;
+        width: 200px;
+      }
+      button:hover {
+        background-color: rgb(116, 235, 61);
+        color: rgb(51, 50, 50);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <input type="text" placeholder="address" id="address" />
+      <br />
+      <button onclick="findAddress()">Search</button>
+      <div id="results"></div>
+    </div>
+    <script type="text/javascript">
+      var address = document.querySelector("#address");
+      var results = document.querySelector("#results")
+      function showAddress(){
+        results.innerHTML=''
+        if(addressArr.length>0){
+            // addressArr.find(e=>{
+            //     results.innerHTML += "<div class='results'>"+e.display_name +"<br> Lat: "+e.lat+"Lng: "+e.lon +"</div>"
+            // })
+            results.innerHTML += "<div class='results'>"+addressArr[0].display_name +"<br> Lat: "+addressArr[0].lat+"Lng: "+addressArr[0].lon +"</div>"
+        }
+        else{
+            results.innerHTML = "<p style= 'color: red'>Address not found</p>"
+        }
+      }
+      function findAddress() {
+        var url =
+          "https://nominatim.openstreetmap.org/search?format=json&limit=3&q=" +
+          address.value;
+          
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => (addressArr = data))
+          .then((show) => showAddress())
+          .catch((err) => console.log(err));
+      }
+    </script>
+  </body>
+</html>
